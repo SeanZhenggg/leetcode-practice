@@ -93,38 +93,36 @@ class MinHeap extends Heap {
   }
 }
 var networkDelayTime = function(times, n, k) {
-    const edges = new Map()
-    const visit = new Set()
-    for (let [u, v, w] of times) {
-        if(!edges.has(u)) edges.set(u, [{ v, w }])
-        else edges.set(u, [...edges.get(u), { v, w }])
-    }
-    
-    const minHeap = new MinHeap()
-    minHeap.insert(k, 0)
-    let ret = -Infinity
-    
-    // console.log('edges = ', edges)
-    // console.log('minHeap = ', minHeap)
-    
-    while(!minHeap.isHeapEmpty()) {
-        let { element, key: weight } = minHeap.extract()
-        if(visit.has(element)) continue
-        visit.add(element)
+  // step 1, 2
+  const edges = new Map()
+  const visit = new Set()
+  for (let [u, v, w] of times) {
+      if(!edges.has(u)) edges.set(u, [{ v, w }])
+      else edges.set(u, [...edges.get(u), { v, w }])
+  }
+  // step 3
+  const minHeap = new MinHeap()
+  minHeap.insert(k, 0)
 
-        ret = Math.max(ret, weight)
-        
-        const edgesForEle = edges.get(element) || []
-        for (let { v, w } of edgesForEle) {
-            if(v && (w || w === 0) && !visit.has(v)) {
-                const result = minHeap.insert(v, weight + w)
-                // result && console.log('insert', v, weight + w)
-            }
-        }
-    }
-    
-    return visit.size === n ? ret : -1
-    
+  let ret = -Infinity
+  while(!minHeap.isHeapEmpty()) { // step 4
+      // step 5
+      let { element, key: weight } = minHeap.extract() // get path of smallest weight, with its target(current) vertex and weight
+      if(visit.has(element)) continue // continue if visit has element included
+      visit.add(element) // add current vertex into visit
+
+      ret = Math.max(ret, weight) // step 6
+      
+      const edgesForEle = edges.get(element) || [] // get all paths with current vertex from edge map
+      for (let { v, w } of edgesForEle) {
+          if(v && (w || w === 0) && !visit.has(v)) { // if not visited yet
+              const result = minHeap.insert(v, weight + w) // add the target vertex and weight into heap, weight calculated with current vertex weight 
+          }
+      }
+  }
+  
+  return visit.size === n ? ret : -1
+  
 };
 
 // dictionary answer

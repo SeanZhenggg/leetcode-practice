@@ -64,5 +64,3 @@ var productExceptSelf = function(nums) {
 
   return result
 };
-
-console.log(productExceptSelf(nums))

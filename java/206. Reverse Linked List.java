@@ -37,7 +37,7 @@ class Solution {
     }
 }
 
-// second solution
+// iterative solution
 class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode prevNode = null;
@@ -49,5 +49,40 @@ class Solution {
             head = nextNode;
         }
         return prevNode;
+    }
+}
+
+// recursive solution
+class Solution {
+    public ListNode firstHead = new ListNode(-1);
+    public ListNode recursion(ListNode head) {
+        if (head == null || head.next == null) {
+            firstHead.next = head;
+            return head;
+        }
+        ListNode nextNode = recursion(head.next);
+        nextNode.next = head;
+        head.next = null;
+        return nextNode.next;
+    }
+    public ListNode reverseList(ListNode head) {
+        recursion(head);
+
+        return firstHead.next;
+    }
+}
+
+// recursive solution from others
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        // Special case...
+        if (head == null || head.next == null) return head;
+        // Create a new node to call the function recursively and we get the reverse linked list...
+        ListNode res = reverseList(head.next);
+        // Set head node as head.next.next...
+        head.next.next = head;
+        //set head's next to be null...
+        head.next = null;
+        return res;     // Return the reverse linked list...
     }
 }

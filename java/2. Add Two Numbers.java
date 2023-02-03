@@ -28,9 +28,9 @@ class Solution {
     }
 
     public int calculation(ListNode l1, ListNode l2) {
-        boolean isCarry = (l1.val + l2.val + carry) >= 10;
-        int val = isCarry ? (l1.val + l2.val + carry - 10) : (l1.val + l2.val + carry);
-        carry = isCarry ? 1 : 0;
+        int sum = l1.val + l2.val + carry;
+        int val = sum % 10;
+        carry = sum / 10;
         return val;
     }
 }

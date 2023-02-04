@@ -8,6 +8,8 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
+// first solution
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy = head;
@@ -32,6 +34,30 @@ class Solution {
             head = head.next;
             count ++;
         }
+
+        return dummy;
+    }
+}
+
+// two pointer solution
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = head;
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+        
+        for(int i = 1; i <= n; i++) {
+            fast = fast.next;
+        }
+
+        if(fast == null) return slow.next;
+        
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        slow.next = slow.next.next;
 
         return dummy;
     }

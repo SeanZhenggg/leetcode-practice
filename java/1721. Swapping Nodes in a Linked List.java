@@ -70,3 +70,24 @@ class Solution {
         return dummy.next;
     }
 }
+
+// cool solution
+class Solution {
+    public ListNode swapNodes(ListNode head, int k) {
+        ListNode dummy = new ListNode(-1);
+        ListNode node1 = head;
+        ListNode node2 = head;
+        dummy.next = head;
+        
+        for(int i = 1; (head != null; head = head.next); i++) {
+          if(i == k) node1 = head; // the kth node
+          if(i >= k+1) node2 = node2.next; // tricky part, will point to the l-k th node
+        }
+
+        int tempVal = node1.val;
+        node1.val = node2.val;
+        node2.val = tempVal;
+        
+        return dummy.next;
+    }
+}

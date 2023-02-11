@@ -93,3 +93,50 @@ class Solution {
         return first;
     }
 }
+
+// recursive solution 1
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode curr = head;
+        int i = 0;
+        while(i != k && curr != null) {
+            curr = curr.next;
+            i++;
+        }
+
+        if(i != k) return head;
+
+        curr = reverseKGroup(curr, k);
+        while (i-- > 0) {
+            ListNode next = head.next;
+            head.next = curr;
+            curr = head;
+            head = next;
+        }
+        head = curr;
+
+        return head;
+    }
+}
+
+// recursive solution 2
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode pt = head;
+        for(int i = 0; i < k; i++) {
+            if(pt == null) return head;
+            pt = pt.next;
+        }
+
+        ListNode prev = null;
+        ListNode curr = head;
+        for(int i = 0; i < k; i++) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head.next = reverseKGroup(curr, k);
+        return prev;
+    }
+}

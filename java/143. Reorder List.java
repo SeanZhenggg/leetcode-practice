@@ -8,6 +8,8 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
+// stack solution
 class Solution {
     public void reorderList(ListNode head) {
         Stack<ListNode> st = new Stack<>();
@@ -31,3 +33,28 @@ class Solution {
         head.next = null;
     }
 }
+
+// two-pointer with merge op solution
+
+// recursive solution 1
+class Solution {
+    public void reorderList(ListNode head) {
+        if (head.next == null || head.next.next == null) return;
+
+        ListNode tempHead = head;
+        while (tempHead.next.next != null) {
+            tempHead = tempHead.next;
+        }
+
+
+        ListNode penultimate = tempHead;
+        ListNode next = head.next;
+        head.next = penultimate.next;
+        penultimate.next.next = next;
+        penultimate.next = null;
+
+        reorderList(next);
+    }
+}
+
+// recursive solution 2

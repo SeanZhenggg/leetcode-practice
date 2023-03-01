@@ -31,16 +31,7 @@ class Solution {
             tempHead = tempHead.next;
         }
 
-        while (l1 != null) {
-            tempHead.next = l1;
-            l1 = l1.next;
-            tempHead = tempHead.next;
-        }
-
-        while (l2 != null) {
-            tempHead.next = l2;
-            l2 = l2.next;
-            tempHead = tempHead.next;
-        }
+        if (l1 != null) tempHead.next = l1;
+        if (l2 != null) tempHead.next = l2;
     }
 }

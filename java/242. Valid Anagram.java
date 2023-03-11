@@ -1,3 +1,4 @@
+// sort solution
 class Solution {
     public boolean isAnagram(String s, String t) {
         String sorted1 = Arrays.stream(s.split(""))
@@ -13,23 +14,39 @@ class Solution {
     }
 }
 
+// array solution
 class Solution {
     public boolean isAnagram(String s, String t) {
         if(s.length() != t.length()) return false;
 
         int[] counts = new int[26];
         
-        int base = "a".codePointAt(0);
+        char base = 'a';
 
         for(int i = 0; i < s.length(); i++) {
-            // counts[s - 'a'] ++;
-            // counts[t - 'a'] --;
-            counts[s.codePointAt(i) - base] ++;
-            counts[t.codePointAt(i) - base] --;
+            counts[s.charAt(i) - base] ++;
+            counts[t.charAt(i) - base] --;
         }
 
         for (int i : counts) if (i != 0) return false;
 
+        return true;
+    }
+}
+
+// faster array solution
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length() != t.length()) return false;
+
+        int[] records=new int[26];
+        for(char c:s.toCharArray()){
+            records[c-'a']++;
+        }
+        for(char c:t.toCharArray()){
+            if(records[c-'a']==0) return false;
+            records[c-'a']--;
+        }
         return true;
     }
 }

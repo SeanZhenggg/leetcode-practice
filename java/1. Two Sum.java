@@ -9,6 +9,7 @@ class Solution {
                 break;
             } else {
                 hashmap.put(target - nums[i], i);
+                // test
             }
         }
         return result;

@@ -10,10 +10,10 @@ extension=$(git status -s | sed -nE 's/.*\.([a-z]+)"/\1/p')
 if [[ mode == "update" ]]
 then
   git add :
-  git cm -m "$name in $extension"
+  git cm -m "update $name"
 else
   git add :
-  git cm -m "update $name"
+  git cm -m "$name in $extension"
 fi
 
 git push origin master

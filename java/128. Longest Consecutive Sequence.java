@@ -94,10 +94,10 @@ class Solution {
         int ans = 1;
         for (int num : nums) set.add(num);
         for (int num : nums) {
-            if (!set.contains(num - 1)) {
+            if (!set.contains(num + 1)) {
                 int count = 1;
-                while (set.contains(num + 1)) {
-                    num++;
+                while (set.contains(num - 1)) {
+                    num--;
                     count++;
                 }
                 ans = Math.max(count, ans);

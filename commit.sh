@@ -4,10 +4,10 @@
 mode=$1
 
 # get filename and file extension
-name=$(git status -s | sed -nE 's/.*([0-9]+.*)\..*/\1/p')
+name=$(git status -s | sed -nE 's/.*\/([0-9]+.*)\..*/\1/p')
 extension=$(git status -s | sed -nE 's/.*\.([a-z]+)"/\1/p')
 
-if [[ mode == "update" ]]
+if [[ $mode == "update" ]]
 then
   git add :
   git cm -m "update $name"

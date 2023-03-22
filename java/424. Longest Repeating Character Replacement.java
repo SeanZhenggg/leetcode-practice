@@ -31,6 +31,12 @@ class Solution {
         int maxF = 0;
         for(int r = 0; r < s.length(); r++) {
             charMap[s.charAt(r) - 'A']++;
+            
+            // only to find maxF through entire array
+            // no need to be re-calculating cuz it won't affect the answer
+            // be-cuz k is constant,
+            // if we need to get longest substring(window length),
+            // we need to get the maxF longer and longer.
             maxF = Math.max(maxF, charMap[s.charAt(r) - 'A']);
 
             while((r - l + 1) - maxF > k) {

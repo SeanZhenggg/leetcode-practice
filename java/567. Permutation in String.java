@@ -85,3 +85,44 @@ class Solution {
         return matches == 26;
     }
 }
+
+// using array map solution
+class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+        if (s1.length() > s2.length()) return false;
+
+        int[] map = new int[26];
+        char[] s1Chars = s1.toCharArray();
+        char[] s2Chars = s2.toCharArray();
+
+        for(char s1c: s1Chars) {
+            map[s1c - 'a']--;
+        }
+        
+        for(int i = 0; i < s1Chars.length; i++) {
+            map[s2Chars[i] - 'a']++;
+        }
+
+        if(isPermutation(map)) return true;
+
+        for(int i = s1Chars.length; i < s2Chars.length; i++) {
+            int prev = i - s1Chars.length;
+            int next = i;
+            
+            map[s2Chars[next] - 'a'] ++;
+            map[s2Chars[prev] - 'a'] --;
+
+            if(isPermutation(map)) return true;
+        }
+        
+        return false;
+    }
+
+    public boolean isPermutation(int[] map) {
+        boolean isPermutation = true;
+        for(int count : map) {
+            if(count != 0) isPermutation = false;
+        }
+        return isPermutation;
+    }
+}

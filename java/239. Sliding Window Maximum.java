@@ -1,4 +1,4 @@
-// O(k * (n-k)) failed solution
+// O(n * k) failed solution
 class Solution {
 
   public static int[] maxSlidingWindow(int[] nums, int k) {

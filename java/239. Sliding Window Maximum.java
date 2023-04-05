@@ -16,3 +16,27 @@ class Solution {
     return res;
   }
 }
+
+// O(n) monotonic deque solution
+class Solution {
+    public static int[] maxSlidingWindow(int[] nums, int k) {
+        int l = 0, idx = 0;
+        int[] res = new int[nums.length - k + 1];
+        ArrayDeque<Integer> queue = new ArrayDeque<>();
+        for (int r = 0; r < nums.length; r++) {
+            while (!queue.isEmpty() && nums[queue.getLast()] < nums[r]) queue.pollLast();
+            queue.offerLast(r);
+
+            if (l > queue.peekFirst()) {
+                queue.pollFirst();
+            }
+
+            if (r + 1 >= k) {
+                res[idx++] = nums[queue.peekFirst()];
+                l ++;
+            }
+        }
+
+        return res;
+    }
+}

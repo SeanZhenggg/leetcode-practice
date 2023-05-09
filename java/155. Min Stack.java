@@ -60,3 +60,35 @@ class MinStack {
         return (int) this.head.next.val;
     }
 }
+
+// using auxiliary stack(two stacks)
+class MinStack {
+    Stack<Integer> stack;
+    Stack<Integer> auxiliaryStack;
+
+    public MinStack() {
+        this.stack = new Stack<>();
+        this.auxiliaryStack = new Stack<>();
+    }
+
+    public void push(int val) {
+        if(this.auxiliaryStack.isEmpty() || this.auxiliaryStack.peek() >= val) {
+            this.auxiliaryStack.push(val);
+        }
+        this.stack.push(val);
+    }
+
+    public void pop() {
+        if(this.stack.pop().equals(this.auxiliaryStack.peek())) {
+            this.auxiliaryStack.pop();
+        }
+    }
+
+    public int top() {
+        return this.stack.peek();
+    }
+
+    public int getMin() {
+        return this.auxiliaryStack.peek();
+    }
+}

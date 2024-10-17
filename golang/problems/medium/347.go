@@ -35,6 +35,5 @@ func TopKFrequent(nums []int, k int) []int {
 		result = append(result, arr[i].num)
 	}
 
-	//log.Println("arr: ", arr)
 	return result
 }

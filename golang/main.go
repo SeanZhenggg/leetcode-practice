@@ -1,10 +1,5 @@
 package main
 
-import (
-	"golang/problems/medium"
-	"log"
-)
-
 func main() {
 	// 347 test
 	//ans1 := medium.TopKFrequent([]int{1, 1, 1, 2, 2, 3}, 2)
@@ -27,10 +22,10 @@ func main() {
 	//log.Println("ans3: ", ans3)
 
 	// 49 test
-	ans1 := medium.GroupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"})
-	log.Println("ans1: ", ans1)
-	ans2 := medium.GroupAnagrams([]string{""})
-	log.Println("ans2: ", ans2)
-	ans3 := medium.GroupAnagrams([]string{"a"})
-	log.Println("ans3: ", ans3)
+	//ans1 := medium.GroupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"})
+	//log.Println("ans1: ", ans1)
+	//ans2 := medium.GroupAnagrams([]string{""})
+	//log.Println("ans2: ", ans2)
+	//ans3 := medium.GroupAnagrams([]string{"a"})
+	//log.Println("ans3: ", ans3)
 }

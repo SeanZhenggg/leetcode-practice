@@ -28,4 +28,22 @@ func main() {
 	//log.Println("ans2: ", ans2)
 	//ans3 := medium.GroupAnagrams([]string{"a"})
 	//log.Println("ans3: ", ans3)
+
+	// 238 test
+	//ans1 := medium.ProductExceptSelf([]int{1, 2, 3, 4})
+	//log.Println("ans1: ", ans1)
+	//ans2 := medium.ProductExceptSelf([]int{-1, 1, 0, -3, 3})
+	//log.Println("ans2: ", ans2)
+	//log.Println()
+	//log.Println()
+	//ans3 := medium.ProductExceptSelf2([]int{1, 2, 3, 4})
+	//log.Println("ans3: ", ans3)
+	//ans4 := medium.ProductExceptSelf2([]int{-1, 1, 0, -3, 3})
+	//log.Println("ans4: ", ans4)
+	//log.Println()
+	//log.Println()
+	//ans5 := medium.ProductExceptSelf3([]int{1, 2, 3, 4})
+	//log.Println("ans5: ", ans5)
+	//ans6 := medium.ProductExceptSelf3([]int{-1, 1, 0, -3, 3})
+	//log.Println("ans6: ", ans6)
 }

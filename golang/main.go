@@ -1,5 +1,10 @@
 package main
 
+import (
+	"golang/problems/easy"
+	"log"
+)
+
 func main() {
 	// 347 test
 	//ans1 := medium.TopKFrequent([]int{1, 1, 1, 2, 2, 3}, 2)
@@ -46,4 +51,12 @@ func main() {
 	//log.Println("ans5: ", ans5)
 	//ans6 := medium.ProductExceptSelf3([]int{-1, 1, 0, -3, 3})
 	//log.Println("ans6: ", ans6)
+
+	// 125 test
+	ans1 := easy.IsPalindrome("A man, a plan, a canal: Panama")
+	log.Println("ans1: ", ans1)
+	ans2 := easy.IsPalindrome("race a car")
+	log.Println("ans2: ", ans2)
+	ans3 := easy.IsPalindrome(" ")
+	log.Println("ans3: ", ans3)
 }

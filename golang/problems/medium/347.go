@@ -1,5 +1,10 @@
 package medium
 
+import (
+	"log"
+	"slices"
+)
+
 type count struct {
 	num   int
 	count int
@@ -36,4 +41,30 @@ func TopKFrequent(nums []int, k int) []int {
 	}
 
 	return result
+}
+
+func TopKFrequentReview1(nums []int, k int) []int {
+	m := make(map[int]int, len(nums))
+
+	for _, v := range nums {
+		m[v]++
+	}
+
+	counts := make([]count, 0, len(m))
+	for num, c := range m {
+		counts = append(counts, count{num, c})
+	}
+
+	slices.SortFunc(counts, func(i, j count) int {
+		return j.count - i.count
+	})
+
+	log.Printf("counts: %v", counts)
+
+	ret := make([]int, 0, k)
+	for i := 0; i < k; i++ {
+		ret = append(ret, counts[i].num)
+	}
+
+	return ret
 }

@@ -95,3 +95,31 @@ func IsValidSudoku2(board [][]byte) bool {
 
 	return true
 }
+
+func IsValidSudoku3(board [][]byte) bool {
+	var rowNumCount [9][9]bool
+	var colNumCount [9][9]bool
+	var boxNumCount [9][9]bool
+
+	for i := 0; i < len(board); i++ {
+		for j := 0; j < len(board[i]); j++ {
+			if board[i][j] < 49 || board[i][j] > 57 {
+				continue
+			}
+			num := board[i][j] - '1'
+			k := 3*(i/3) + j/3
+			if rowNumCount[i][num] {
+				return false
+			}
+			if colNumCount[j][num] {
+				return false
+			}
+			if boxNumCount[k][num] {
+				return false
+			}
+			rowNumCount[i][num], colNumCount[j][num], boxNumCount[k][num] = true, true, true
+		}
+	}
+
+	return true
+}

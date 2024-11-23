@@ -1,6 +1,8 @@
 package easy
 
-func IsAnagram(s string, t string) bool {
+import "log"
+
+func isAnagram(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
 	}
@@ -19,4 +21,11 @@ func IsAnagram(s string, t string) bool {
 	}
 
 	return true
+}
+
+func TestIsAnagram() {
+	ans1 := isAnagram("anagram", "nagaram")
+	log.Println("ans1: ", ans1)
+	ans2 := isAnagram("rat", "car")
+	log.Println("ans2: ", ans2)
 }

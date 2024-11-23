@@ -1,7 +1,9 @@
 package medium
 
+import "log"
+
 // solution 1
-func ProductExceptSelf(nums []int) []int {
+func productExceptSelf(nums []int) []int {
 	leftProducts := make([]int, len(nums))
 	rightProducts := make([]int, len(nums))
 
@@ -42,7 +44,7 @@ func ProductExceptSelf(nums []int) []int {
 }
 
 // solution 2 - using O(1)
-func ProductExceptSelf2(nums []int) []int {
+func productExceptSelf2(nums []int) []int {
 	ret := make([]int, len(nums))
 
 	for i := 0; i < len(nums); i++ {
@@ -65,7 +67,7 @@ func ProductExceptSelf2(nums []int) []int {
 }
 
 // solution - using O(1) with more elegant code
-func ProductExceptSelf3(nums []int) []int {
+func productExceptSelf3(nums []int) []int {
 	ret := make([]int, len(nums))
 	prod := 1
 
@@ -84,7 +86,7 @@ func ProductExceptSelf3(nums []int) []int {
 }
 
 // review
-func ProductExceptSelfReview(nums []int) []int {
+func productExceptSelfReview(nums []int) []int {
 	var leftProducts = make([]int, len(nums))
 	var rightProducts = make([]int, len(nums))
 	var lProduct = 1
@@ -106,7 +108,7 @@ func ProductExceptSelfReview(nums []int) []int {
 	return ret
 }
 
-func ProductExceptSelfReview2(nums []int) []int {
+func productExceptSelfReview2(nums []int) []int {
 	var ret = make([]int, len(nums))
 
 	var prod = 1
@@ -121,4 +123,43 @@ func ProductExceptSelfReview2(nums []int) []int {
 	}
 
 	return ret
+}
+
+func Test_ProductExceptSelf() {
+	ans1 := productExceptSelf([]int{1, 2, 3, 4})
+	log.Println("ans1: ", ans1)
+	ans2 := productExceptSelf([]int{-1, 1, 0, -3, 3})
+	log.Println("ans2: ", ans2)
+}
+
+func Test_ProductExceptSelf2() {
+	ans3 := productExceptSelf2([]int{1, 2, 3, 4})
+	log.Println("ans3: ", ans3)
+	ans4 := productExceptSelf2([]int{-1, 1, 0, -3, 3})
+	log.Println("ans4: ", ans4)
+}
+
+func Test_ProductExceptSelf3() {
+	ans5 := productExceptSelf3([]int{1, 2, 3, 4})
+	log.Println("ans5: ", ans5)
+	ans6 := productExceptSelf3([]int{-1, 1, 0, -3, 3})
+	log.Println("ans6: ", ans6)
+}
+
+func Test_ProductExceptSelfReview() {
+	ans1 := productExceptSelfReview([]int{1, 2, 3, 4})
+	log.Println("ans1: ", ans1)
+	ans2 := productExceptSelfReview([]int{-1, 1, 0, -3, 3})
+	log.Println("ans2: ", ans2)
+	ans3 := productExceptSelfReview([]int{8, 2, -1, 3, 5})
+	log.Println("ans3: ", ans3)
+}
+
+func Test_ProductExceptSelfReview2() {
+	ans1 := productExceptSelfReview2([]int{1, 2, 3, 4})
+	log.Println("ans1: ", ans1)
+	ans2 := productExceptSelfReview2([]int{-1, 1, 0, -3, 3})
+	log.Println("ans2: ", ans2)
+	ans3 := productExceptSelfReview2([]int{8, 2, -1, 3, 5})
+	log.Println("ans3: ", ans3)
 }

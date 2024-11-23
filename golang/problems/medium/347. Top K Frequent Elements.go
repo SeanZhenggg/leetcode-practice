@@ -10,7 +10,7 @@ type count struct {
 	count int
 }
 
-func TopKFrequent(nums []int, k int) []int {
+func topKFrequent(nums []int, k int) []int {
 	m := make(map[int]int, len(nums))
 
 	for _, n := range nums {
@@ -43,7 +43,7 @@ func TopKFrequent(nums []int, k int) []int {
 	return result
 }
 
-func TopKFrequentReview1(nums []int, k int) []int {
+func topKFrequentReview1(nums []int, k int) []int {
 	m := make(map[int]int, len(nums))
 
 	for _, v := range nums {
@@ -67,4 +67,20 @@ func TopKFrequentReview1(nums []int, k int) []int {
 	}
 
 	return ret
+}
+
+func Test_TopKFrequent() {
+	ans1 := topKFrequent([]int{1, 1, 1, 2, 2, 3}, 2)
+	log.Println("ans1: ", ans1)
+	ans2 := topKFrequent([]int{1}, 1)
+	log.Println("ans2: ", ans2)
+}
+
+func Test_TopKFrequentReview1() {
+	ans1 := topKFrequentReview1([]int{1, 1, 1, 2, 2, 3}, 2)
+	log.Println("ans1: ", ans1)
+	ans2 := topKFrequentReview1([]int{1}, 1)
+	log.Println("ans2: ", ans2)
+	ans3 := topKFrequentReview1([]int{-5, -2, -1, 2, 5, -5, 2, -1}, 3)
+	log.Println("ans3: ", ans3)
 }

@@ -1,7 +1,9 @@
 package easy
 
+import "log"
+
 // solution 1
-func IsPalindrome(s string) bool {
+func isPalindrome(s string) bool {
 	if len(s) == 1 {
 		return true
 	}
@@ -44,7 +46,7 @@ func transToLowercase(c uint8) uint8 {
 }
 
 // solution 2 - without functions
-func IsPalindrome2(s string) bool {
+func isPalindrome2(s string) bool {
 	if len(s) == 1 {
 		return true
 	}
@@ -81,4 +83,22 @@ func IsPalindrome2(s string) bool {
 	}
 
 	return true
+}
+
+func Test_IsPalindrome() {
+	ans1 := isPalindrome("A man, a plan, a canal: Panama")
+	log.Println("ans1: ", ans1)
+	ans2 := isPalindrome("race a car")
+	log.Println("ans2: ", ans2)
+	ans3 := isPalindrome(" ")
+	log.Println("ans3: ", ans3)
+}
+
+func Test_IsPalindrome2() {
+	ans1 := isPalindrome2("A man, a plan, a canal: Panama")
+	log.Println("ans1: ", ans1)
+	ans2 := isPalindrome2("race a car")
+	log.Println("ans2: ", ans2)
+	ans3 := isPalindrome2(" ")
+	log.Println("ans3: ", ans3)
 }

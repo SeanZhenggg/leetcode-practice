@@ -1,6 +1,8 @@
 package medium
 
-func GroupAnagrams(strs []string) [][]string {
+import "log"
+
+func groupAnagrams(strs []string) [][]string {
 	if len(strs) == 1 {
 		return [][]string{{strs[0]}}
 	}
@@ -8,7 +10,7 @@ func GroupAnagrams(strs []string) [][]string {
 	m := map[string][]string{}
 
 	for i := 0; i < len(strs); i++ {
-		s := SelectionSort(strs[i])
+		s := selectionSort(strs[i])
 		m[s] = append(m[s], strs[i])
 	}
 
@@ -20,7 +22,7 @@ func GroupAnagrams(strs []string) [][]string {
 	return ret
 }
 
-func SelectionSort(str string) string {
+func selectionSort(str string) string {
 	s := []byte(str)
 	for i := 0; i < len(s); i++ {
 		minI := i
@@ -36,20 +38,11 @@ func SelectionSort(str string) string {
 	return string(s)
 }
 
-func InsertionSort(str string) string {
-	s := []byte(str)
-	for i := 0; i < len(s); i++ {
-		insertI := s[i]
-		idx := i - 1
-		for j := i - 1; j >= 0; j-- {
-			if insertI < s[j] {
-				s[j+1] = s[j]
-				idx = idx - 1
-			}
-		}
-
-		s[idx+1] = insertI
-	}
-
-	return string(s)
+func Test_GroupAnagrams() {
+	ans1 := groupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"})
+	log.Println("ans1: ", ans1)
+	ans2 := groupAnagrams([]string{""})
+	log.Println("ans2: ", ans2)
+	ans3 := groupAnagrams([]string{"a"})
+	log.Println("ans3: ", ans3)
 }

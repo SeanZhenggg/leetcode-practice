@@ -1,10 +1,5 @@
 package main
 
-import (
-	"golang/problems/medium"
-	"log"
-)
-
 func main() {
 	// 347 test
 	//ans1 := medium.TopKFrequent([]int{1, 1, 1, 2, 2, 3}, 2)
@@ -93,10 +88,14 @@ func main() {
 	//log.Println("ans2: ", ans2)
 
 	// 128
-	ans1 := medium.LongestConsecutive([]int{100, 4, 200, 1, 3, 2})
-	log.Println("ans1: ", ans1)
-	ans2 := medium.LongestConsecutive([]int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1})
-	log.Println("ans2: ", ans2)
-	ans3 := medium.LongestConsecutive([]int{159, 86, 72, 85, 87, 160, 73, 73, 158, 161})
-	log.Println("ans3: ", ans3)
+	//ans1 := medium.LongestConsecutive([]int{100, 4, 200, 1, 3, 2})
+	//log.Println("ans1: ", ans1)
+	//ans2 := medium.LongestConsecutive([]int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1})
+	//log.Println("ans2: ", ans2)
+	//ans3 := medium.LongestConsecutive([]int{159, 86, 72, 85, 87, 160, 73, 73, 158, 161})
+	//log.Println("ans3: ", ans3)
+
+	// 167
+	//medium.Test_TwoSum_II_Input_Array_Is_Sorted()
+	//medium.Test_TwoSum_2_II_Input_Array_Is_Sorted()
 }

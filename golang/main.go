@@ -40,5 +40,8 @@ func main() {
 
 	//15
 	//medium.Test_ThreeSum()
-	medium.Test_ThreeSum2()
+	//medium.Test_ThreeSum2()
+
+	//11
+	medium.Test_MaxArea()
 }

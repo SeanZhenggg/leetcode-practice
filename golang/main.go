@@ -1,5 +1,7 @@
 package main
 
+import "golang/problems/medium"
+
 func main() {
 	// 347
 	//medium.Test_TopKFrequent()
@@ -35,4 +37,8 @@ func main() {
 	// 167
 	//medium.Test_TwoSum_II_Input_Array_Is_Sorted()
 	//medium.Test_TwoSum_2_II_Input_Array_Is_Sorted()
+
+	//15
+	//medium.Test_ThreeSum()
+	medium.Test_ThreeSum2()
 }

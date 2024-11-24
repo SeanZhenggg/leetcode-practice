@@ -28,13 +28,6 @@ func trap(height []int) int {
 	return ret
 }
 
-func maxH(x, y int) int {
-	if x >= y {
-		return x
-	}
-	return y
-}
-
 func Test_Trap() {
 	case1 := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
 	ans1 := trap(case1)

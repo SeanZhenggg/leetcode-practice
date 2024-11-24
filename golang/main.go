@@ -1,6 +1,6 @@
 package main
 
-import "golang/problems/medium"
+import "golang/problems/hard"
 
 func main() {
 	// 347
@@ -43,5 +43,8 @@ func main() {
 	//medium.Test_ThreeSum2()
 
 	//11
-	medium.Test_MaxArea()
+	//medium.Test_MaxArea()
+
+	//42
+	hard.Test_Trap()
 }

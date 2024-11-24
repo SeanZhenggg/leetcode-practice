@@ -2,6 +2,7 @@ package hard
 
 import "log"
 
+// two pointers solution
 func trap(height []int) int {
 	l, r := 0, len(height)-1
 	lMax, rMax := height[l], height[r]

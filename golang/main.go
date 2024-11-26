@@ -1,6 +1,6 @@
 package main
 
-import "golang/problems/hard"
+import "golang/problems/easy"
 
 func main() {
 	// 347
@@ -46,5 +46,9 @@ func main() {
 	//medium.Test_MaxArea()
 
 	//42
-	hard.Test_Trap()
+	//hard.Test_Trap()
+
+	//121
+	//easy.Test_MaxProfit()
+	easy.Test_MaxProfit2()
 }

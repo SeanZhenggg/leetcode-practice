@@ -1,6 +1,6 @@
 package main
 
-import "golang/problems/easy"
+import "golang/problems/medium"
 
 func main() {
 	// 347
@@ -50,5 +50,8 @@ func main() {
 
 	//121
 	//easy.Test_MaxProfit()
-	easy.Test_MaxProfit2()
+	//easy.Test_MaxProfit2()
+
+	//3
+	medium.Test_LengthOfLongestSubstring()
 }

@@ -53,5 +53,9 @@ func main() {
 	//easy.Test_MaxProfit2()
 
 	//3
-	medium.Test_LengthOfLongestSubstring()
+	//medium.Test_LengthOfLongestSubstring()
+
+	//424
+	//medium.Test_CharacterReplacement()
+	medium.Test_CharacterReplacement2()
 }

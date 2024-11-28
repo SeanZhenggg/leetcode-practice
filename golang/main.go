@@ -33,6 +33,7 @@ func main() {
 
 	// 128
 	//medium.Test_LongestConsecutive()
+	medium.Test_LongestConsecutiveReview()
 
 	// 167
 	//medium.Test_TwoSum_II_Input_Array_Is_Sorted()
@@ -57,5 +58,5 @@ func main() {
 
 	//424
 	//medium.Test_CharacterReplacement()
-	medium.Test_CharacterReplacement2()
+	//medium.Test_CharacterReplacement2()
 }

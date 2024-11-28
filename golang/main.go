@@ -33,11 +33,12 @@ func main() {
 
 	// 128
 	//medium.Test_LongestConsecutive()
-	medium.Test_LongestConsecutiveReview()
+	//medium.Test_LongestConsecutiveReview()
 
 	// 167
 	//medium.Test_TwoSum_II_Input_Array_Is_Sorted()
 	//medium.Test_TwoSum_2_II_Input_Array_Is_Sorted()
+	medium.Test_TwoSumReview()
 
 	//15
 	//medium.Test_ThreeSum()

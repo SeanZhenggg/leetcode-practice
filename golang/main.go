@@ -1,5 +1,7 @@
 package main
 
+import "golang/problems/hard"
+
 func main() {
 	// 347
 	//medium.Test_TopKFrequent()
@@ -49,6 +51,8 @@ func main() {
 
 	//42
 	//hard.Test_Trap()
+	//hard.Test_TrapReview()
+	hard.Test_TrapReview2()
 
 	//121
 	//easy.Test_MaxProfit()

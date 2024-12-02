@@ -66,7 +66,10 @@ func main() {
 	//424
 	//medium.Test_CharacterReplacement()
 	//medium.Test_CharacterReplacement2()
-	medium.Test_CharacterReplacement3()
+	//medium.Test_CharacterReplacement3()
 	//medium.Test_CharacterReplacementReview()
-	medium.Test_CharacterReplacementReview2()
+	//medium.Test_CharacterReplacementReview2()
+
+	//567
+	medium.Test_CheckInclusion()
 }

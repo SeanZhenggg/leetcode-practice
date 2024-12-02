@@ -36,24 +36,22 @@ func maxProfit(prices []int) int {
 // r
 // r -> r
 // l -> l
-// r -> r -> r
-// r -> r -> r -> r
-// r -> r -> r -> r -> r
-// r -> r -> r -> r -> r -> r
+//      r -> r
+//   		 r -> r
+// 				  r -> r
+// 					   r -> r
 
 // 7    6    4    3    1
 // l
 // r
 // r -> r
 // l -> l
-// r -> r -> r
-// l -> l -> l
-// r -> r -> r -> r
-// l -> l -> l -> r
-// r -> r -> r -> r -> r
-// l -> l -> l -> l -> l
-// r -> r -> r -> r -> r -> r
-// l -> l -> l -> l -> l -> l
+// 		r -> r
+// 		l -> l
+// 			 r -> r
+// 			 l -> l
+// 				  r -> r
+// 				  l -> l
 
 func maxProfit2(prices []int) int {
 	l := 0
@@ -70,6 +68,23 @@ func maxProfit2(prices []int) int {
 	}
 
 	return maxProfits
+}
+
+func maxProfitReview(prices []int) int {
+	l := 0
+	maxP := 0
+
+	for r := 0; r < len(prices); r++ {
+		if prices[r] <= prices[l] {
+			l = r
+		} else {
+			p := prices[r] - prices[l]
+			if maxP < p {
+				maxP = p
+			}
+		}
+	}
+	return maxP
 }
 
 func Test_MaxProfit() {
@@ -89,5 +104,15 @@ func Test_MaxProfit2() {
 
 	case2 := []int{7, 6, 4, 3, 1}
 	ans2 := maxProfit2(case2)
+	log.Printf("ans2: %v", ans2)
+}
+
+func Test_MaxProfitReview() {
+	case1 := []int{7, 1, 5, 3, 6, 4}
+	ans1 := maxProfitReview(case1)
+	log.Printf("ans1: %v", ans1)
+
+	case2 := []int{7, 6, 4, 3, 1}
+	ans2 := maxProfitReview(case2)
 	log.Printf("ans2: %v", ans2)
 }

@@ -116,60 +116,215 @@ func characterReplacement3(s string, k int) int {
 	return maxLength
 }
 
+func characterReplacementReview(s string, k int) int {
+	maxLength := 0
+	m := make(map[byte]int)
+	l := 0
+
+	for r := 0; r < len(s); r++ {
+		m[s[r]]++
+
+		maxF := 0
+		for _, c := range m {
+			if maxF < c {
+				maxF = c
+			}
+		}
+		for (r-l+1)-maxF > k {
+			m[s[l]]--
+			l++
+
+			for _, c := range m {
+				if maxF < c {
+					maxF = c
+				}
+			}
+		}
+
+		if maxLength < r-l+1 {
+			maxLength = r - l + 1
+		}
+	}
+
+	return maxLength
+}
+
+func characterReplacementReview2(s string, k int) int {
+	maxLength := 0
+	m := make(map[byte]int)
+	l := 0
+	maxF := 0
+
+	for r := 0; r < len(s); r++ {
+		m[s[r]]++
+
+		if maxF < m[s[r]] {
+			maxF = m[s[r]]
+		}
+		for (r-l+1)-maxF > k {
+			m[s[l]]--
+			l++
+		}
+
+		if maxLength < r-l+1 {
+			maxLength = r - l + 1
+		}
+	}
+
+	return maxLength
+}
+
 func Test_CharacterReplacement() {
-	//case1 := "ABAB"
-	//k1 := 2
-	//ans1 := characterReplacement(case1, k1)
-	//log.Printf("ans1: %d", ans1)
-	//case2 := "AABABBA"
-	//k2 := 1
-	//ans2 := characterReplacement(case2, k2)
-	//log.Printf("ans2: %d", ans2)
-	//case3 := "ABCBDHBA"
-	//k3 := 2
-	//ans3 := characterReplacement(case3, k3)
-	//log.Printf("ans3: %d", ans3)
-	//case4 := "ABBCBHBA"
-	//k4 := 3
-	//ans4 := characterReplacement(case4, k4)
-	//log.Printf("ans4: %d", ans4)
-	//case5 := "ABBB"
-	//k5 := 2
-	//ans5 := characterReplacement(case5, k5)
-	//log.Printf("ans5: %d", ans5)
+	case1 := "ABAB"
+	k1 := 2
+	ans1 := characterReplacement(case1, k1)
+	log.Printf("ans1: %d", ans1)
+	case2 := "AABABBA"
+	k2 := 1
+	ans2 := characterReplacement(case2, k2)
+	log.Printf("ans2: %d", ans2)
+	case3 := "ABCBDHBA"
+	k3 := 2
+	ans3 := characterReplacement(case3, k3)
+	log.Printf("ans3: %d", ans3)
+	case4 := "ABBCBHBA"
+	k4 := 3
+	ans4 := characterReplacement(case4, k4)
+	log.Printf("ans4: %d", ans4)
+	case5 := "ABBB"
+	k5 := 2
+	ans5 := characterReplacement(case5, k5)
+	log.Printf("ans5: %d", ans5)
 	case6 := "BAAAB"
 	k6 := 2
 	ans6 := characterReplacement(case6, k6)
 	log.Printf("ans6: %d", ans6)
+	case7 := "BAAABC"
+	k7 := 2
+	ans7 := characterReplacement2(case7, k7)
+	log.Printf("ans7: %d", ans7)
 }
 
 func Test_CharacterReplacement2() {
-	//case1 := "ABAB"
-	//k1 := 2
-	//ans1 := characterReplacement2(case1, k1)
-	//log.Printf("ans1: %d", ans1)
-	//case2 := "AABABBA"
-	//k2 := 1
-	//ans2 := characterReplacement2(case2, k2)
-	//log.Printf("ans2: %d", ans2)
+	case1 := "ABAB"
+	k1 := 2
+	ans1 := characterReplacement2(case1, k1)
+	log.Printf("ans1: %d", ans1)
+	case2 := "AABABBA"
+	k2 := 1
+	ans2 := characterReplacement2(case2, k2)
+	log.Printf("ans2: %d", ans2)
+	case3 := "ABCBDHBA"
+	k3 := 2
+	ans3 := characterReplacement2(case3, k3)
+	log.Printf("ans3: %d", ans3)
+	case4 := "ABBCBHBA"
+	k4 := 3
+	ans4 := characterReplacement2(case4, k4)
+	log.Printf("ans4: %d", ans4)
+	case5 := "ABBB"
+	k5 := 2
+	ans5 := characterReplacement2(case5, k5)
+	log.Printf("ans5: %d", ans5)
+	case6 := "BAAAB"
+	k6 := 2
+	ans6 := characterReplacement2(case6, k6)
+	log.Printf("ans6: %d", ans6)
+	case7 := "BAAABC"
+	k7 := 2
+	ans7 := characterReplacement2(case7, k7)
+	log.Printf("ans7: %d", ans7)
+}
+
+func Test_CharacterReplacement3() {
+	case1 := "ABAB"
+	k1 := 2
+	ans1 := characterReplacement3(case1, k1)
+	log.Printf("ans1: %d", ans1)
+	case2 := "AABABBA"
+	k2 := 1
+	ans2 := characterReplacement3(case2, k2)
+	log.Printf("ans2: %d", ans2)
 	case3 := "ABCBDHBA"
 	k3 := 2
 	ans3 := characterReplacement3(case3, k3)
 	log.Printf("ans3: %d", ans3)
-	//case4 := "ABBCBHBA"
-	//k4 := 3
-	//ans4 := characterReplacement2(case4, k4)
-	//log.Printf("ans4: %d", ans4)
-	//case5 := "ABBB"
-	//k5 := 2
-	//ans5 := characterReplacement2(case5, k5)
-	//log.Printf("ans5: %d", ans5)
-	//case6 := "BAAAB"
-	//k6 := 2
-	//ans6 := characterReplacement2(case6, k6)
-	//log.Printf("ans6: %d", ans6)
-	//case7 := "BAAABC"
-	//k7 := 2
-	//ans7 := characterReplacement2(case7, k7)
-	//log.Printf("ans7: %d", ans7)
+	case4 := "ABBCBHBA"
+	k4 := 3
+	ans4 := characterReplacement3(case4, k4)
+	log.Printf("ans4: %d", ans4)
+	case5 := "ABBB"
+	k5 := 2
+	ans5 := characterReplacement3(case5, k5)
+	log.Printf("ans5: %d", ans5)
+	case6 := "BAAAB"
+	k6 := 2
+	ans6 := characterReplacement3(case6, k6)
+	log.Printf("ans6: %d", ans6)
+	case7 := "BAAABC"
+	k7 := 2
+	ans7 := characterReplacement3(case7, k7)
+	log.Printf("ans7: %d", ans7)
+}
+
+func Test_CharacterReplacementReview() {
+	case1 := "ABAB"
+	k1 := 2
+	ans1 := characterReplacementReview(case1, k1)
+	log.Printf("ans1: %d", ans1)
+	case2 := "AABABBA"
+	k2 := 1
+	ans2 := characterReplacementReview(case2, k2)
+	log.Printf("ans2: %d", ans2)
+	case3 := "ABCBDHBA"
+	k3 := 2
+	ans3 := characterReplacementReview(case3, k3)
+	log.Printf("ans3: %d", ans3)
+	case4 := "ABBCBHBA"
+	k4 := 3
+	ans4 := characterReplacementReview(case4, k4)
+	log.Printf("ans4: %d", ans4)
+	case5 := "ABBB"
+	k5 := 2
+	ans5 := characterReplacementReview(case5, k5)
+	log.Printf("ans5: %d", ans5)
+	case6 := "BAAAB"
+	k6 := 2
+	ans6 := characterReplacementReview(case6, k6)
+	log.Printf("ans6: %d", ans6)
+	case7 := "BAAABC"
+	k7 := 2
+	ans7 := characterReplacementReview(case7, k7)
+	log.Printf("ans7: %d", ans7)
+}
+
+func Test_CharacterReplacementReview2() {
+	case1 := "ABAB"
+	k1 := 2
+	ans1 := characterReplacementReview2(case1, k1)
+	log.Printf("ans1: %d", ans1)
+	case2 := "AABABBA"
+	k2 := 1
+	ans2 := characterReplacementReview2(case2, k2)
+	log.Printf("ans2: %d", ans2)
+	case3 := "ABCBDHBA"
+	k3 := 2
+	ans3 := characterReplacementReview2(case3, k3)
+	log.Printf("ans3: %d", ans3)
+	case4 := "ABBCBHBA"
+	k4 := 3
+	ans4 := characterReplacementReview2(case4, k4)
+	log.Printf("ans4: %d", ans4)
+	case5 := "ABBB"
+	k5 := 2
+	ans5 := characterReplacementReview2(case5, k5)
+	log.Printf("ans5: %d", ans5)
+	case6 := "BAAAB"
+	k6 := 2
+	ans6 := characterReplacementReview2(case6, k6)
+	log.Printf("ans6: %d", ans6)
+	case7 := "BAAABC"
+	k7 := 2
+	ans7 := characterReplacementReview(case7, k7)
+	log.Printf("ans7: %d", ans7)
 }

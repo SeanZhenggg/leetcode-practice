@@ -1,6 +1,6 @@
 package main
 
-import "golang/problems/easy"
+import "golang/problems/medium"
 
 func main() {
 	// 347
@@ -55,9 +55,9 @@ func main() {
 	//hard.Test_TrapReview2()
 
 	//121
-	easy.Test_MaxProfit()
+	//easy.Test_MaxProfit()
 	//easy.Test_MaxProfit2()
-	easy.Test_MaxProfitReview()
+	//easy.Test_MaxProfitReview()
 
 	//3
 	//medium.Test_LengthOfLongestSubstring()
@@ -66,4 +66,7 @@ func main() {
 	//424
 	//medium.Test_CharacterReplacement()
 	//medium.Test_CharacterReplacement2()
+	medium.Test_CharacterReplacement3()
+	//medium.Test_CharacterReplacementReview()
+	medium.Test_CharacterReplacementReview2()
 }

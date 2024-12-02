@@ -1,6 +1,6 @@
 package main
 
-import "golang/problems/medium"
+import "golang/problems/hard"
 
 func main() {
 	// 347
@@ -71,5 +71,8 @@ func main() {
 	//medium.Test_CharacterReplacementReview2()
 
 	//567
-	medium.Test_CheckInclusion()
+	//medium.Test_CheckInclusion()
+
+	//76
+	hard.Test_MinWindow()
 }

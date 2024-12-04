@@ -2,37 +2,29 @@ package hard
 
 import (
 	"log"
-	"strconv"
 )
 
+// max pq solution - O(n * logk)
 func maxSlidingWindow(nums []int, k int) []int {
-	ret := make([]int, 0, len(nums)-k+1)
-	m := map[int]int{}
+	pq := NewPriorityQueue(func(a, b interface{}) int {
+		return b.([2]int)[0] - a.([2]int)[0]
+	})
 
-	init := make([]node, 0, k)
-	for i := 0; i < k; i++ {
-		init = append(init, node{Key: strconv.Itoa(i), Weight: nums[i]})
-		m[nums[i]]++
-	}
+	output := make([]int, 0, len(nums)-k+1)
 
-	pq := newPQ(init)
-	n := pq.top()
-	ret = append(ret, n.Weight)
-	l := 0
-	for r := k; r < len(nums); r++ {
-		m[nums[r]]++
-		m[nums[l]]--
-		l++
-		pq.push(&node{strconv.Itoa(r), nums[r]})
-		for m[pq.top().Weight] <= 0 {
+	for i := 0; i < len(nums); i++ {
+		pq.push([2]int{nums[i], i})
+
+		for pq.top().([2]int)[1] <= i-k {
 			pq.poll()
 		}
 
-		ret = append(ret, pq.top().Weight)
-
+		if i+1 >= k {
+			output = append(output, pq.top().([2]int)[0])
+		}
 	}
 
-	return ret
+	return output
 }
 
 func Test_MaxSlidingWindow() {
@@ -50,68 +42,59 @@ func Test_MaxSlidingWindow() {
 	log.Printf("ans3: %v", ans3)
 }
 
-type node struct {
-	Key    string
-	Weight int
+type PriorityQueue struct {
+	heap        []interface{}
+	compareFunc func(a, b interface{}) int
 }
 
-type maxPriorityQueue struct {
-	heap    []*node
-	indexes map[string]int // key -> index
-}
-
-func newPQ(list []node) *maxPriorityQueue {
-	pq := &maxPriorityQueue{
-		heap:    make([]*node, len(list)+1),
-		indexes: make(map[string]int, len(list)),
-	}
-
-	for i := 0; i < len(list); i++ {
-		pq.heap[i+1] = &list[i]
-	}
-
-	for i := len(pq.heap) / 2; i >= 1; i-- {
-		pq.heapify(i)
+func NewPriorityQueue(compareFunc func(a, b interface{}) int) *PriorityQueue {
+	pq := &PriorityQueue{
+		heap:        make([]interface{}, 0),
+		compareFunc: compareFunc,
 	}
 
 	return pq
 }
 
-func (pq *maxPriorityQueue) build() {
+func (pq *PriorityQueue) build() {
 	for i := len(pq.heap) / 2; i >= 1; i-- {
 		pq.heapify(i)
 	}
 }
 
-func (pq *maxPriorityQueue) heapify(index int) {
+func (pq *PriorityQueue) heapify(index int) {
 	length := pq.getLength()
 
 	minIndex := index
-	if 2*index < length && pq.heap[minIndex].Weight < pq.heap[2*index].Weight {
-		minIndex = 2 * index
+	l := 2*index + 1
+	r := 2*index + 2
+	if l < length && pq.compareFunc(pq.heap[minIndex], pq.heap[l]) > 0 {
+		minIndex = l
 	}
 
-	if 2*index+1 < length && pq.heap[minIndex].Weight < pq.heap[2*index+1].Weight {
-		minIndex = 2*index + 1
+	if r < length && pq.compareFunc(pq.heap[minIndex], pq.heap[r]) > 0 {
+		minIndex = r
 	}
 
-	pq.swap(minIndex, index)
+	if pq.compareFunc(pq.heap[index], pq.heap[minIndex]) > 0 {
+		pq.swap(minIndex, index)
+	}
 
 	if minIndex != index {
 		pq.heapify(minIndex)
 	}
 }
 
-func (pq *maxPriorityQueue) getLength() int {
+func (pq *PriorityQueue) getLength() int {
 	return len(pq.heap)
 }
 
-func (pq *maxPriorityQueue) swap(idx1 int, idx2 int) {
+func (pq *PriorityQueue) swap(idx1 int, idx2 int) {
 	pq.heap[idx1], pq.heap[idx2] = pq.heap[idx2], pq.heap[idx1]
 }
 
-func (pq *maxPriorityQueue) poll() *node {
-	minIndex := 1
+func (pq *PriorityQueue) poll() interface{} {
+	minIndex := 0
 	minNode := pq.heap[minIndex]
 
 	pq.heap[minIndex] = pq.heap[len(pq.heap)-1]
@@ -123,22 +106,15 @@ func (pq *maxPriorityQueue) poll() *node {
 	return minNode
 }
 
-func (pq *maxPriorityQueue) top() *node {
-	return pq.heap[1]
+func (pq *PriorityQueue) top() interface{} {
+	return pq.heap[0]
 }
 
-func (pq *maxPriorityQueue) push(n *node) {
+func (pq *PriorityQueue) push(n interface{}) {
 	pq.heap = append(pq.heap, n)
 	index := len(pq.heap) - 1
-	for index > 1 && pq.getParent(index).Weight < pq.heap[index].Weight {
-		pq.swap(index/2, index)
-		index /= 2
+	for index > 0 && pq.compareFunc(pq.heap[(index-1)/2], pq.heap[index]) > 0 {
+		pq.swap((index-1)/2, index)
+		index = (index - 1) / 2
 	}
-}
-
-func (pq *maxPriorityQueue) increase(index int) {
-}
-
-func (pq *maxPriorityQueue) getParent(idx int) *node {
-	return pq.heap[idx/2]
 }

@@ -2,6 +2,7 @@ package hard
 
 import (
 	"log"
+	"math"
 )
 
 func minWindow(s string, t string) string {
@@ -57,6 +58,47 @@ func isValidSubstr(substr [52]int, t [52]int) bool {
 	return true
 }
 
+func minWindow2(s string, t string) string {
+	if len(s) < len(t) {
+		return ""
+	}
+
+	subStrMap := make(map[byte]int)
+	tMap := make(map[byte]int)
+
+	for i := 0; i < len(t); i++ {
+		tMap[t[i]]++
+	}
+	need := len(tMap)
+	l := 0
+	subStrLen := math.MaxInt16
+	minSubStr := ""
+	have := 0
+
+	for r := 0; r < len(s); r++ {
+		subStrMap[s[r]]++
+
+		if subStrMap[s[r]] == tMap[s[r]] {
+			have += 1
+		}
+
+		for have == need {
+			if r-l+1 < subStrLen {
+				subStrLen = r - l + 1
+				minSubStr = s[l : r+1]
+			}
+
+			subStrMap[s[l]]--
+			if subStrMap[s[l]] < tMap[s[l]] {
+				have--
+			}
+			l++
+		}
+	}
+
+	return minSubStr
+}
+
 func Test_MinWindow() {
 	case1 := "ADOBECODEBANC"
 	t1 := "ABC"
@@ -69,5 +111,20 @@ func Test_MinWindow() {
 	case3 := "a"
 	t3 := "aa"
 	ans3 := minWindow(case3, t3)
+	log.Printf("ans3: %v", ans3)
+}
+
+func Test_MinWindow2() {
+	case1 := "ADOBECODEBANC"
+	t1 := "ABC"
+	ans1 := minWindow2(case1, t1)
+	log.Printf("ans1: %v", ans1)
+	case2 := "a"
+	t2 := "a"
+	ans2 := minWindow2(case2, t2)
+	log.Printf("ans2: %v", ans2)
+	case3 := "a"
+	t3 := "aa"
+	ans3 := minWindow2(case3, t3)
 	log.Printf("ans3: %v", ans3)
 }

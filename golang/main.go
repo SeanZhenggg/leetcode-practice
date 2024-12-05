@@ -1,7 +1,5 @@
 package main
 
-import "golang/problems/hard"
-
 func main() {
 	// 347
 	//medium.Test_TopKFrequent()
@@ -78,5 +76,10 @@ func main() {
 	//hard.Test_MinWindow2()
 
 	//239
-	hard.Test_MaxSlidingWindow()
+	//hard.Test_MaxSlidingWindow()
+
+	//20
+	//easy.Test_IsValid()
+	//log.Println()
+	//easy.Test_IsValid2()
 }

@@ -1,5 +1,7 @@
 package main
 
+import "golang/problems/medium"
+
 func main() {
 	// 347
 	//medium.Test_TopKFrequent()
@@ -82,4 +84,7 @@ func main() {
 	//easy.Test_IsValid()
 	//log.Println()
 	//easy.Test_IsValid2()
+
+	//155
+	medium.Test_MinStack()
 }

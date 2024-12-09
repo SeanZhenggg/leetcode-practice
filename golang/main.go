@@ -86,5 +86,8 @@ func main() {
 	//easy.Test_IsValid2()
 
 	//155
-	medium.Test_MinStack()
+	//medium.Test_MinStack()
+
+	//150
+	medium.Test_EvalRPN()
 }

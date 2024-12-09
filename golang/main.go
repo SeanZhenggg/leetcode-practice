@@ -89,5 +89,9 @@ func main() {
 	//medium.Test_MinStack()
 
 	//150
-	medium.Test_EvalRPN()
+	//medium.Test_EvalRPN()
+
+	//22
+	//medium.Test_GenerateParenthesis()
+	medium.Test_GenerateParenthesis2()
 }

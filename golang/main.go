@@ -1,9 +1,6 @@
 package main
 
-import (
-	"golang/problems/medium"
-	"log"
-)
+import "golang/problems/medium"
 
 func main() {
 	// 347
@@ -99,9 +96,12 @@ func main() {
 	//medium.Test_GenerateParenthesis2()
 
 	//739
-	medium.Test_DailyTemperatures()
-	log.Println()
-	medium.Test_DailyTemperatures2()
-	log.Println()
-	medium.Test_DailyTemperatures3()
+	//medium.Test_DailyTemperatures()
+	//log.Println()
+	//medium.Test_DailyTemperatures2()
+	//log.Println()
+	//medium.Test_DailyTemperatures3()
+
+	//853
+	medium.Test_CarFleet()
 }

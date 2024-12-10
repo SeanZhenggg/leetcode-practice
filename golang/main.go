@@ -1,6 +1,9 @@
 package main
 
-import "golang/problems/medium"
+import (
+	"golang/problems/medium"
+	"log"
+)
 
 func main() {
 	// 347
@@ -97,4 +100,8 @@ func main() {
 
 	//739
 	medium.Test_DailyTemperatures()
+	log.Println()
+	medium.Test_DailyTemperatures2()
+	log.Println()
+	medium.Test_DailyTemperatures3()
 }

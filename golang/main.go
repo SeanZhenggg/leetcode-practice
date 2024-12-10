@@ -93,5 +93,8 @@ func main() {
 
 	//22
 	//medium.Test_GenerateParenthesis()
-	medium.Test_GenerateParenthesis2()
+	//medium.Test_GenerateParenthesis2()
+
+	//739
+	medium.Test_DailyTemperatures()
 }

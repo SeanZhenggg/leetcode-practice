@@ -18,13 +18,6 @@ func dailyTemperatures(temperatures []int) []int {
 		st = append(st, i)
 	}
 
-	// elements left in stack
-	for len(st) > 0 {
-		top := st[len(st)-1]
-		ret[top] = 0
-		st = st[:len(st)-1]
-	}
-
 	return ret
 }
 

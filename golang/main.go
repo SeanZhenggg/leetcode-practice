@@ -1,6 +1,6 @@
 package main
 
-import "golang/problems/hard"
+import "golang/problems/easy"
 
 func main() {
 	// 347
@@ -107,5 +107,8 @@ func main() {
 
 	//84
 	//hard.Test_largestRectangleArea()
-	hard.Test_largestRectangleArea2()
+	//hard.Test_largestRectangleArea2()
+
+	//704
+	easy.Test_search()
 }

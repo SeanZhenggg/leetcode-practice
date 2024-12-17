@@ -77,6 +77,7 @@ func trap2(height []int) int {
 	return sum
 }
 
+// prefix/suffix maximum solution - TC: O(n), SC: O(n)
 func trapReview1(height []int) int {
 	leftMax := make([]int, len(height))
 	rightMax := make([]int, len(height))
@@ -98,6 +99,7 @@ func trapReview1(height []int) int {
 	return vol
 }
 
+// two pointers solution - TC: O(n), SC: O(1)
 func trapReview2(height []int) int {
 	leftMax := height[0]
 	rightMax := height[len(height)-1]
@@ -118,6 +120,7 @@ func trapReview2(height []int) int {
 	return vol
 }
 
+// monotonic stack solution - TC: O(n), SC: O(n)
 func trapReview3(height []int) int {
 	st := make([]int, 0, len(height)-1)
 	var l, r = 0, 0

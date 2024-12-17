@@ -29,40 +29,29 @@ func trap(height []int) int {
 	return ret
 }
 
-// prefix maximum/suffix maximum solution - TC: O(n), SC: O(n)
+// prefix/suffix maximum solution - TC: O(n), SC: O(n)
 func trap1(height []int) int {
 	leftMax := make([]int, len(height))
 	rightMax := make([]int, len(height))
-	maxV := 0
+
 	leftMax[0] = height[0]
 	for i := 1; i < len(height); i++ {
-		if height[i] > leftMax[i-1] {
-			leftMax[i] = height[i]
-		} else {
-			leftMax[i] = leftMax[i-1]
-		}
+		leftMax[i] = max(height[i], leftMax[i-1])
 	}
 	rightMax[len(height)-1] = height[len(height)-1]
 	for i := len(height) - 2; i >= 0; i-- {
-		if height[i] > rightMax[i+1] {
-			rightMax[i] = height[i]
-		} else {
-			rightMax[i] = rightMax[i+1]
-		}
+		rightMax[i] = max(height[i], rightMax[i+1])
 	}
 
+	maxV := 0
 	for i := 0; i < len(height); i++ {
-		lMax, rMax := leftMax[i], rightMax[i]
-
-		minH := min(lMax, rMax)
-		if minH-height[i] > 0 {
-			maxV += min(lMax, rMax) - height[i]
-		}
+		maxV += min(leftMax[i], rightMax[i]) - height[i]
 	}
 
 	return maxV
 }
 
+// monotonic stack solution - TC: O(n), SC: O(n)
 func trap2(height []int) int {
 	st := make([]int, 0)
 	sum := 0
@@ -88,6 +77,69 @@ func trap2(height []int) int {
 	return sum
 }
 
+func trapReview1(height []int) int {
+	leftMax := make([]int, len(height))
+	rightMax := make([]int, len(height))
+	for i := 0; i < len(height); i++ {
+		if i > 0 {
+			leftMax[i] = max(leftMax[i-1], height[i-1])
+		}
+	}
+	for i := len(height) - 1; i >= 0; i-- {
+		if i < len(height)-1 {
+			rightMax[i] = max(rightMax[i+1], height[i+1])
+		}
+	}
+
+	vol := 0
+	for i := 0; i < len(height); i++ {
+		vol += max(0, min(leftMax[i], rightMax[i])-height[i])
+	}
+	return vol
+}
+
+func trapReview2(height []int) int {
+	leftMax := height[0]
+	rightMax := height[len(height)-1]
+
+	vol := 0
+	l, r := 0, len(height)-1
+	for l < r {
+		if leftMax < rightMax {
+			l++
+			leftMax = max(leftMax, height[l])
+			vol += leftMax - height[l]
+		} else {
+			r--
+			rightMax = max(rightMax, height[r])
+			vol += rightMax - height[r]
+		}
+	}
+	return vol
+}
+
+func trapReview3(height []int) int {
+	st := make([]int, 0, len(height)-1)
+	var l, r = 0, 0
+	vol := 0
+	for i := 0; i < len(height); i++ {
+		for len(st) > 0 && height[st[len(st)-1]] < height[i] {
+			r = i
+			bottom := st[len(st)-1]
+			st = st[:len(st)-1]
+			if len(st) == 0 {
+				break
+			}
+			l = st[len(st)-1]
+
+			vol += (min(height[r], height[l]) - height[bottom]) * (r - l - 1)
+		}
+
+		st = append(st, i)
+	}
+	return vol
+}
+
 func Test_Trap() {
 	case1 := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
 	ans1 := trap(case1)
@@ -102,27 +154,12 @@ func Test_Trap() {
 
 func Test_TrapReview() {
 	case1 := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
-	ans1 := trap1(case1)
+	ans1 := trapReview3(case1)
 	log.Printf("ans1: %v", ans1)
 	case2 := []int{4, 2, 0, 3, 2, 5}
-	ans2 := trap1(case2)
+	ans2 := trapReview3(case2)
 	log.Printf("ans2: %v", ans2)
 	case3 := []int{0, 1, 2, 0, 0, 1, 3, 2, 5, 0}
-	ans3 := trap1(case3)
+	ans3 := trapReview3(case3)
 	log.Printf("ans3: %v", ans3)
-}
-
-func Test_TrapReview2() {
-	case1 := []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
-	ans1 := trap2(case1)
-	log.Printf("ans1: %v", ans1)
-	case2 := []int{4, 2, 0, 3, 2, 5}
-	ans2 := trap2(case2)
-	log.Printf("ans2: %v", ans2)
-	case3 := []int{0, 1, 2, 0, 0, 1, 3, 2, 5, 0}
-	ans3 := trap2(case3)
-	log.Printf("ans3: %v", ans3)
-	case4 := []int{0, 1, 0, 3, 2, 1, 0, 1, 3, 2, 1, 2, 1}
-	ans4 := trap2(case4)
-	log.Printf("ans4: %v", ans4)
 }

@@ -99,6 +99,43 @@ func minWindow2(s string, t string) string {
 	return minSubStr
 }
 
+func minWindowReview(s string, t string) string {
+	tMap := make(map[byte]int)
+	sMap := make(map[byte]int)
+
+	for i := 0; i < len(t); i++ {
+		tMap[t[i]]++
+	}
+
+	have := 0
+	need := len(tMap)
+	l := 0
+	minLength := math.MaxInt16
+	ret := ""
+	for r := 0; r < len(s); r++ {
+		sMap[s[r]]++
+		if sMap[s[r]] == tMap[s[r]] {
+			have++
+		}
+
+		for have == need {
+			sMap[s[l]]--
+			if sMap[s[l]] < tMap[s[l]] {
+				have--
+			}
+
+			if r-l+1 < minLength {
+				minLength = r - l + 1
+				ret = s[l : r+1]
+			}
+
+			l++
+		}
+	}
+
+	return ret
+}
+
 func Test_MinWindow() {
 	case1 := "ADOBECODEBANC"
 	t1 := "ABC"
@@ -127,4 +164,23 @@ func Test_MinWindow2() {
 	t3 := "aa"
 	ans3 := minWindow2(case3, t3)
 	log.Printf("ans3: %v", ans3)
+}
+
+func Test_MinWindowReview() {
+	//case1 := "ADOBECODEBANC"
+	//t1 := "ABC"
+	//ans1 := minWindowReview(case1, t1)
+	//log.Printf("ans1: %v", ans1)
+	//case2 := "a"
+	//t2 := "a"
+	//ans2 := minWindowReview(case2, t2)
+	//log.Printf("ans2: %v", ans2)
+	case3 := "aa"
+	t3 := "aa"
+	ans3 := minWindowReview(case3, t3)
+	log.Printf("ans3: %v", ans3)
+	case4 := "cabwefgewcwaefgcf"
+	t4 := "cae"
+	ans4 := minWindowReview(case4, t4)
+	log.Printf("ans4: %v", ans4)
 }

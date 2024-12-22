@@ -1,6 +1,6 @@
 package main
 
-import "golang/problems/hard"
+import "golang/problems/medium"
 
 func main() {
 	// 347
@@ -70,11 +70,12 @@ func main() {
 
 	//567
 	//medium.Test_CheckInclusion()
+	medium.Test_CheckInclusionReview()
 
 	//76
 	//hard.Test_MinWindow()
 	//hard.Test_MinWindow2()
-	hard.Test_MinWindowReview()
+	//hard.Test_MinWindowReview()
 
 	//239
 	//hard.Test_MaxSlidingWindow()

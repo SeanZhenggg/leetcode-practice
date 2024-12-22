@@ -77,10 +77,11 @@ func main() {
 	//76
 	//hard.Test_MinWindow()
 	//hard.Test_MinWindow2()
-	hard.Test_MinWindowReview()
+	//hard.Test_MinWindowReview()
 
 	//239
 	//hard.Test_MaxSlidingWindow()
+	hard.Test_MaxSlidingWindowReview()
 
 	//20
 	//easy.Test_IsValid()

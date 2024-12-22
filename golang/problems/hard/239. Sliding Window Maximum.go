@@ -118,3 +118,40 @@ func (pq *PriorityQueue) push(n interface{}) {
 		index = (index - 1) / 2
 	}
 }
+
+func maxSlidingWindowReview(nums []int, k int) []int {
+	deque := make([]int, 0, len(nums))
+	ret := make([]int, 0, len(nums)-k+1)
+
+	for i := 0; i < len(nums); i++ {
+		for len(deque) > 0 && nums[deque[len(deque)-1]] < nums[i] {
+			deque = deque[:len(deque)-1]
+		}
+		deque = append(deque, i)
+
+		if i-k+1 > deque[0] {
+			deque = deque[1:]
+		}
+
+		if i+1 >= k {
+			ret = append(ret, nums[deque[0]])
+		}
+	}
+
+	return ret
+}
+
+func Test_MaxSlidingWindowReview() {
+	case1 := []int{1, 3, -1, -3, 5, 3, 6, 7}
+	k1 := 3
+	ans1 := maxSlidingWindowReview(case1, k1)
+	log.Printf("ans1: %v", ans1)
+	case2 := []int{1}
+	k2 := 1
+	ans2 := maxSlidingWindowReview(case2, k2)
+	log.Printf("ans2: %v", ans2)
+	case3 := []int{1, -1}
+	k3 := 1
+	ans3 := maxSlidingWindowReview(case3, k3)
+	log.Printf("ans3: %v", ans3)
+}

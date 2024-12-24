@@ -1,8 +1,6 @@
 package main
 
-import (
-	"golang/problems/hard"
-)
+import "golang/problems/easy"
 
 func main() {
 	// 347
@@ -81,7 +79,7 @@ func main() {
 
 	//239
 	//hard.Test_MaxSlidingWindow()
-	hard.Test_MaxSlidingWindowReview()
+	//hard.Test_MaxSlidingWindowReview()
 
 	//20
 	//easy.Test_IsValid()
@@ -114,4 +112,7 @@ func main() {
 
 	//704
 	//easy.Test_search()
+
+	//35
+	easy.Test_searchInsert()
 }

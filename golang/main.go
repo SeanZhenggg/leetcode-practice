@@ -1,6 +1,6 @@
 package main
 
-import "golang/problems/easy"
+import "golang/problems/medium"
 
 func main() {
 	// 347
@@ -114,5 +114,8 @@ func main() {
 	//easy.Test_search()
 
 	//35
-	easy.Test_searchInsert()
+	//easy.Test_searchInsert()
+
+	//34
+	medium.Test_searchRange()
 }

@@ -117,5 +117,8 @@ func main() {
 	//easy.Test_searchInsert()
 
 	//34
-	medium.Test_searchRange()
+	//medium.Test_searchRange()
+
+	//74
+	medium.Test_searchMatrix()
 }

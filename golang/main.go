@@ -120,5 +120,6 @@ func main() {
 	//medium.Test_searchRange()
 
 	//74
-	medium.Test_searchMatrix()
+	//medium.Test_searchMatrix()
+	medium.Test_searchMatrix2()
 }

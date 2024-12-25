@@ -121,5 +121,9 @@ func main() {
 
 	//74
 	//medium.Test_searchMatrix()
-	medium.Test_searchMatrix2()
+	//medium.Test_searchMatrix2()
+
+	//875
+	//medium.Test_minEatingSpeed()
+	medium.Test_minEatingSpeed2()
 }

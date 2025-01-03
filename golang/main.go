@@ -125,5 +125,8 @@ func main() {
 
 	//875
 	//medium.Test_minEatingSpeed()
-	medium.Test_minEatingSpeed2()
+	//medium.Test_minEatingSpeed2()
+
+	//153
+	medium.Test_findMin()
 }

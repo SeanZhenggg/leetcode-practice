@@ -18,17 +18,6 @@ func findMin(nums []int) int {
 		mid := l + (r-l)/2
 
 		isRotated := false
-		//if nums[l] > nums[r] {
-		//	isRotated = true
-		//}
-
-		//if mid >= 1 && nums[mid-1] > nums[mid] {
-		//	isRotated = true
-		//}
-		//if mid <= len(nums)-2 && nums[mid] > nums[mid+1] {
-		//	isRotated = true
-		//}
-
 		if (nums[l] < nums[mid] && nums[mid] < nums[r] && nums[l] < nums[r]) || (nums[mid] < nums[l] && nums[mid] < nums[r] && nums[l] > nums[r]) {
 			isRotated = false
 		} else {

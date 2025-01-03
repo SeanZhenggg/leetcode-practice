@@ -12,17 +12,16 @@ func search(nums []int, target int) int {
 			if target > nums[r] && nums[mid] <= nums[r] {
 				r = mid - 1
 			} else {
-				// t <= r or m > r
 				l = mid + 1
 			}
-		} else if target == nums[mid] {
-			return mid
-		} else {
+		} else if target < nums[mid] {
 			if target < nums[l] && nums[mid] >= nums[l] {
 				l = mid + 1
 			} else {
 				r = mid - 1
 			}
+		} else {
+			return mid
 		}
 	}
 	return -1

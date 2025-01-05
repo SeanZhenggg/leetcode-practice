@@ -1,8 +1,6 @@
 package main
 
-import (
-	"golang/problems/hard"
-)
+import "golang/problems/easy"
 
 func main() {
 	// 347
@@ -139,8 +137,11 @@ func main() {
 	//medium.Test_TimeBasedKeyValueStore()
 
 	//4
-	hard.Test_findMedianSortedArrays()
+	//hard.Test_findMedianSortedArrays()
 	//log.Println()
 	//log.Println()
-	hard.Test_findMedianSortedArrays2()
+	//hard.Test_findMedianSortedArrays2()
+
+	//206
+	easy.Test_reverseList()
 }

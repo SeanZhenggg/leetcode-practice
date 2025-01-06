@@ -143,5 +143,8 @@ func main() {
 	//hard.Test_findMedianSortedArrays2()
 
 	//206
-	easy.Test_reverseList()
+	//easy.Test_reverseList()
+
+	//21
+	easy.Test_mergeTwoLists()
 }

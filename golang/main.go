@@ -146,5 +146,8 @@ func main() {
 	//easy.Test_reverseList()
 
 	//21
-	easy.Test_mergeTwoLists()
+	//easy.Test_mergeTwoLists()
+
+	//141
+	easy.Test_hasCycle()
 }

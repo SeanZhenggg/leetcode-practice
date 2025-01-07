@@ -1,6 +1,6 @@
 package main
 
-import "golang/problems/easy"
+import "golang/problems/medium"
 
 func main() {
 	// 347
@@ -149,5 +149,9 @@ func main() {
 	//easy.Test_mergeTwoLists()
 
 	//141
-	easy.Test_hasCycle()
+	//easy.Test_hasCycle()
+
+	//143
+	//medium.Test_reorderList()
+	medium.Test_reorderList2()
 }

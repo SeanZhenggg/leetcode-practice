@@ -153,5 +153,8 @@ func main() {
 
 	//143
 	//medium.Test_reorderList()
-	medium.Test_reorderList2()
+	//medium.Test_reorderList2()
+
+	//19
+	medium.Test_removeNthFromEnd()
 }

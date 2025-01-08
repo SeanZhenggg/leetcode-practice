@@ -160,7 +160,9 @@ func main() {
 
 	//138
 	//medium.Test_copyRandomList()
+	//medium.Test_copyRandomList2()
+	medium.Test_copyRandomList3()
 
 	//2
-	medium.Test_addTwoNumbers()
+	//medium.Test_addTwoNumbers()
 }

@@ -159,5 +159,8 @@ func main() {
 	//medium.Test_removeNthFromEnd()
 
 	//138
-	medium.Test_copyRandomList()
+	//medium.Test_copyRandomList()
+
+	//2
+	medium.Test_addTwoNumbers()
 }

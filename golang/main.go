@@ -1,6 +1,6 @@
 package main
 
-import "golang/problems/medium"
+import "golang/problems/hard"
 
 func main() {
 	// 347
@@ -170,8 +170,12 @@ func main() {
 	//medium.Test_findDuplicate()
 	//medium.Test_findDuplicate2()
 	//medium.Test_findDuplicate3()
-	medium.Test_findDuplicate4()
+	//medium.Test_findDuplicate4()
 
 	//146
 	//medium.Test_LRUCache()
+
+	//23
+	//hard.Test_mergeKLists()
+	hard.Test_mergeKLists2()
 }

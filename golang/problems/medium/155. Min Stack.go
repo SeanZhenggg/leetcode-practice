@@ -7,7 +7,7 @@ type MinStack struct {
 	minSt []int
 }
 
-func Constructor() MinStack {
+func MinStackConstructor() MinStack {
 	return MinStack{
 		st:    make([]int, 0),
 		minSt: make([]int, 0),
@@ -87,7 +87,7 @@ func (this *MinStack) GetMin2() int {
  */
 
 func Test_MinStack() {
-	obj := Constructor()
+	obj := MinStackConstructor()
 	obj.Push(-2)
 	obj.Push(0)
 	obj.Push(-3)

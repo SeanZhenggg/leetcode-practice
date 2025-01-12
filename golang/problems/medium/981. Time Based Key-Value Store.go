@@ -10,7 +10,7 @@ type TimeMap struct {
 	m map[string][]kv
 }
 
-func Constructor981() TimeMap {
+func TimeBasedKVStoreConstructor() TimeMap {
 	return TimeMap{
 		m: make(map[string][]kv),
 	}
@@ -57,7 +57,7 @@ func (tm *TimeMap) Get(key string, timestamp int) string {
 
 func Test_TimeBasedKeyValueStore() {
 	ans := make([]*string, 0, 7)
-	obj := Constructor981()
+	obj := TimeBasedKVStoreConstructor()
 	ans = append(ans, nil)
 	obj.Set("foo", "bar", 1)
 	ans = append(ans, nil)

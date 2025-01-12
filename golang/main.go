@@ -169,7 +169,9 @@ func main() {
 	//287
 	//medium.Test_findDuplicate()
 	//medium.Test_findDuplicate2()
+	//medium.Test_findDuplicate3()
+	medium.Test_findDuplicate4()
 
 	//146
-	medium.Test_LRUCache()
+	//medium.Test_LRUCache()
 }

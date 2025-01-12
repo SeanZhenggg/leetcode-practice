@@ -161,8 +161,15 @@ func main() {
 	//138
 	//medium.Test_copyRandomList()
 	//medium.Test_copyRandomList2()
-	medium.Test_copyRandomList3()
+	//medium.Test_copyRandomList3()
 
 	//2
 	//medium.Test_addTwoNumbers()
+
+	//287
+	//medium.Test_findDuplicate()
+	//medium.Test_findDuplicate2()
+
+	//146
+	medium.Test_LRUCache()
 }

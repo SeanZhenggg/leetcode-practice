@@ -61,21 +61,20 @@ func reverseKGroup2(head *ListNode, k int) *ListNode {
 	}
 
 	if i == k {
-		// nextHead = 5, head = 3
-		nextHead := reverseKGroup2(cur, k)
+		// 3 -> 4 -> 5, k = 2
+		cur = reverseKGroup2(cur, k)
+		// after returning from recursion function, head = 3, nextHead = 5
 
-		prev := nextHead
 		for i = 0; i < k; i++ {
 			next := head.Next
-			head.Next = prev
-			prev = head
+			head.Next = cur
+			cur = head
 			head = next
 		}
-		return prev
+		return cur
 	} else {
 		return head
 	}
-
 }
 
 func Test_reverseKGroup() {

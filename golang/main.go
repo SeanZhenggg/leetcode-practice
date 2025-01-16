@@ -180,6 +180,6 @@ func main() {
 	//hard.Test_mergeKLists2()
 
 	//25
-	hard.Test_reverseKGroup()
-	//hard.Test_reverseKGroup2()
+	//hard.Test_reverseKGroup()
+	hard.Test_reverseKGroup2()
 }

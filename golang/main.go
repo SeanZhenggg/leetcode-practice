@@ -177,5 +177,9 @@ func main() {
 
 	//23
 	//hard.Test_mergeKLists()
-	hard.Test_mergeKLists2()
+	//hard.Test_mergeKLists2()
+
+	//25
+	hard.Test_reverseKGroup()
+	//hard.Test_reverseKGroup2()
 }

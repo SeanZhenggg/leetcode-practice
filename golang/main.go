@@ -1,6 +1,8 @@
 package main
 
-import "golang/problems/hard"
+import (
+	"golang/problems/hard"
+)
 
 func main() {
 	// 347
@@ -73,9 +75,9 @@ func main() {
 	//medium.Test_CheckInclusionReview()
 
 	//76
-	//hard.Test_MinWindow()
+	hard.Test_MinWindow()
 	//hard.Test_MinWindow2()
-	//hard.Test_MinWindowReview()
+	hard.Test_MinWindowReview()
 
 	//239
 	//hard.Test_MaxSlidingWindow()
@@ -181,5 +183,5 @@ func main() {
 
 	//25
 	//hard.Test_reverseKGroup()
-	hard.Test_reverseKGroup2()
+	//hard.Test_reverseKGroup2()
 }

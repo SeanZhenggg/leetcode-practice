@@ -14,11 +14,6 @@ import (
  * }
  */
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 // hash map solution - O(n), O(n)
 func reorderList(head *ListNode) {
 	m := make(map[int]*ListNode)

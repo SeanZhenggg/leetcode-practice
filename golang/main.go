@@ -71,13 +71,13 @@ func main() {
 	//medium.Test_CharacterReplacementReview3()
 
 	//567
-	//medium.Test_CheckInclusion()
-	//medium.Test_CheckInclusionReview()
+	slidingWindow.Test_CheckInclusion()
+	slidingWindow.Test_CheckInclusionReview()
 
 	//76
-	slidingWindow.Test_MinWindow()
+	//slidingWindow.Test_MinWindow()
 	//hard.Test_MinWindow2()
-	slidingWindow.Test_MinWindowReview()
+	//slidingWindow.Test_MinWindowReview()
 
 	//239
 	//hard.Test_MaxSlidingWindow()

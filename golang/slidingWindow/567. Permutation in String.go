@@ -102,6 +102,48 @@ func isEqual(s1, s2 map[byte]int) bool {
 	return true
 }
 
+func checkInclusionReview3(s1 string, s2 string) bool {
+	s1Map, s2Map := make(map[byte]int), make(map[byte]int)
+
+	for i := 0; i < len(s1); i++ {
+		s1Map[s1[i]-'a']++
+		s2Map[s2[i]-'a']++
+	}
+
+	var meet = 0
+
+	for i := range 26 {
+		if s1Map[byte(i)] == s2Map[byte(i)] {
+			meet++
+		}
+	}
+
+	var l = 0
+	for r := len(s1); r < len(s2); r++ {
+		if meet == 26 {
+			return true
+		}
+		idx := s2[r] - 'a'
+		s2Map[idx]++
+		if s2Map[idx] == s1Map[idx] {
+			meet++
+		} else if s2Map[idx] == s1Map[idx]+1 {
+			meet--
+		}
+
+		idx = s2[l] - 'a'
+		s2Map[idx]--
+		if s2Map[idx] == s1Map[idx] {
+			meet++
+		} else if s2Map[idx] == s1Map[idx]-1 {
+			meet--
+		}
+		l++
+	}
+
+	return meet == 26
+}
+
 func Test_CheckInclusion() {
 	case1S1, case1S2 := "ab", "eidbaooo"
 	ans1 := checkInclusion(case1S1, case1S2)
@@ -112,13 +154,10 @@ func Test_CheckInclusion() {
 }
 
 func Test_CheckInclusionReview() {
-	//case1S1, case1S2 := "ab", "eidbaooo"
-	//ans1 := checkInclusionReview2(case1S1, case1S2)
-	//log.Printf("ans1: %t", ans1)
-	//case2S1, case2S2 := "ab", "eidboaoo"
-	//ans2 := checkInclusionReview2(case2S1, case2S2)
-	//log.Printf("ans2: %t", ans2)
-	case3S1, case3S2 := "adc", "dcda"
-	ans3 := checkInclusionReview2(case3S1, case3S2)
-	log.Printf("ans3: %t", ans3)
+	case1S1, case1S2 := "ab", "eidbaooo"
+	ans1 := checkInclusionReview3(case1S1, case1S2)
+	log.Printf("ans1: %t", ans1)
+	case2S1, case2S2 := "ab", "eidboaoo"
+	ans2 := checkInclusionReview3(case2S1, case2S2)
+	log.Printf("ans2: %t", ans2)
 }

@@ -5,12 +5,13 @@ import (
 	"math/rand"
 	"os"
 	"path"
+	"slices"
 	"strings"
 	"time"
 )
 
 const (
-	Filename           = "./problems"
+	Filename           = "./"
 	LeetcodeUrlPattern = "https://leetcode.com/problems/%s"
 )
 
@@ -34,20 +35,22 @@ func main() {
 			return
 		}
 
+		dirs = slices.DeleteFunc(dirs, func(entry os.DirEntry) bool {
+			return entry.Name() == "cmd" || !entry.IsDir()
+		})
+
 		problemList := make([]os.DirEntry, 0)
 		for _, dir := range dirs {
-			if dir.IsDir() {
-				dirName := path.Join(Filename, dir.Name())
-				files, err := os.ReadDir(dirName)
-				if err != nil {
-					fmt.Printf("os.ReadDir(dirName) err occurred: %s\n", err)
-					return
-				}
+			dirName := path.Join(Filename, dir.Name())
+			files, err := os.ReadDir(dirName)
+			if err != nil {
+				fmt.Printf("os.ReadDir(dirName) err occurred: %s\n", err)
+				return
+			}
 
-				for _, file := range files {
-					if !file.IsDir() {
-						problemList = append(problemList, file)
-					}
+			for _, file := range files {
+				if !file.IsDir() {
+					problemList = append(problemList, file)
 				}
 			}
 		}

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"golang/problems/hard"
+	"golang/slidingWindow"
 )
 
 func main() {
@@ -75,9 +75,9 @@ func main() {
 	//medium.Test_CheckInclusionReview()
 
 	//76
-	hard.Test_MinWindow()
+	slidingWindow.Test_MinWindow()
 	//hard.Test_MinWindow2()
-	hard.Test_MinWindowReview()
+	slidingWindow.Test_MinWindowReview()
 
 	//239
 	//hard.Test_MaxSlidingWindow()

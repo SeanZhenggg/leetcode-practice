@@ -71,17 +71,18 @@ func main() {
 	//medium.Test_CharacterReplacementReview3()
 
 	//567
-	slidingWindow.Test_CheckInclusion()
-	slidingWindow.Test_CheckInclusionReview()
+	//slidingWindow.Test_CheckInclusion()
+	//slidingWindow.Test_CheckInclusionReview()
 
 	//76
 	//slidingWindow.Test_MinWindow()
-	//hard.Test_MinWindow2()
+	//slidingWindow.Test_MinWindow2()
 	//slidingWindow.Test_MinWindowReview()
 
 	//239
-	//hard.Test_MaxSlidingWindow()
-	//hard.Test_MaxSlidingWindowReview()
+	//slidingWindow.Test_MaxSlidingWindow()
+	//slidingWindow.Test_MaxSlidingWindowReview()
+	slidingWindow.Test_MaxSlidingWindowReview2()
 
 	//20
 	//easy.Test_IsValid()

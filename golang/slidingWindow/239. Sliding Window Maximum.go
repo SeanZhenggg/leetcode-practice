@@ -141,6 +141,26 @@ func maxSlidingWindowReview(nums []int, k int) []int {
 	return ret
 }
 
+func maxSlidingWindowReview2(nums []int, k int) []int {
+	pq := NewPriorityQueue(func(a, b interface{}) int {
+		return b.([2]int)[1] - a.([2]int)[1]
+	})
+	ret := make([]int, 0, len(nums)-k+1)
+
+	for i := 0; i < len(nums); i++ {
+		pq.push([2]int{i, nums[i]})
+
+		for pq.top().([2]int)[0] <= i-k {
+			pq.poll()
+		}
+
+		if i+1 >= k {
+			ret = append(ret, pq.top().([2]int)[1])
+		}
+	}
+	return ret
+}
+
 func Test_MaxSlidingWindowReview() {
 	case1 := []int{1, 3, -1, -3, 5, 3, 6, 7}
 	k1 := 3
@@ -154,4 +174,27 @@ func Test_MaxSlidingWindowReview() {
 	k3 := 1
 	ans3 := maxSlidingWindowReview(case3, k3)
 	log.Printf("ans3: %v", ans3)
+}
+
+func Test_MaxSlidingWindowReview2() {
+	case1 := []int{1, 3, -1, -3, 5, 3, 6, 7}
+	k1 := 3
+	ans1 := maxSlidingWindowReview2(case1, k1)
+	log.Printf("ans1: %v", ans1)
+	case2 := []int{1}
+	k2 := 1
+	ans2 := maxSlidingWindowReview2(case2, k2)
+	log.Printf("ans2: %v", ans2)
+	case3 := []int{1, -1}
+	k3 := 1
+	ans3 := maxSlidingWindowReview2(case3, k3)
+	log.Printf("ans3: %v", ans3)
+	case4 := []int{1, 3, 1, 2, 0, 5}
+	k4 := 3
+	ans4 := maxSlidingWindowReview2(case4, k4)
+	log.Printf("ans4: %v", ans4)
+	case5 := []int{9, 10, 9, -7, -4, -8, 2, -6}
+	k5 := 5
+	ans5 := maxSlidingWindowReview2(case5, k5)
+	log.Printf("ans5: %v", ans5)
 }

@@ -1,7 +1,8 @@
 package main
 
 import (
-	"golang/slidingWindow"
+	"golang/stack"
+	"log"
 )
 
 func main() {
@@ -82,7 +83,7 @@ func main() {
 	//239
 	//slidingWindow.Test_MaxSlidingWindow()
 	//slidingWindow.Test_MaxSlidingWindowReview()
-	slidingWindow.Test_MaxSlidingWindowReview2()
+	//slidingWindow.Test_MaxSlidingWindowReview2()
 
 	//20
 	//easy.Test_IsValid()
@@ -96,15 +97,20 @@ func main() {
 	//medium.Test_EvalRPN()
 
 	//22
-	//medium.Test_GenerateParenthesis()
-	//medium.Test_GenerateParenthesis2()
+	//stack.Test_GenerateParenthesis()
+	//stack.Test_GenerateParenthesis2()
+	//stack.Test_GenerateParenthesisReview()
 
 	//739
-	//medium.Test_DailyTemperatures()
+	//stack.Test_DailyTemperatures()
 	//log.Println()
-	//medium.Test_DailyTemperatures2()
+	//stack.Test_DailyTemperatures2()
 	//log.Println()
-	//medium.Test_DailyTemperatures3()
+	//stack.Test_DailyTemperatures3()
+	//log.Println()
+	stack.Test_DailyTemperaturesReview()
+	log.Println()
+	stack.Test_DailyTemperaturesReview2()
 
 	//853
 	//medium.Test_CarFleet()

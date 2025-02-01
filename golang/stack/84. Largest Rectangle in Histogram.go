@@ -2,7 +2,7 @@ package stack
 
 import "log"
 
-type node struct {
+type n struct {
 	Height      int
 	LeftMostIdx int
 }
@@ -10,7 +10,7 @@ type node struct {
 // first solution
 func largestRectangleArea(heights []int) int {
 	// monotonic increasing stack
-	st := make([]node, 0, len(heights))
+	st := make([]n, 0, len(heights))
 	maxArea := 0
 	for i, height := range heights {
 		leftMostIdx := i
@@ -19,7 +19,7 @@ func largestRectangleArea(heights []int) int {
 			leftMostIdx = top.LeftMostIdx
 			st = st[:len(st)-1]
 		}
-		st = append(st, node{LeftMostIdx: leftMostIdx, Height: height})
+		st = append(st, n{LeftMostIdx: leftMostIdx, Height: height})
 
 		if len(st) > 0 {
 			for j := len(st) - 1; j >= 0; j-- {
@@ -33,7 +33,7 @@ func largestRectangleArea(heights []int) int {
 	return maxArea
 }
 
-type node2 struct {
+type n2 struct {
 	Height int
 	Start  int
 }
@@ -41,7 +41,7 @@ type node2 struct {
 // better solution
 func largestRectangleArea2(heights []int) int {
 	// monotonic increasing stack
-	st := make([]node2, 0, len(heights))
+	st := make([]n2, 0, len(heights))
 	maxArea := 0
 	for i, height := range heights {
 		start := i
@@ -51,7 +51,7 @@ func largestRectangleArea2(heights []int) int {
 			st = st[:len(st)-1]
 			start = top.Start
 		}
-		st = append(st, node2{Start: start, Height: height})
+		st = append(st, n2{Start: start, Height: height})
 	}
 
 	if len(st) > 0 {

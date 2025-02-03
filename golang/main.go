@@ -190,5 +190,9 @@ func main() {
 	//hard.Test_reverseKGroup2()
 
 	//226
-	trees.Test_InvertTree()
+	//trees.Test_InvertTree()
+
+	//104
+	trees.Test_MaxDepth()
+	trees.Test_MaxDepth2()
 }

@@ -1,9 +1,6 @@
 package main
 
-import (
-	"golang/stack"
-	"log"
-)
+import "golang/trees"
 
 func main() {
 	// 347
@@ -108,9 +105,9 @@ func main() {
 	//log.Println()
 	//stack.Test_DailyTemperatures3()
 	//log.Println()
-	stack.Test_DailyTemperaturesReview()
-	log.Println()
-	stack.Test_DailyTemperaturesReview2()
+	//stack.Test_DailyTemperaturesReview()
+	//log.Println()
+	//stack.Test_DailyTemperaturesReview2()
 
 	//853
 	//medium.Test_CarFleet()
@@ -191,4 +188,7 @@ func main() {
 	//25
 	//hard.Test_reverseKGroup()
 	//hard.Test_reverseKGroup2()
+
+	//226
+	trees.Test_InvertTree()
 }

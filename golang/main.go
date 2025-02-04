@@ -193,6 +193,9 @@ func main() {
 	//trees.Test_InvertTree()
 
 	//104
-	trees.Test_MaxDepth()
-	trees.Test_MaxDepth2()
+	//trees.Test_MaxDepth()
+	//trees.Test_MaxDepth2()
+
+	//543
+	trees.Test_DiameterOfBinaryTree()
 }

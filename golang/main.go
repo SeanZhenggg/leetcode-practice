@@ -197,5 +197,9 @@ func main() {
 	//trees.Test_MaxDepth2()
 
 	//543
-	trees.Test_DiameterOfBinaryTree()
+	//trees.Test_DiameterOfBinaryTree()
+
+	//110
+	trees.Test_IsBalanced()
+	trees.Test_IsBalanced2()
 }

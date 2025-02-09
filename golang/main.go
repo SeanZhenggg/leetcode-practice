@@ -1,8 +1,6 @@
 package main
 
-import (
-	"golang/trees"
-)
+import "golang/trees"
 
 func main() {
 	// 347
@@ -211,5 +209,15 @@ func main() {
 	//572
 	//trees.Test_IsSubtree()
 	//log.Println()
-	trees.Test_IsSubtree2()
+	//trees.Test_IsSubtree2()
+
+	//235
+	//trees.Test_LowestCommonAncestorBST()
+	//log.Println()
+	//trees.Test_LowestCommonAncestorBST2()
+	//log.Println()
+	//trees.Test_LowestCommonAncestorBST3()
+
+	//236
+	trees.Test_LowestCommonAncestorBT()
 }

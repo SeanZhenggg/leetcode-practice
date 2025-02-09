@@ -204,5 +204,7 @@ func main() {
 	//trees.Test_IsBalanced2()
 
 	//100
-	trees.Test_IsSameTree()
+	//trees.Test_IsSameTree()
+	//572
+	trees.Test_IsSubtree()
 }

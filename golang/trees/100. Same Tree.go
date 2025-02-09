@@ -10,22 +10,32 @@ import "log"
  *     Right *TreeNode
  * }
  */
+//func isSameTree(p *TreeNode, q *TreeNode) bool {
+//	var dfs func(p *TreeNode, q *TreeNode) bool
+//	dfs = func(p *TreeNode, q *TreeNode) bool {
+//		if p == nil && q == nil {
+//			return true
+//		}
+//		if p == nil || q == nil || p.Val != q.Val {
+//			return false
+//		}
+//
+//		left := dfs(p.Left, q.Left)
+//		right := dfs(p.Right, q.Right)
+//		return left && right && p.Val == q.Val
+//	}
+//
+//	return dfs(p, q)
+//}
+
 func isSameTree(p *TreeNode, q *TreeNode) bool {
-	var dfs func(p *TreeNode, q *TreeNode) bool
-	dfs = func(p *TreeNode, q *TreeNode) bool {
-		if p == nil && q == nil {
-			return true
-		}
-		if p == nil || q == nil || p.Val != q.Val {
-			return false
-		}
-
-		left := dfs(p.Left, q.Left)
-		right := dfs(p.Right, q.Right)
-		return left && right && p.Val == q.Val
+	if p == nil || q == nil {
+		return p == q
 	}
-
-	return dfs(p, q)
+	if p.Val != q.Val {
+		return false
+	}
+	return isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
 }
 
 func Test_IsSameTree() {

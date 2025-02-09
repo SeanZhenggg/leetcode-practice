@@ -200,6 +200,9 @@ func main() {
 	//trees.Test_DiameterOfBinaryTree()
 
 	//110
-	trees.Test_IsBalanced()
-	trees.Test_IsBalanced2()
+	//trees.Test_IsBalanced()
+	//trees.Test_IsBalanced2()
+
+	//100
+	trees.Test_IsSameTree()
 }

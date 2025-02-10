@@ -1,8 +1,6 @@
 package main
 
-import (
-	"golang/trees"
-)
+import "golang/trees"
 
 func main() {
 	// 347
@@ -229,5 +227,8 @@ func main() {
 	//199
 	//trees.Test_RightSideView()
 	//log.Println()
-	trees.Test_RightSideView2()
+	//trees.Test_RightSideView2()
+
+	//1448
+	trees.Test_GoodNodes()
 }

@@ -230,5 +230,8 @@ func main() {
 	//trees.Test_RightSideView2()
 
 	//1448
-	trees.Test_GoodNodes()
+	//trees.Test_GoodNodes()
+
+	//98
+	trees.Test_IsValidBST()
 }

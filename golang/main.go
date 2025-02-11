@@ -236,7 +236,14 @@ func main() {
 	//trees.Test_GoodNodes()
 
 	//98
-	trees.Test_IsValidBST()
+	//trees.Test_IsValidBST()
+	//log.Println()
+	//trees.Test_IsValidBST2()
+
+	//230
+	trees.Test_KthSmallest()
 	log.Println()
-	trees.Test_IsValidBST2()
+	trees.Test_KthSmallest2()
+	log.Println()
+	trees.Test_KthSmallest3()
 }

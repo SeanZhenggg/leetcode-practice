@@ -1,6 +1,9 @@
 package main
 
-import "golang/trees"
+import (
+	"golang/trees"
+	"log"
+)
 
 func main() {
 	// 347
@@ -234,4 +237,6 @@ func main() {
 
 	//98
 	trees.Test_IsValidBST()
+	log.Println()
+	trees.Test_IsValidBST2()
 }

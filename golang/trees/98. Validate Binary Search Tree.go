@@ -44,9 +44,12 @@ func isValidBST(root *TreeNode) bool {
 		return true
 	}
 
-	return isValid(root.Left, root.Val, func(val, limit int) bool { return val < limit }) &&
-		isValid(root.Right, root.Val, func(val, limit int) bool { return val > limit }) &&
-		isValidBST(root.Left) && isValidBST(root.Right)
+	if !isValid(root.Left, root.Val, func(val, limit int) bool { return val < limit }) ||
+		!isValid(root.Right, root.Val, func(val, limit int) bool { return val > limit }) {
+		return false
+	}
+
+	return isValidBST(root.Left) && isValidBST(root.Right)
 }
 
 func isValid(root *TreeNode, limit int, check func(a int, b int) bool) bool {

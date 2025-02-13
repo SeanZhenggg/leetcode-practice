@@ -1,8 +1,8 @@
 package main
 
 import (
+	"fmt"
 	"golang/trees"
-	"log"
 )
 
 func main() {
@@ -241,9 +241,19 @@ func main() {
 	//trees.Test_IsValidBST2()
 
 	//230
-	trees.Test_KthSmallest()
-	log.Println()
-	trees.Test_KthSmallest2()
-	log.Println()
-	trees.Test_KthSmallest3()
+	//trees.Test_KthSmallest()
+	//log.Println()
+	//trees.Test_KthSmallest2()
+	//log.Println()
+	//trees.Test_KthSmallest3()
+
+	//105
+	//trees.Test_BuildTree105()
+	//fmt.Println()
+	//trees.Test_BuildTree105_2()
+
+	//106
+	trees.Test_BuildTree106()
+	fmt.Println()
+	trees.Test_BuildTree106_2()
 }

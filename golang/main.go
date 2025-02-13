@@ -1,7 +1,7 @@
 package main
 
 import (
-	"golang/linkedList"
+	"golang/trees"
 )
 
 func main() {
@@ -160,7 +160,7 @@ func main() {
 	//easy.Test_hasCycle()
 
 	//143
-	linkedList.Test_reorderList()
+	//linkedList.Test_reorderList()
 	//medium.Test_reorderList2()
 
 	//19
@@ -252,6 +252,9 @@ func main() {
 	//trees.Test_BuildTree105_2()
 	//fmt.Println()
 	//trees.Test_BuildTree105_3()
+
+	//124
+	trees.Test_MaxPathSum()
 
 	//106
 	//trees.Test_BuildTree106()

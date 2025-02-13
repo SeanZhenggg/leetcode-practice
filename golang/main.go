@@ -2,6 +2,7 @@ package main
 
 import (
 	"golang/trees"
+	"log"
 )
 
 func main() {
@@ -253,11 +254,13 @@ func main() {
 	//fmt.Println()
 	//trees.Test_BuildTree105_3()
 
-	//124
-	trees.Test_MaxPathSum()
-
 	//106
 	//trees.Test_BuildTree106()
 	//fmt.Println()
 	//trees.Test_BuildTree106_2()
+
+	//124
+	trees.Test_MaxPathSum()
+	log.Println()
+	trees.Test_MaxPathSum2()
 }

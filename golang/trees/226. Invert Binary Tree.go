@@ -1,6 +1,9 @@
 package trees
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 /**
  * Definition for a binary tree node.
@@ -71,6 +74,66 @@ func printTree(root *TreeNode) {
 			st = append(st, node.Right)
 		}
 	}
+}
+
+func generateTree(strArr []string) *TreeNode {
+	if len(strArr) == 0 {
+		return nil
+	}
+
+	// build array of pointer of integer first (becuz could be composed of empty nodes, represented by nil ptr)
+	arr := make([]*int, 0, len(strArr))
+	for _, v := range strArr {
+		if v == "null" {
+			arr = append(arr, nil)
+		} else {
+			val, _ := strconv.ParseInt(v, 10, 64)
+			val2 := int(val)
+			arr = append(arr, &val2)
+		}
+	}
+
+	top := arr[0]
+	if top == nil {
+		return nil
+	}
+	arr = arr[1:]
+	root := &TreeNode{Val: *top}
+	queue := make([]*TreeNode, 0)
+	queue = append(queue, root)
+	for len(queue) > 0 && len(arr) > 0 {
+		node := queue[0]
+		queue = queue[1:]
+		top = arr[0]
+		arr = arr[1:]
+		if top != nil {
+			node.Left = &TreeNode{Val: *top}
+			queue = append(queue, node.Left)
+		}
+		if len(arr) > 0 {
+			top = arr[0]
+			arr = arr[1:]
+			if top != nil {
+				node.Right = &TreeNode{Val: *top}
+				queue = append(queue, node.Right)
+			}
+		}
+	}
+	return root
+}
+
+func generateArr(arr []string) []*int {
+	ptrIntArr := make([]*int, 0, len(arr))
+	for _, v := range arr {
+		if v == "nil" {
+			ptrIntArr = append(ptrIntArr, nil)
+		} else {
+			val, _ := strconv.ParseInt(v, 10, 64)
+			val2 := int(val)
+			ptrIntArr = append(ptrIntArr, &val2)
+		}
+	}
+	return ptrIntArr
 }
 
 func Test_InvertTree() {

@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"golang/trees"
-)
+import "golang/trees"
 
 func main() {
 	// 347
@@ -251,9 +248,11 @@ func main() {
 	//trees.Test_BuildTree105()
 	//fmt.Println()
 	//trees.Test_BuildTree105_2()
+	//fmt.Println()
+	trees.Test_BuildTree105_3()
 
 	//106
-	trees.Test_BuildTree106()
-	fmt.Println()
-	trees.Test_BuildTree106_2()
+	//trees.Test_BuildTree106()
+	//fmt.Println()
+	//trees.Test_BuildTree106_2()
 }

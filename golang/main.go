@@ -1,9 +1,6 @@
 package main
 
-import (
-	"golang/trees"
-	"log"
-)
+import "golang/trees"
 
 func main() {
 	// 347
@@ -260,7 +257,10 @@ func main() {
 	//trees.Test_BuildTree106_2()
 
 	//124
-	trees.Test_MaxPathSum()
-	log.Println()
-	trees.Test_MaxPathSum2()
+	//trees.Test_MaxPathSum()
+	//log.Println()
+	//trees.Test_MaxPathSum2()
+
+	//297
+	trees.Test_Constructor()
 }

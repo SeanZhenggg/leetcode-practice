@@ -60,6 +60,9 @@ func invertTree2(root *TreeNode) *TreeNode {
 }
 
 func printTree(root *TreeNode) {
+	if root == nil {
+		return
+	}
 	st := make([]*TreeNode, 0)
 	st = append(st, root)
 	for len(st) > 0 {

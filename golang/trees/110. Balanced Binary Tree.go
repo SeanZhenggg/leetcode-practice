@@ -49,6 +49,40 @@ func isBalanced2(root *TreeNode) bool {
 		isBalanced(root.Right)
 }
 
+func isBalancedReview1(root *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+
+	return math.Abs(float64(getHeight(root.Left)-getHeight(root.Right))) <= 1 && isBalancedReview1(root.Left) && isBalancedReview1(root.Right)
+}
+
+func isBalancedReview2(root *TreeNode) bool {
+
+	var dfs func(root *TreeNode) (int, bool)
+	dfs = func(root *TreeNode) (int, bool) {
+		if root == nil {
+			return 0, true
+		}
+
+		hOfLeft, isLeftBalanced := dfs(root.Left)
+		hOfRight, isRightBalanced := dfs(root.Right)
+
+		return 1 + max(hOfLeft, hOfRight), isLeftBalanced && isRightBalanced && math.Abs(float64(hOfLeft-hOfRight)) <= 1
+	}
+
+	_, isBalance := dfs(root)
+	return isBalance
+}
+
+func getHeight(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	return 1 + max(getHeight(root.Left), getHeight(root.Right))
+}
+
 func height(root *TreeNode) int {
 	// An empty tree has height -1
 	if root == nil {
@@ -94,5 +128,45 @@ func Test_IsBalanced2() {
 	log.Printf("ans2: %v", ans2)
 
 	ans3 := isBalanced2(nil)
+	log.Printf("ans3: %v", ans3)
+}
+
+func Test_IsBalancedReview1() {
+	root1 := &TreeNode{
+		Val:   3,
+		Left:  &TreeNode{Val: 9},
+		Right: &TreeNode{Val: 20, Left: &TreeNode{Val: 15}, Right: &TreeNode{Val: 7}},
+	}
+	ans1 := isBalancedReview1(root1)
+	log.Printf("ans1: %v", ans1)
+	root2 := &TreeNode{
+		Val:   1,
+		Left:  &TreeNode{Val: 2, Left: &TreeNode{Val: 3, Left: &TreeNode{Val: 4}, Right: &TreeNode{Val: 4}}, Right: &TreeNode{Val: 3}},
+		Right: &TreeNode{Val: 2},
+	}
+	ans2 := isBalancedReview1(root2)
+	log.Printf("ans2: %v", ans2)
+
+	ans3 := isBalancedReview1(nil)
+	log.Printf("ans3: %v", ans3)
+}
+
+func Test_IsBalancedReview2() {
+	root1 := &TreeNode{
+		Val:   3,
+		Left:  &TreeNode{Val: 9},
+		Right: &TreeNode{Val: 20, Left: &TreeNode{Val: 15}, Right: &TreeNode{Val: 7}},
+	}
+	ans1 := isBalancedReview2(root1)
+	log.Printf("ans1: %v", ans1)
+	root2 := &TreeNode{
+		Val:   1,
+		Left:  &TreeNode{Val: 2, Left: &TreeNode{Val: 3, Left: &TreeNode{Val: 4}, Right: &TreeNode{Val: 4}}, Right: &TreeNode{Val: 3}},
+		Right: &TreeNode{Val: 2},
+	}
+	ans2 := isBalancedReview2(root2)
+	log.Printf("ans2: %v", ans2)
+
+	ans3 := isBalancedReview2(nil)
 	log.Printf("ans3: %v", ans3)
 }

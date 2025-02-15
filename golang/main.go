@@ -204,14 +204,17 @@ func main() {
 	//trees.Test_MaxDepthReview2()
 
 	//543
-	trees.Test_DiameterOfBinaryTree()
-	fmt.Println()
-	trees.Test_DiameterOfBinaryTreeReview1()
-	trees.Test_DiameterOfBinaryTreeReview2()
+	//trees.Test_DiameterOfBinaryTree()
+	//fmt.Println()
+	//trees.Test_DiameterOfBinaryTreeReview1()
+	//trees.Test_DiameterOfBinaryTreeReview2()
 
 	//110
-	//trees.Test_IsBalanced()
+	trees.Test_IsBalanced()
 	//trees.Test_IsBalanced2()
+	fmt.Println()
+	//trees.Test_IsBalancedReview1()
+	trees.Test_IsBalancedReview2()
 
 	//100
 	//trees.Test_IsSameTree()

@@ -20,6 +20,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// DFS, post-order traversal, tc: O(n), sc: O(n) (call stack)
 func invertTree(root *TreeNode) *TreeNode {
 	if root == nil {
 		return nil
@@ -32,6 +33,7 @@ func invertTree(root *TreeNode) *TreeNode {
 	return root
 }
 
+// BFS, level order traversal, tc: O(n), sc: O(n)
 func invertTree2(root *TreeNode) *TreeNode {
 	if root == nil {
 		return nil
@@ -56,6 +58,55 @@ func invertTree2(root *TreeNode) *TreeNode {
 		}
 	}
 
+	return root
+}
+
+// DFS, post-order traversal, tc: O(n), sc: O(n) (call stack)
+func invertTreeReview1(root *TreeNode) *TreeNode {
+	// root == nil, return
+	// invert left and right
+	// dfs recursively to invert
+	// post-order traversal
+
+	if root == nil {
+		return nil
+	}
+
+	leftTree := invertTreeReview1(root.Left)
+	root.Left = invertTreeReview1(root.Right)
+	root.Right = leftTree
+	return root
+}
+
+// BFS, level order traversal, tc: O(n), sc: O(n)
+func invertTreeReview2(root *TreeNode) *TreeNode {
+	// root == nil, return
+	// invert left and right
+	// use bfs to invert
+	// level order traversal
+
+	if root == nil {
+		return nil
+	}
+
+	queue := make([]*TreeNode, 0)
+	queue = append(queue, root)
+
+	for len(queue) > 0 {
+		top := queue[0]
+		queue = queue[1:]
+		left := top.Left
+		top.Left = top.Right
+		top.Right = left
+
+		if top.Left != nil {
+			queue = append(queue, top.Left)
+		}
+
+		if top.Right != nil {
+			queue = append(queue, top.Right)
+		}
+	}
 	return root
 }
 
@@ -125,38 +176,78 @@ func generateTree(strArr []string) *TreeNode {
 	return root
 }
 
-func generateArr(arr []string) []*int {
-	ptrIntArr := make([]*int, 0, len(arr))
-	for _, v := range arr {
-		if v == "nil" {
-			ptrIntArr = append(ptrIntArr, nil)
-		} else {
-			val, _ := strconv.ParseInt(v, 10, 64)
-			val2 := int(val)
-			ptrIntArr = append(ptrIntArr, &val2)
-		}
-	}
-	return ptrIntArr
-}
-
 func Test_InvertTree() {
-	root1 := &TreeNode{
-		Val:   4,
-		Left:  &TreeNode{Val: 2, Left: &TreeNode{Val: 1}, Right: &TreeNode{Val: 3}},
-		Right: &TreeNode{Val: 7, Left: &TreeNode{Val: 6}, Right: &TreeNode{Val: 9}},
-	}
+	root1 := generateTree([]string{"4", "2", "7", "1", "3", "6", "9"})
 	tree := invertTree(root1)
 
 	printTree(tree)
 
 	fmt.Println()
 
-	root2 := &TreeNode{
-		Val:   4,
-		Left:  &TreeNode{Val: 2, Left: &TreeNode{Val: 1}, Right: &TreeNode{Val: 3}},
-		Right: &TreeNode{Val: 7, Left: &TreeNode{Val: 6}, Right: &TreeNode{Val: 9}},
-	}
+	root2 := generateTree([]string{"2", "1", "3"})
+	tree2 := invertTree(root2)
+
+	printTree(tree2)
+
+	root3 := generateTree([]string{})
+	tree3 := invertTree(root3)
+
+	printTree(tree3)
+}
+
+func Test_InvertTree2() {
+	root1 := generateTree([]string{"4", "2", "7", "1", "3", "6", "9"})
+	tree := invertTree2(root1)
+
+	printTree(tree)
+
+	fmt.Println()
+
+	root2 := generateTree([]string{"2", "1", "3"})
 	tree2 := invertTree2(root2)
 
 	printTree(tree2)
+
+	root3 := generateTree([]string{})
+	tree3 := invertTree2(root3)
+
+	printTree(tree3)
+}
+
+func Test_InvertTreeReview1() {
+	root1 := generateTree([]string{"4", "2", "7", "1", "3", "6", "9"})
+	tree := invertTreeReview1(root1)
+
+	printTree(tree)
+
+	fmt.Println()
+
+	root2 := generateTree([]string{"2", "1", "3"})
+	tree2 := invertTreeReview1(root2)
+
+	printTree(tree2)
+
+	root3 := generateTree([]string{})
+	tree3 := invertTreeReview1(root3)
+
+	printTree(tree3)
+}
+
+func Test_InvertTreeReview2() {
+	root1 := generateTree([]string{"4", "2", "7", "1", "3", "6", "9"})
+	tree := invertTreeReview2(root1)
+
+	printTree(tree)
+
+	fmt.Println()
+
+	root2 := generateTree([]string{"2", "1", "3"})
+	tree2 := invertTreeReview2(root2)
+
+	printTree(tree2)
+
+	root3 := generateTree([]string{})
+	tree3 := invertTreeReview2(root3)
+
+	printTree(tree3)
 }

@@ -210,19 +210,20 @@ func main() {
 	//trees.Test_DiameterOfBinaryTreeReview2()
 
 	//110
-	trees.Test_IsBalanced()
+	//trees.Test_IsBalanced()
 	//trees.Test_IsBalanced2()
-	fmt.Println()
+	//fmt.Println()
 	//trees.Test_IsBalancedReview1()
-	trees.Test_IsBalancedReview2()
+	//trees.Test_IsBalancedReview2()
 
 	//100
 	//trees.Test_IsSameTree()
 
 	//572
-	//trees.Test_IsSubtree()
-	//log.Println()
+	trees.Test_IsSubtree()
+	fmt.Println()
 	//trees.Test_IsSubtree2()
+	trees.Test_IsSubtreeReview1()
 
 	//235
 	//trees.Test_LowestCommonAncestorBST()

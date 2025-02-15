@@ -49,34 +49,77 @@ func maxDepth2(root *TreeNode) int {
 	return maxDep
 }
 
-func Test_MaxDepth() {
-	root1 := &TreeNode{
-		Val:   3,
-		Left:  &TreeNode{Val: 9},
-		Right: &TreeNode{Val: 20, Left: &TreeNode{Val: 15}, Right: &TreeNode{Val: 7}},
+func maxDepthReview1(root *TreeNode) int {
+	if root == nil {
+		return 0
 	}
+
+	return 1 + max(maxDepthReview1(root.Left), maxDepthReview1(root.Right))
+}
+
+func maxDepthReview2(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	queue := make([]*TreeNode, 0)
+	queue = append(queue, root)
+	lvl := 0
+	for len(queue) > 0 {
+		queueLen := len(queue)
+
+		for i := 0; i < queueLen; i++ {
+			top := queue[0]
+			queue = queue[1:]
+			if top.Left != nil {
+				queue = append(queue, top.Left)
+			}
+			if top.Right != nil {
+				queue = append(queue, top.Right)
+			}
+		}
+		lvl++
+	}
+
+	return lvl
+}
+
+func Test_MaxDepth() {
+	root1 := generateTree([]string{"3", "9", "20", "null", "null", "15", "7"})
 	ans1 := maxDepth(root1)
 	log.Printf("ans1: %v", ans1)
-	root2 := &TreeNode{
-		Val:   1,
-		Right: &TreeNode{Val: 2},
-	}
+
+	root2 := generateTree([]string{"1", "null", "2"})
 	ans2 := maxDepth(root2)
 	log.Printf("ans2: %v", ans2)
 }
 
 func Test_MaxDepth2() {
-	root1 := &TreeNode{
-		Val:   3,
-		Left:  &TreeNode{Val: 9},
-		Right: &TreeNode{Val: 20, Left: &TreeNode{Val: 15}, Right: &TreeNode{Val: 7}},
-	}
+	root1 := generateTree([]string{"3", "9", "20", "null", "null", "15", "7"})
 	ans1 := maxDepth2(root1)
 	log.Printf("ans1: %v", ans1)
-	root2 := &TreeNode{
-		Val:   1,
-		Right: &TreeNode{Val: 2},
-	}
+
+	root2 := generateTree([]string{"1", "null", "2"})
 	ans2 := maxDepth2(root2)
+	log.Printf("ans2: %v", ans2)
+}
+
+func Test_MaxDepthReview1() {
+	root1 := generateTree([]string{"3", "9", "20", "null", "null", "15", "7"})
+	ans1 := maxDepthReview1(root1)
+	log.Printf("ans1: %v", ans1)
+
+	root2 := generateTree([]string{"1", "null", "2"})
+	ans2 := maxDepthReview1(root2)
+	log.Printf("ans2: %v", ans2)
+}
+
+func Test_MaxDepthReview2() {
+	root1 := generateTree([]string{"3", "9", "20", "null", "null", "15", "7"})
+	ans1 := maxDepthReview2(root1)
+	log.Printf("ans1: %v", ans1)
+
+	root2 := generateTree([]string{"1", "null", "2"})
+	ans2 := maxDepthReview2(root2)
 	log.Printf("ans2: %v", ans2)
 }

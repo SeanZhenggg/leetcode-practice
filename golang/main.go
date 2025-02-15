@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"golang/trees"
-)
+import "golang/trees"
 
 func main() {
 	// 347
@@ -193,14 +190,15 @@ func main() {
 	//hard.Test_reverseKGroup2()
 
 	//226
-	trees.Test_InvertTree()
-	fmt.Println()
-	trees.Test_InvertTreeReview2()
+	//trees.Test_InvertTree()
+	//fmt.Println()
 	//trees.Test_InvertTreeReview1()
 
 	//104
-	//trees.Test_MaxDepth()
+	trees.Test_MaxDepth()
 	//trees.Test_MaxDepth2()
+	//trees.Test_MaxDepthReview1()
+	trees.Test_MaxDepthReview2()
 
 	//543
 	//trees.Test_DiameterOfBinaryTree()

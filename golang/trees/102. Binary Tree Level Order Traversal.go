@@ -11,10 +11,10 @@ import "log"
  * }
  */
 func levelOrder(root *TreeNode) [][]int {
-	var ret = make([][]int, 0)
 	if root == nil {
-		return ret
+		return nil
 	}
+	ret := make([][]int, 0)
 	queue := make([]struct {
 		Node  *TreeNode
 		Depth int

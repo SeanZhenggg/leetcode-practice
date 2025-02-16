@@ -24,7 +24,7 @@ func levelOrder(root *TreeNode) [][]int {
 		Depth int
 	}{
 		Node:  root,
-		Depth: 0,
+		Depth: 1,
 	})
 
 	for len(queue) > 0 {

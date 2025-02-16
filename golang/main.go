@@ -219,6 +219,8 @@ func main() {
 	//100
 	trees.Test_IsSameTree()
 	log.Println()
+	trees.Test_IsSameTreeReview1()
+	log.Println()
 	trees.Test_IsSameTree2()
 
 	//572

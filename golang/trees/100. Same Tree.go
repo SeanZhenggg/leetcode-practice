@@ -75,10 +75,6 @@ func isSameTreeReview1(p *TreeNode, q *TreeNode) bool {
 		return p == nil && q == nil
 	}
 
-	if p.Val != q.Val {
-		return false
-	}
-
 	return p.Val == q.Val && isSameTreeReview1(p.Left, q.Left) && isSameTreeReview1(p.Right, q.Right)
 }
 

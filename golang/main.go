@@ -217,7 +217,9 @@ func main() {
 	//trees.Test_IsBalancedReview2()
 
 	//100
-	//trees.Test_IsSameTree()
+	trees.Test_IsSameTree()
+	log.Println()
+	trees.Test_IsSameTree2()
 
 	//572
 	//trees.Test_IsSubtree()
@@ -237,9 +239,9 @@ func main() {
 	//trees.Test_LowestCommonAncestorBT()
 
 	//102
-	trees.Test_LevelOrder()
-	log.Println()
-	trees.Test_LevelOrderReview1()
+	//trees.Test_LevelOrder()
+	//log.Println()
+	//trees.Test_LevelOrderReview1()
 
 	//199
 	//trees.Test_RightSideView()

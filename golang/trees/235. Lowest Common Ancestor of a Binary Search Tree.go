@@ -101,6 +101,96 @@ func lowestCommonAncestorBST3(root, p, q *TreeNode) *TreeNode {
 	return d
 }
 
+func lowestCommonAncestorBST1Review1(root, p, q *TreeNode) *TreeNode {
+	rootsOfP := appendRoot(root, p)
+	rootsOfQ := appendRoot(root, q)
+
+	if len(rootsOfP) > len(rootsOfQ) {
+		for i, j := 0, 0; i < len(rootsOfP); i++ {
+			if rootsOfP[i].Val == rootsOfQ[j].Val {
+				return rootsOfP[i]
+			}
+			if i >= len(rootsOfP)-len(rootsOfQ) {
+				j++
+			}
+		}
+	} else {
+		for i, j := 0, 0; i < len(rootsOfQ); i++ {
+			if rootsOfQ[i].Val == rootsOfP[j].Val {
+				return rootsOfQ[i]
+			}
+			if i >= len(rootsOfQ)-len(rootsOfP) {
+				j++
+			}
+		}
+	}
+	return nil
+}
+
+func appendRoot(root *TreeNode, p *TreeNode) []*TreeNode {
+	if root == nil {
+		return nil
+	}
+	if root.Val == p.Val {
+		return []*TreeNode{root}
+	}
+
+	nodes := appendRoot(root.Left, p)
+	if len(nodes) > 0 {
+		return append(nodes, root)
+	}
+	nodes = appendRoot(root.Right, p)
+	if len(nodes) > 0 {
+		return append(nodes, root)
+	}
+	return nil
+}
+
+func lowestCommonAncestorBST2Review1(root, p, q *TreeNode) *TreeNode {
+	var dfs func(root, p, q *TreeNode) (*TreeNode, bool)
+	dfs = func(root, p, q *TreeNode) (*TreeNode, bool) {
+		if root == nil {
+			return nil, false
+		}
+
+		lNode, lFound := dfs(root.Left, p, q)
+		if lNode != nil && lFound {
+			return lNode, true
+		}
+		rNode, rFound := dfs(root.Right, p, q)
+		if rNode != nil && rFound {
+			return rNode, true
+		}
+
+		midFound := false
+		if root.Val == p.Val || root.Val == q.Val {
+			midFound = true
+		}
+		if (midFound && lFound) || (midFound && rFound) || (lFound && rFound) {
+			return root, true
+		}
+		return nil, midFound || lFound || rFound
+
+	}
+
+	node, _ := dfs(root, p, q)
+	return node
+}
+
+func lowestCommonAncestorBST3Review1(root, p, q *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+
+	if root.Val > p.Val && root.Val > q.Val {
+		return lowestCommonAncestorBST3Review1(root.Left, p, q)
+	} else if root.Val < p.Val && root.Val < q.Val {
+		return lowestCommonAncestorBST3Review1(root.Right, p, q)
+	} else {
+		return root
+	}
+}
+
 func Test_LowestCommonAncestorBST() {
 	root1 := &TreeNode{
 		Val:   6,
@@ -231,6 +321,108 @@ func Test_LowestCommonAncestorBST3() {
 	p3 := &TreeNode{Val: 2}
 	q3 := &TreeNode{Val: 1}
 	ans3 := lowestCommonAncestorBST3(root3, p3, q3)
+	log.Printf("ans3: %v", ans3.Val)
+
+	root4 := &TreeNode{
+		Val:   3,
+		Left:  &TreeNode{Val: 1, Right: &TreeNode{Val: 2}},
+		Right: &TreeNode{Val: 4},
+	}
+	p4 := &TreeNode{Val: 2}
+	q4 := &TreeNode{Val: 3}
+	ans4 := lowestCommonAncestorBST3(root4, p4, q4)
+	log.Printf("ans4: %v", ans4.Val)
+
+	root5 := &TreeNode{
+		Val:   5,
+		Left:  &TreeNode{Val: 3, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 1}}, Right: &TreeNode{Val: 4}},
+		Right: &TreeNode{Val: 6},
+	}
+	p5 := &TreeNode{Val: 1}
+	q5 := &TreeNode{Val: 4}
+	ans5 := lowestCommonAncestorBST3(root5, p5, q5)
+	log.Printf("ans5: %v", ans5.Val)
+}
+
+func Test_LowestCommonAncestorBST2Review1() {
+	root1 := &TreeNode{
+		Val:   6,
+		Left:  &TreeNode{Val: 2, Left: &TreeNode{Val: 0}, Right: &TreeNode{Val: 4, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 5}}},
+		Right: &TreeNode{Val: 8, Left: &TreeNode{Val: 7}, Right: &TreeNode{Val: 9}},
+	}
+	p1 := &TreeNode{Val: 2}
+	q1 := &TreeNode{Val: 8}
+	ans1 := lowestCommonAncestorBST2Review1(root1, p1, q1)
+	log.Printf("ans1: %v", ans1.Val)
+
+	root2 := &TreeNode{
+		Val:   6,
+		Left:  &TreeNode{Val: 2, Left: &TreeNode{Val: 0}, Right: &TreeNode{Val: 4, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 5}}},
+		Right: &TreeNode{Val: 8, Left: &TreeNode{Val: 7}, Right: &TreeNode{Val: 9}},
+	}
+	p2 := &TreeNode{Val: 2}
+	q2 := &TreeNode{Val: 4}
+	ans2 := lowestCommonAncestorBST2Review1(root2, p2, q2)
+	log.Printf("ans2: %v", ans2.Val)
+
+	root3 := &TreeNode{
+		Val:  2,
+		Left: &TreeNode{Val: 1},
+	}
+	p3 := &TreeNode{Val: 2}
+	q3 := &TreeNode{Val: 1}
+	ans3 := lowestCommonAncestorBST2Review1(root3, p3, q3)
+	log.Printf("ans3: %v", ans3.Val)
+
+	root4 := &TreeNode{
+		Val:   3,
+		Left:  &TreeNode{Val: 1, Right: &TreeNode{Val: 2}},
+		Right: &TreeNode{Val: 4},
+	}
+	p4 := &TreeNode{Val: 2}
+	q4 := &TreeNode{Val: 3}
+	ans4 := lowestCommonAncestorBST3(root4, p4, q4)
+	log.Printf("ans4: %v", ans4.Val)
+
+	root5 := &TreeNode{
+		Val:   5,
+		Left:  &TreeNode{Val: 3, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 1}}, Right: &TreeNode{Val: 4}},
+		Right: &TreeNode{Val: 6},
+	}
+	p5 := &TreeNode{Val: 1}
+	q5 := &TreeNode{Val: 4}
+	ans5 := lowestCommonAncestorBST3(root5, p5, q5)
+	log.Printf("ans5: %v", ans5.Val)
+}
+
+func Test_LowestCommonAncestorBST3Review1() {
+	root1 := &TreeNode{
+		Val:   6,
+		Left:  &TreeNode{Val: 2, Left: &TreeNode{Val: 0}, Right: &TreeNode{Val: 4, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 5}}},
+		Right: &TreeNode{Val: 8, Left: &TreeNode{Val: 7}, Right: &TreeNode{Val: 9}},
+	}
+	p1 := &TreeNode{Val: 2}
+	q1 := &TreeNode{Val: 8}
+	ans1 := lowestCommonAncestorBST3Review1(root1, p1, q1)
+	log.Printf("ans1: %v", ans1.Val)
+
+	root2 := &TreeNode{
+		Val:   6,
+		Left:  &TreeNode{Val: 2, Left: &TreeNode{Val: 0}, Right: &TreeNode{Val: 4, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 5}}},
+		Right: &TreeNode{Val: 8, Left: &TreeNode{Val: 7}, Right: &TreeNode{Val: 9}},
+	}
+	p2 := &TreeNode{Val: 2}
+	q2 := &TreeNode{Val: 4}
+	ans2 := lowestCommonAncestorBST3Review1(root2, p2, q2)
+	log.Printf("ans2: %v", ans2.Val)
+
+	root3 := &TreeNode{
+		Val:  2,
+		Left: &TreeNode{Val: 1},
+	}
+	p3 := &TreeNode{Val: 2}
+	q3 := &TreeNode{Val: 1}
+	ans3 := lowestCommonAncestorBST3Review1(root3, p3, q3)
 	log.Printf("ans3: %v", ans3.Val)
 
 	root4 := &TreeNode{

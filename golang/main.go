@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"golang/trees"
+	"log"
 )
 
 func main() {
@@ -220,17 +220,18 @@ func main() {
 	//trees.Test_IsSameTree()
 
 	//572
-	trees.Test_IsSubtree()
-	fmt.Println()
+	//trees.Test_IsSubtree()
+	//fmt.Println()
 	//trees.Test_IsSubtree2()
-	trees.Test_IsSubtreeReview1()
+	//trees.Test_IsSubtreeReview1()
 
 	//235
-	//trees.Test_LowestCommonAncestorBST()
+	trees.Test_LowestCommonAncestorBST()
 	//log.Println()
 	//trees.Test_LowestCommonAncestorBST2()
-	//log.Println()
-	//trees.Test_LowestCommonAncestorBST3()
+	log.Println()
+	//trees.Test_LowestCommonAncestorBST2Review1()
+	trees.Test_LowestCommonAncestorBST3Review1()
 
 	//236
 	//trees.Test_LowestCommonAncestorBT()

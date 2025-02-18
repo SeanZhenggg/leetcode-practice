@@ -1,7 +1,7 @@
 package main
 
 import (
-	"golang/trees"
+	"golang/heapAndPq"
 	"log"
 )
 
@@ -217,11 +217,11 @@ func main() {
 	//trees.Test_IsBalancedReview2()
 
 	//100
-	trees.Test_IsSameTree()
-	log.Println()
-	trees.Test_IsSameTreeReview1()
-	log.Println()
-	trees.Test_IsSameTree2()
+	//trees.Test_IsSameTree()
+	//log.Println()
+	//trees.Test_IsSameTreeReview1()
+	//log.Println()
+	//trees.Test_IsSameTree2()
 
 	//572
 	//trees.Test_IsSubtree()
@@ -284,4 +284,9 @@ func main() {
 
 	//297
 	//trees.Test_Constructor()
+
+	//703
+	heapAndPq.TestKthLargest()
+	log.Println()
+	heapAndPq.TestKthLargest2()
 }

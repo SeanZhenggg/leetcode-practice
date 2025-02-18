@@ -1,9 +1,6 @@
 package main
 
-import (
-	"golang/heapAndPq"
-	"log"
-)
+import "golang/heapAndPq"
 
 func main() {
 	// 347
@@ -286,7 +283,9 @@ func main() {
 	//trees.Test_Constructor()
 
 	//703
-	heapAndPq.TestKthLargest()
-	log.Println()
-	heapAndPq.TestKthLargest2()
+	//heapAndPq.TestKthLargest()
+	//log.Println()
+	//heapAndPq.TestKthLargest2()
+
+	heapAndPq.Test_LastStoneWeight()
 }

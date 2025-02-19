@@ -294,7 +294,11 @@ func main() {
 	//heapAndPq.Test_LastStoneWeight()
 
 	//973
-	heapAndPq.Test_KClosest()
+	//heapAndPq.Test_KClosest()
+	//log.Println()
+	//heapAndPq.Test_KClosest2()
+
+	heapAndPq.Test_FindKthLargest()
 	log.Println()
-	heapAndPq.Test_KClosest2()
+	heapAndPq.Test_FindKthLargest3()
 }

@@ -1,9 +1,6 @@
 package main
 
-import (
-	"golang/heapAndPq"
-	"log"
-)
+import "golang/heapAndPq"
 
 func main() {
 	// 347
@@ -298,7 +295,8 @@ func main() {
 	//log.Println()
 	//heapAndPq.Test_KClosest2()
 
-	heapAndPq.Test_FindKthLargest()
-	log.Println()
-	heapAndPq.Test_FindKthLargest3()
+	//heapAndPq.Test_FindKthLargest()
+	heapAndPq.Test_FindKthLargest2()
+	//log.Println()
+	//heapAndPq.Test_FindKthLargest3()
 }

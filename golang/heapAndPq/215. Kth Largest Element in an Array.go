@@ -28,15 +28,17 @@ func findKthLargest(nums []int, k int) int {
 func findKthLargest2(nums []int, k int) int {
 	kthLargest := len(nums) - k
 	l, r := 0, len(nums)-1
-	pivot := partition(nums, l, r)
 
 	for l <= r {
+		pivot := partition(nums, l, r)
 		if pivot == kthLargest {
 			return nums[pivot]
 		} else if pivot > kthLargest {
-			pivot = partition(nums, l, pivot-1)
+			r = pivot - 1
+			//pivot = partition(nums, l, pivot-1) // wrong
 		} else {
-			pivot = partition(nums, pivot+1, r)
+			l = pivot + 1
+			//pivot = partition(nums, pivot+1, r) // wrong
 		}
 	}
 
@@ -51,6 +53,7 @@ func partition(nums []int, l, r int) int {
 	j := l - 1
 	for i := l; i < r; i++ {
 		if nums[i] <= nums[pivot] {
+			nums[j+1], nums[i] = nums[i], nums[j+1]
 			j++
 		}
 	}
@@ -202,8 +205,8 @@ func Test_FindKthLargest() {
 }
 
 func Test_FindKthLargest2() {
-	nums1 := []int{3, 2, 1, 5, 6, 4}
-	k1 := 2
+	nums1 := []int{1, 2, 3, 4, 5, 6}
+	k1 := 1
 	ans1 := findKthLargest2(nums1, k1)
 	log.Printf("ans1: %v", ans1)
 

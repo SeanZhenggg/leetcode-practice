@@ -125,7 +125,7 @@ func Test_LeastInterval() {
 
 func Test_LeastInterval2() {
 	tasks1 := []byte{'A', 'A', 'A', 'B', 'B', 'B'}
-	//'A', 'B', 'i', 'i', 'i', 'i', 'A', 'B','i', 'i', 'i', 'i', 'A', 'B'
+
 	n1 := 2
 	ans1 := leastInterval2(tasks1, n1)
 	log.Printf("ans1: %v", ans1)

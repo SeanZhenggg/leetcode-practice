@@ -309,4 +309,6 @@ func main() {
 	heapAndPq.Test_LeastInterval()
 	log.Println()
 	heapAndPq.Test_LeastInterval2()
+	log.Println()
+	heapAndPq.Test_LeastInterval3()
 }

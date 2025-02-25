@@ -3,6 +3,7 @@ package heapAndPq
 import (
 	"github.com/emirpasic/gods/queues/priorityqueue"
 	"log"
+	"slices"
 )
 
 type node struct {
@@ -101,6 +102,26 @@ func leastInterval2(tasks []byte, n int) int {
 	return time
 }
 
+// greedy
+func leastInterval3(tasks []byte, n int) int {
+	counts := make([]int, 26)
+
+	for _, task := range tasks {
+		counts[task-'A']++
+	}
+
+	slices.Sort(counts)
+
+	maxF := counts[25] - 1
+	blankSlots := maxF * n
+
+	for i := 24; i >= 0; i-- {
+		blankSlots -= min(maxF, counts[i])
+	}
+
+	return max(0, blankSlots) + len(tasks)
+}
+
 func Test_LeastInterval() {
 	tasks1 := []byte{'A', 'A', 'A', 'B', 'B', 'B'}
 	n1 := 2
@@ -143,6 +164,30 @@ func Test_LeastInterval2() {
 	tasks4 := []byte{'B', 'C', 'D', 'A', 'A', 'A', 'A', 'G'}
 	n4 := 1
 	ans4 := leastInterval2(tasks4, n4)
+	log.Printf("ans4: %v", ans4)
+
+}
+
+func Test_LeastInterval3() {
+	tasks1 := []byte{'A', 'A', 'A', 'B', 'B', 'B'}
+
+	n1 := 2
+	ans1 := leastInterval3(tasks1, n1)
+	log.Printf("ans1: %v", ans1)
+
+	tasks2 := []byte{'A', 'C', 'A', 'B', 'D', 'B'}
+	n2 := 1
+	ans2 := leastInterval3(tasks2, n2)
+	log.Printf("ans2: %v", ans2)
+
+	tasks3 := []byte{'A', 'A', 'A', 'B', 'B', 'B'}
+	n3 := 3
+	ans3 := leastInterval3(tasks3, n3)
+	log.Printf("ans3: %v", ans3)
+
+	tasks4 := []byte{'B', 'C', 'D', 'A', 'A', 'A', 'A', 'G'}
+	n4 := 1
+	ans4 := leastInterval3(tasks4, n4)
 	log.Printf("ans4: %v", ans4)
 
 }

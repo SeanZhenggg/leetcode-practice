@@ -1,7 +1,7 @@
 package main
 
 import (
-	"golang/heapAndPq"
+	"golang/stack"
 	"log"
 )
 
@@ -116,7 +116,9 @@ func main() {
 	//medium.Test_CarFleet()
 
 	//84
-	//hard.Test_largestRectangleArea()
+	stack.Test_largestRectangleArea()
+	log.Println()
+	stack.Test_largestRectangleAreaReview()
 	//hard.Test_largestRectangleArea2()
 
 	//704
@@ -306,9 +308,9 @@ func main() {
 	//heapAndPq.Test_FindKthLargest3()
 
 	//621
-	heapAndPq.Test_LeastInterval()
-	log.Println()
-	heapAndPq.Test_LeastInterval2()
-	log.Println()
-	heapAndPq.Test_LeastInterval3()
+	//heapAndPq.Test_LeastInterval()
+	//log.Println()
+	//heapAndPq.Test_LeastInterval2()
+	//log.Println()
+	//heapAndPq.Test_LeastInterval3()
 }

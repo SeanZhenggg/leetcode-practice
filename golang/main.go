@@ -1,7 +1,7 @@
 package main
 
 import (
-	"golang/stack"
+	"golang/binarySearch"
 	"log"
 )
 
@@ -116,19 +116,21 @@ func main() {
 	//medium.Test_CarFleet()
 
 	//84
-	stack.Test_largestRectangleArea()
-	log.Println()
-	stack.Test_largestRectangleAreaReview()
+	//stack.Test_largestRectangleArea()
+	//log.Println()
+	//stack.Test_largestRectangleAreaReview()
 	//hard.Test_largestRectangleArea2()
 
 	//704
-	//easy.Test_search()
+	//easy.Test_BinarySearch()
 
 	//35
 	//easy.Test_searchInsert()
 
 	//34
-	//medium.Test_searchRange()
+	binarySearch.Test_searchRange()
+	log.Println()
+	binarySearch.Test_searchRangeReview()
 
 	//74
 	//medium.Test_searchMatrix()

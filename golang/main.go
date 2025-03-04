@@ -1,7 +1,7 @@
 package main
 
 import (
-	"golang/binarySearch"
+	"golang/heapAndPq"
 	"log"
 )
 
@@ -128,9 +128,9 @@ func main() {
 	//easy.Test_searchInsert()
 
 	//34
-	binarySearch.Test_searchRange()
-	log.Println()
-	binarySearch.Test_searchRangeReview()
+	//binarySearch.Test_searchRange()
+	//log.Println()
+	//binarySearch.Test_searchRangeReview()
 
 	//74
 	//medium.Test_searchMatrix()
@@ -315,4 +315,9 @@ func main() {
 	//heapAndPq.Test_LeastInterval2()
 	//log.Println()
 	//heapAndPq.Test_LeastInterval3()
+
+	//355
+	heapAndPq.Test_TwitterConstructor()
+	log.Println()
+	heapAndPq.Test_TwitterConstructor2()
 }

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"golang/heapAndPq"
+	"golang/binarySearch"
 	"log"
 )
 
@@ -141,7 +141,9 @@ func main() {
 	//medium.Test_minEatingSpeed2()
 
 	//153
-	//medium.Test_findMin()
+	binarySearch.Test_findMin()
+	log.Println()
+	binarySearch.Test_findMinReview()
 
 	//33
 	//medium.Test_search()
@@ -317,7 +319,7 @@ func main() {
 	//heapAndPq.Test_LeastInterval3()
 
 	//355
-	heapAndPq.Test_TwitterConstructor()
-	log.Println()
-	heapAndPq.Test_TwitterConstructor2()
+	//heapAndPq.Test_TwitterConstructor()
+	//log.Println()
+	//heapAndPq.Test_TwitterConstructor2()
 }

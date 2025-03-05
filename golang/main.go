@@ -144,6 +144,8 @@ func main() {
 	binarySearch.Test_findMin()
 	log.Println()
 	binarySearch.Test_findMinReview()
+	log.Println()
+	binarySearch.Test_findMin2Review()
 
 	//33
 	//medium.Test_search()

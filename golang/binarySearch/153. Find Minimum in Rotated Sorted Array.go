@@ -41,6 +41,10 @@ func findMin(nums []int) int {
 func findMinReview(nums []int) int {
 	l, r := 0, len(nums)-1
 
+	if nums[l] < nums[r] {
+		return nums[l]
+	}
+
 	for l < r {
 		mid := l + (r-l)/2
 
@@ -48,6 +52,29 @@ func findMinReview(nums []int) int {
 			l = mid + 1
 		} else {
 			r = mid
+		}
+	}
+
+	return nums[l]
+}
+
+func findMin2Review(nums []int) int {
+	l, r := 0, len(nums)-1
+
+	if nums[l] < nums[r] {
+		return nums[l]
+	}
+
+	for l < r {
+		if nums[l] < nums[r] {
+			return nums[l]
+		}
+
+		mid := l + (r-l)/2
+		if nums[mid] < nums[l] {
+			r = mid
+		} else {
+			l = mid + 1
 		}
 	}
 
@@ -92,6 +119,27 @@ func Test_findMinReview() {
 	ans5 := findMinReview(case5)
 	log.Printf("ans5: %v", ans5)
 	case6 := []int{2, 3, 4, 5, 1}
-	ans6 := findMin(case6)
+	ans6 := findMinReview(case6)
+	log.Printf("ans6: %v", ans6)
+}
+
+func Test_findMin2Review() {
+	case1 := []int{3, 4, 5, 1, 2}
+	ans1 := findMin2Review(case1)
+	log.Printf("ans1: %v", ans1)
+	case2 := []int{4, 5, 6, 7, 0, 1, 2}
+	ans2 := findMin2Review(case2)
+	log.Printf("ans2: %v", ans2)
+	case3 := []int{11, 13, 15, 17}
+	ans3 := findMin2Review(case3)
+	log.Printf("ans3: %v", ans3)
+	case4 := []int{3, 1, 2}
+	ans4 := findMin2Review(case4)
+	log.Printf("ans4: %v", ans4)
+	case5 := []int{5, 1, 2, 3, 4}
+	ans5 := findMin2Review(case5)
+	log.Printf("ans5: %v", ans5)
+	case6 := []int{2, 3, 4, 5, 1}
+	ans6 := findMin2Review(case6)
 	log.Printf("ans6: %v", ans6)
 }

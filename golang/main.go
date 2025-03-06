@@ -1,8 +1,8 @@
 package main
 
 import (
+	"fmt"
 	"golang/binarySearch"
-	"log"
 )
 
 func main() {
@@ -141,17 +141,19 @@ func main() {
 	//medium.Test_minEatingSpeed2()
 
 	//153
-	binarySearch.Test_findMin()
-	log.Println()
-	binarySearch.Test_findMinReview()
-	log.Println()
-	binarySearch.Test_findMin2Review()
+	//binarySearch.Test_findMin()
+	//log.Println()
+	//binarySearch.Test_findMinReview()
+	//log.Println()
+	//binarySearch.Test_findMin2Review()
 
 	//33
 	//medium.Test_search()
 
 	//981
-	//medium.Test_TimeBasedKeyValueStore()
+	binarySearch.Test_TimeBasedKeyValueStore()
+	fmt.Println()
+	binarySearch.Test_TimeBasedKeyValueStoreReview()
 
 	//4
 	//hard.Test_findMedianSortedArrays()

@@ -2,6 +2,7 @@ package binarySearch
 
 import "log"
 
+// one pass solution, TC: O(logn), SC: O(1)
 func search(nums []int, target int) int {
 	l, r := 0, len(nums)-1
 
@@ -40,6 +41,75 @@ func search(nums []int, target int) int {
 			//}
 		} else {
 			return mid
+		}
+	}
+	return -1
+}
+
+// find pivot and do bs both sides solution, TC: O(3*logn), SC: O(1)
+func search2(nums []int, target int) int {
+	l, r := 0, len(nums)-1
+	for l < r {
+		m := l + (r-l)/2
+		if nums[m] <= nums[r] {
+			r = m
+		} else {
+			l = m + 1
+		}
+	}
+
+	var bs func(l, r int, target int) int
+	bs = func(l, r int, target int) int {
+		for l <= r {
+			m := l + (r-l)/2
+
+			if nums[m] == target {
+				return m
+			} else if nums[m] > target {
+				r = m - 1
+			} else {
+				l = m + 1
+			}
+		}
+		return -1
+	}
+
+	idx := bs(0, l-1, target)
+	if idx != -1 {
+		return idx
+	}
+
+	return bs(l, len(nums)-1, target)
+}
+
+// two pass solution, TC: O(2*logn), SC: O(1)
+func search3(nums []int, target int) int {
+	l, r := 0, len(nums)-1
+	for l < r {
+		m := l + (r-l)/2
+		if nums[m] <= nums[r] {
+			r = m
+		} else {
+			l = m + 1
+		}
+	}
+
+	p := l
+	l, r = 0, len(nums)-1
+	if target >= nums[p] && target <= nums[r] {
+		l = p
+	} else {
+		r = p - 1
+	}
+	for l <= r {
+		m := l + (r-l)/2
+
+		if nums[m] == target {
+			return m
+		} else if nums[m] > target {
+			r = m - 1
+		} else {
+			l = m + 1
 		}
 	}
 	return -1

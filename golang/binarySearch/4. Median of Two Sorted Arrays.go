@@ -2,7 +2,7 @@ package binarySearch
 
 import "log"
 
-// merge-sort solution, O(n+m)
+// merge-sort solution, TC: O(m+n), SC: same as TC
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	mergedArr := merge(nums1, nums2)
 	mid := len(mergedArr) / 2
@@ -24,6 +24,36 @@ func findMedianSortedArrays2(nums1 []int, nums2 []int) float64 {
 	return float64(recurBinarySearch(nums1, 0, n1-1, nums2, 0, n2-1, (n1+n2)/2))
 }
 
+// merge-sort merge solution, TC: O(m+n), SC: same as TC
+func findMedianSortedArraysReview(nums1 []int, nums2 []int) float64 {
+	aStart, bStart := 0, 0
+	lenA, lenB := len(nums1), len(nums2)
+	merged := make([]int, 0, lenA+lenB)
+	for aStart < lenA && bStart < lenB {
+		if nums1[aStart] < nums2[bStart] {
+			merged = append(merged, nums1[aStart])
+			aStart += 1
+		} else {
+			merged = append(merged, nums2[bStart])
+			bStart += 1
+		}
+	}
+
+	for i := aStart; i < lenA; i++ {
+		merged = append(merged, nums1[i])
+	}
+	for i := bStart; i < lenB; i++ {
+		merged = append(merged, nums2[i])
+	}
+
+	if (lenA+lenB)%2 == 0 {
+		return float64(merged[(lenA+lenB)/2-1]+merged[(lenA+lenB)/2]) / 2.0
+	} else {
+		return float64(merged[(lenA+lenB)/2])
+	}
+}
+
+// recursive binary search solution, TC: O(log(m)+ log(n)) = O(log(m*n)), SC: same as TC
 func findMedianSortedArrays2Review(nums1 []int, nums2 []int) float64 {
 	lenA, lenB := len(nums1), len(nums2)
 	startA, startB := 0, 0
@@ -125,6 +155,18 @@ func Test_findMedianSortedArrays() {
 	nums21 := []int{1, 2}
 	nums22 := []int{3, 4}
 	ans2 := findMedianSortedArrays(nums21, nums22)
+	log.Printf("ans2: %v", ans2)
+
+}
+
+func Test_findMedianSortedArraysReview() {
+	nums11 := []int{1, 3}
+	nums12 := []int{2}
+	ans1 := findMedianSortedArraysReview(nums11, nums12)
+	log.Printf("ans1: %v", ans1)
+	nums21 := []int{1, 2}
+	nums22 := []int{3, 4}
+	ans2 := findMedianSortedArraysReview(nums21, nums22)
 	log.Printf("ans2: %v", ans2)
 
 }

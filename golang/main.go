@@ -156,11 +156,13 @@ func main() {
 	//binarySearch.Test_TimeBasedKeyValueStoreReview()
 
 	//4
-	//binarySearch.Test_findMedianSortedArrays()
-	//log.Println()
-	binarySearch.Test_findMedianSortedArrays2()
+	binarySearch.Test_findMedianSortedArrays()
 	log.Println()
-	binarySearch.Test_findMedianSortedArrays2Review()
+	binarySearch.Test_findMedianSortedArraysReview()
+	//log.Println()
+	//binarySearch.Test_findMedianSortedArrays2()
+	//log.Println()
+	//binarySearch.Test_findMedianSortedArrays2Review()
 
 	//206
 	//easy.Test_reverseList()

@@ -328,5 +328,8 @@ func main() {
 	//heapAndPq.Test_TwitterConstructor2()
 
 	//78
-	backtracking.Test_subsets()
+	//backtracking.Test_subsets()
+
+	//39
+	backtracking.Test_combinationSum()
 }

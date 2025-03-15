@@ -1,6 +1,9 @@
 package main
 
-import "golang/backtracking"
+import (
+	"golang/backtracking"
+	"log"
+)
 
 func main() {
 	// 347
@@ -332,4 +335,6 @@ func main() {
 
 	//39
 	backtracking.Test_combinationSum()
+	log.Println()
+	backtracking.Test_combinationSum2()
 }

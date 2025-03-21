@@ -43,7 +43,7 @@ func combinationSum(candidates []int, target int) [][]int {
 }
 
 // dp solution, TC: O(m*m*n), SC: O(m*m*n)
-func combinationSum2(candidates []int, target int) [][]int {
+func combinationSum12(candidates []int, target int) [][]int {
 	dp := make([][][]int, target+1)
 	for i := range dp {
 		dp[i] = make([][]int, 0)
@@ -84,19 +84,19 @@ func Test_combinationSum() {
 	log.Printf("ans3: %v", ans3)
 }
 
-func Test_combinationSum2() {
+func Test_combinationSum12() {
 	candidates1 := []int{2, 3, 6, 7}
 	target1 := 7
-	ans1 := combinationSum2(candidates1, target1)
+	ans1 := combinationSum12(candidates1, target1)
 	log.Printf("ans1: %v", ans1)
 
 	candidates2 := []int{2, 3, 5}
 	target2 := 8
-	ans2 := combinationSum2(candidates2, target2)
+	ans2 := combinationSum12(candidates2, target2)
 	log.Printf("ans2: %v", ans2)
 
 	candidates3 := []int{2}
 	target3 := 1
-	ans3 := combinationSum2(candidates3, target3)
+	ans3 := combinationSum12(candidates3, target3)
 	log.Printf("ans3: %v", ans3)
 }

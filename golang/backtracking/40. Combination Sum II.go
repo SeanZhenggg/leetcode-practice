@@ -7,9 +7,6 @@ import (
 
 func combinationSum2(candidates []int, target int) [][]int {
 	sort.Ints(candidates)
-	//slices.SortFunc(candidates, func(i, j int) int {
-	//	return j - i
-	//})
 	ret := make([][]int, 0)
 	current := make([]int, 0)
 	var backtracking func(idx int, sum int)

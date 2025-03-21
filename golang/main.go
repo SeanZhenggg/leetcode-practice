@@ -2,6 +2,7 @@ package main
 
 import (
 	"golang/backtracking"
+	"log"
 )
 
 func main() {
@@ -338,5 +339,10 @@ func main() {
 	//backtracking.Test_combinationSum12()
 
 	//40
-	backtracking.Test_combinationSum2()
+	//backtracking.Test_combinationSum2()
+
+	//90
+	backtracking.Test_subsetsWithDup()
+	log.Println()
+	backtracking.Test_subsetsWithDup2()
 }

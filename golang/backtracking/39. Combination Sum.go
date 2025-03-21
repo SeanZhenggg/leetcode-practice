@@ -30,9 +30,7 @@ func combinationSum(candidates []int, target int) [][]int {
 
 			sum += candidates[i]
 			current = append(current, candidates[i])
-			if sum <= target {
-				backtracking(candidates, target)
-			}
+			backtracking(candidates, target)
 			current = current[:len(current)-1]
 			sum -= candidates[i]
 		}

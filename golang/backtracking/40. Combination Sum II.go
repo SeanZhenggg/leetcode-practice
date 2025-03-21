@@ -13,7 +13,8 @@ func combinationSum2(candidates []int, target int) [][]int {
 	backtracking = func(idx int, sum int) {
 		if sum > target {
 			return
-		} else if sum == target {
+		}
+		if sum == target {
 			p := make([]int, len(current))
 			copy(p, current)
 			ret = append(ret, p)

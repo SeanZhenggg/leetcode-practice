@@ -29,6 +29,20 @@ func hasCycle(head *ListNode) bool {
 	return false
 }
 
+func hasCycle2(head *ListNode) bool {
+	slow := head
+	fast := head
+
+	for fast != nil && fast.Next != nil {
+		if slow == fast {
+			return true
+		}
+		fast = fast.Next.Next
+		slow = slow.Next
+	}
+	return false
+}
+
 func Test_hasCycle() {
 	case1H4 := &ListNode{-4, nil}
 	case1H3 := &ListNode{0, case1H4}

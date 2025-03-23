@@ -13,39 +13,31 @@ import (
  *     Next *ListNode
  * }
  */
+
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
-	dummyHead := &ListNode{}
-	head := dummyHead
-
+	dummy := &ListNode{}
+	head := dummy
 	for list1 != nil && list2 != nil {
-		if list1.Val < list2.Val {
-			temp := list1.Next
-			list1.Next = nil
-			head.Next = list1
-			list1 = temp
+		var next *ListNode
+		if list1.Val <= list2.Val {
+			next = list1
+			list1 = list1.Next
 		} else {
-			temp := list2.Next
-			list2.Next = nil
-			head.Next = list2
-			list2 = temp
+			next = list2
+			list2 = list2.Next
 		}
-
+		head.Next = next
 		head = head.Next
 	}
 
-	for list1 != nil {
+	if list1 != nil {
 		head.Next = list1
-		list1 = list1.Next
-		head = head.Next
 	}
-
-	for list2 != nil {
+	if list2 != nil {
 		head.Next = list2
-		list2 = list2.Next
-		head = head.Next
 	}
 
-	return dummyHead.Next
+	return dummy.Next
 }
 
 func Test_mergeTwoLists() {

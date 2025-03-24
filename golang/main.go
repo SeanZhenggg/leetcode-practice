@@ -179,6 +179,8 @@ func main() {
 	linkedList.Test_reorderList2()
 	log.Println()
 	linkedList.Test_reorderList3()
+	log.Println()
+	linkedList.Test_reorderList31()
 
 	//19
 	//medium.Test_removeNthFromEnd()

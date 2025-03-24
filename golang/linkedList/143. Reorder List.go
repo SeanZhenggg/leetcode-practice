@@ -29,85 +29,40 @@ func reorderList(head *ListNode) {
 	cur.Next = nil
 }
 
-// reverse half solution - O(n), O(1)
+// reverse half and merge solution - O(n), O(1)
 func reorderList2(head *ListNode) {
-	fast, slow := head, head
-
-	for fast != nil {
-		fast = fast.Next
-		if fast == nil {
-			break
-		} else {
-			fast = fast.Next
-		}
-		slow = slow.Next
-	}
-
-	prev := slow
-	slow = slow.Next
-	prev.Next = nil
-	prev = nil
-
-	for slow != nil {
-		next := slow.Next
-		slow.Next = prev
-		prev = slow
-		slow = next
-	}
-
-	// used for edge case(linked list length is 1, no prev node assigned)
-	if prev == nil {
-		return
-	}
-
-	for {
-		next := head.Next
-		head.Next = prev
-		prevNext := prev.Next
-		prev.Next = next
-		head = next
-		prev = prevNext
-		if head == nil || prev == nil {
-			break
-		}
-	}
-}
-
-func reorderList3(head *ListNode) {
 	fast, slow := head.Next, head
-	for fast != nil {
-		fast = fast.Next
-		if fast != nil {
-			fast = fast.Next
-		}
+	for fast != nil && fast.Next != nil {
 		slow = slow.Next
+		fast = fast.Next.Next
 	}
 
 	node := slow.Next
 	slow.Next = nil
-	var reverse *ListNode = nil
+
+	var rev *ListNode = nil
 	for node != nil {
 		next := node.Next
-		node.Next = reverse
-		reverse = node
+		node.Next = rev
+		rev = node
 		node = next
 	}
 
 	slow = head
-	for slow != nil && reverse != nil {
+	for slow != nil && rev != nil {
 		next := slow.Next
-		rNext := reverse.Next
+		rNext := rev.Next
 
-		slow.Next = reverse
-		reverse.Next = next
+		slow.Next = rev
+		rev.Next = next
 
 		slow = next
-		reverse = rNext
+		rev = rNext
 	}
 }
 
 // recursive solution
-func reorderList4(head *ListNode) {
+func reorderList3(head *ListNode) {
 	var reverse func(current *ListNode) *ListNode
 	root := head
 	reverse = func(current *ListNode) *ListNode {
@@ -139,7 +94,7 @@ func Test_reorderList() {
 	case1H2 := &ListNode{2, case1H3}
 	case1H1 := &ListNode{1, case1H2}
 
-	reorderList3(case1H1)
+	reorderList2(case1H1)
 	ans1Str := ""
 	for case1H1 != nil {
 		ans1Str += fmt.Sprintf("%d -> ", case1H1.Val)
@@ -154,7 +109,7 @@ func Test_reorderList() {
 	case2H2 := &ListNode{2, case2H3}
 	case2H1 := &ListNode{1, case2H2}
 
-	reorderList3(case2H1)
+	reorderList2(case2H1)
 	ans2Str := ""
 	for case2H1 != nil {
 		ans2Str += fmt.Sprintf("%d -> ", case2H1.Val)
@@ -193,6 +148,17 @@ func Test_reorderList2() {
 	}
 	ans2Str = strings.TrimRight(ans2Str, " -> ")
 	log.Printf(ans2Str)
+
+	case3H1 := &ListNode{1, nil}
+
+	reorderList2(case3H1)
+	ans3Str := ""
+	for case3H1 != nil {
+		ans3Str += fmt.Sprintf("%d -> ", case3H1.Val)
+		case3H1 = case3H1.Next
+	}
+	ans3Str = strings.TrimRight(ans3Str, " -> ")
+	log.Printf(ans3Str)
 }
 
 func Test_reorderList3() {
@@ -217,37 +183,6 @@ func Test_reorderList3() {
 	case2H1 := &ListNode{1, case2H2}
 
 	reorderList3(case2H1)
-	ans2Str := ""
-	for case2H1 != nil {
-		ans2Str += fmt.Sprintf("%d -> ", case2H1.Val)
-		case2H1 = case2H1.Next
-	}
-	ans2Str = strings.TrimRight(ans2Str, " -> ")
-	log.Printf(ans2Str)
-}
-
-func Test_reorderList4() {
-	case1H4 := &ListNode{4, nil}
-	case1H3 := &ListNode{3, case1H4}
-	case1H2 := &ListNode{2, case1H3}
-	case1H1 := &ListNode{1, case1H2}
-
-	reorderList4(case1H1)
-	ans1Str := ""
-	for case1H1 != nil {
-		ans1Str += fmt.Sprintf("%d -> ", case1H1.Val)
-		case1H1 = case1H1.Next
-	}
-	ans1Str = strings.TrimRight(ans1Str, " -> ")
-	log.Printf(ans1Str)
-
-	case2H5 := &ListNode{5, nil}
-	case2H4 := &ListNode{4, case2H5}
-	case2H3 := &ListNode{3, case2H4}
-	case2H2 := &ListNode{2, case2H3}
-	case2H1 := &ListNode{1, case2H2}
-
-	reorderList4(case2H1)
 	ans2Str := ""
 	for case2H1 != nil {
 		ans2Str += fmt.Sprintf("%d -> ", case2H1.Val)

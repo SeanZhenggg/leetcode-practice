@@ -174,7 +174,8 @@ func main() {
 	//easy.Test_hasCycle()
 
 	//143
-	//linkedList.Test_reorderList()
+	linkedList.Test_reorderList()
+	log.Println()
 	linkedList.Test_reorderList2()
 	log.Println()
 	linkedList.Test_reorderList3()

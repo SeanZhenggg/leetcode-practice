@@ -6,14 +6,6 @@ import (
 	"strings"
 )
 
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-
 // hash map solution - O(n), O(n)
 func reorderList(head *ListNode) {
 	m := make(map[int]*ListNode)
@@ -27,19 +19,9 @@ func reorderList(head *ListNode) {
 
 	l, r := 0, len(m)-1
 
-	cur = head
 	for l <= r {
-		if len(m)%2 != 0 && l == r {
-			cur.Next = m[l]
-			cur = cur.Next
-			break
-		}
-		if l != 0 {
-			cur.Next = m[l]
-			cur = cur.Next
-		}
-		cur.Next = m[r]
-		cur = cur.Next
+		m[l].Next = m[r]
+		m[r].Next = m[l]
 		l++
 		r--
 	}
@@ -180,17 +162,6 @@ func Test_reorderList() {
 	}
 	ans2Str = strings.TrimRight(ans2Str, " -> ")
 	log.Printf(ans2Str)
-
-	case3H1 := &ListNode{1, nil}
-
-	reorderList3(case3H1)
-	ans3Str := ""
-	for case3H1 != nil {
-		ans3Str += fmt.Sprintf("%d -> ", case3H1.Val)
-		case3H1 = case3H1.Next
-	}
-	ans3Str = strings.TrimRight(ans3Str, " -> ")
-	log.Printf(ans3Str)
 }
 
 func Test_reorderList2() {

@@ -1,7 +1,8 @@
 package main
 
 import (
-	"golang/backtracking"
+	"golang/linkedList"
+	"log"
 )
 
 func main() {
@@ -174,7 +175,9 @@ func main() {
 
 	//143
 	//linkedList.Test_reorderList()
-	//medium.Test_reorderList2()
+	linkedList.Test_reorderList2()
+	log.Println()
+	linkedList.Test_reorderList3()
 
 	//19
 	//medium.Test_removeNthFromEnd()
@@ -348,5 +351,5 @@ func main() {
 	//46
 	//backtracking.Test_permute()
 	//log.Println()
-	backtracking.Test_permute2()
+	//backtracking.Test_permute2()
 }

@@ -6,14 +6,14 @@ import (
 	"strings"
 )
 
+// fast/slow pointer, TC: O(n), SC: O(1)
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
-	fast := head
+	removed, fast := head, head
 	for n > 0 {
 		fast = fast.Next
 		n--
 	}
 
-	removed := head
 	var prev *ListNode = nil
 	for fast != nil {
 		prev = removed
@@ -35,7 +35,7 @@ func Test_removeNthFromEnd() {
 	case1H2 := &ListNode{2, case1H3}
 	case1H1 := &ListNode{1, case1H2}
 
-	ans1 := removeNthFromEnd(case1H1, 5)
+	ans1 := removeNthFromEnd(case1H1, 2)
 	ans1Str := ""
 	for ans1 != nil {
 		ans1Str += fmt.Sprintf("%d -> ", ans1.Val)
@@ -66,4 +66,16 @@ func Test_removeNthFromEnd() {
 	}
 	ans3Str = strings.TrimRight(ans3Str, " -> ")
 	log.Printf(ans3Str)
+
+	case4H2 := &ListNode{2, nil}
+	case4H1 := &ListNode{1, case4H2}
+
+	ans4 := removeNthFromEnd(case4H1, 2)
+	ans4Str := ""
+	for ans4 != nil {
+		ans4Str += fmt.Sprintf("%d -> ", ans4.Val)
+		ans4 = ans4.Next
+	}
+	ans4Str = strings.TrimRight(ans4Str, " -> ")
+	log.Printf(ans4Str)
 }

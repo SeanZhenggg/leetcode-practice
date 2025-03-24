@@ -1,9 +1,6 @@
 package main
 
-import (
-	"golang/linkedList"
-	"log"
-)
+import "golang/linkedList"
 
 func main() {
 	// 347
@@ -174,16 +171,16 @@ func main() {
 	//easy.Test_hasCycle()
 
 	//143
-	linkedList.Test_reorderList()
-	log.Println()
-	linkedList.Test_reorderList2()
-	log.Println()
-	linkedList.Test_reorderList3()
-	log.Println()
-	linkedList.Test_reorderList31()
+	//linkedList.Test_reorderList()
+	//log.Println()
+	//linkedList.Test_reorderList2()
+	//log.Println()
+	//linkedList.Test_reorderList3()
+	//log.Println()
+	//linkedList.Test_reorderList31()
 
 	//19
-	//medium.Test_removeNthFromEnd()
+	linkedList.Test_removeNthFromEnd()
 
 	//138
 	//medium.Test_copyRandomList()

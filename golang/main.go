@@ -2,7 +2,6 @@ package main
 
 import (
 	"golang/linkedList"
-	"log"
 )
 
 func main() {
@@ -187,9 +186,9 @@ func main() {
 
 	//138
 	linkedList.Test_copyRandomList()
-	log.Println()
-	linkedList.Test_copyRandomList4()
+	//log.Println()
 	//medium.Test_copyRandomList2()
+	//log.Println()
 	//medium.Test_copyRandomList3()
 
 	//2

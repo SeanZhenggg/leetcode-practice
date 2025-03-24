@@ -185,14 +185,14 @@ func main() {
 	//linkedList.Test_removeNthFromEnd()
 
 	//138
-	linkedList.Test_copyRandomList()
+	//linkedList.Test_copyRandomList()
 	//log.Println()
 	//medium.Test_copyRandomList2()
 	//log.Println()
 	//medium.Test_copyRandomList3()
 
 	//2
-	//medium.Test_addTwoNumbers()
+	linkedList.Test_addTwoNumbers()
 
 	//287
 	//medium.Test_findDuplicate()

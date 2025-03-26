@@ -2,6 +2,7 @@ package main
 
 import (
 	"golang/linkedList"
+	"log"
 )
 
 func main() {
@@ -198,11 +199,12 @@ func main() {
 	//linkedList.Test_findDuplicate()
 
 	//146
-	linkedList.Test_LRUCache()
+	//linkedList.Test_LRUCache()
 
 	//23
-	//hard.Test_mergeKLists()
-	//hard.Test_mergeKLists2()
+	linkedList.Test_mergeKLists()
+	log.Println()
+	linkedList.Test_mergeKLists2()
 
 	//25
 	//hard.Test_reverseKGroup()

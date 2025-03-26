@@ -19,35 +19,38 @@ type ListNode struct {
 	Next *ListNode
 }
 
-// first merge solution - O(?), O(?)
+// merge one by one solution - O(?), O(?)
 func mergeKLists(lists []*ListNode) *ListNode {
 	var prev *ListNode = nil
 	for _, node := range lists {
-		prev = merge1(prev, node)
+		prev = merge(prev, node)
 	}
 	return prev
 }
 
-func merge1(left *ListNode, right *ListNode) *ListNode {
+func merge(list1 *ListNode, list2 *ListNode) *ListNode {
 	dummy := &ListNode{}
-	cur := dummy
-	for left != nil && right != nil {
-		if left.Val <= right.Val {
-			cur.Next = left
-			left = left.Next
+	head := dummy
+	for list1 != nil && list2 != nil {
+		var next *ListNode
+		if list1.Val <= list2.Val {
+			next = list1
+			list1 = list1.Next
 		} else {
-			cur.Next = right
-			right = right.Next
+			next = list2
+			list2 = list2.Next
 		}
-		cur = cur.Next
+		head.Next = next
+		head = head.Next
 	}
 
-	if left != nil {
-		cur.Next = left
+	if list1 != nil {
+		head.Next = list1
 	}
-	if right != nil {
-		cur.Next = right
+	if list2 != nil {
+		head.Next = list2
 	}
+
 	return dummy.Next
 }
 
@@ -56,42 +59,21 @@ func mergeKLists2(lists []*ListNode) *ListNode {
 	if len(lists) == 0 {
 		return nil
 	}
-	return mergeList2(lists, 0, len(lists)-1)
+
+	return mergeList(lists, 0, len(lists)-1)
 }
 
-func mergeList2(lists []*ListNode, left int, right int) *ListNode {
-	if left == right {
-		return lists[left]
+func mergeList(lists []*ListNode, l, r int) *ListNode {
+	if l == r {
+		return lists[l]
 	}
 
-	mid := left + (right-left)/2
+	mid := l + (r-l)/2
 
-	lNode := mergeList2(lists, left, mid)
-	rNode := mergeList2(lists, mid+1, right)
-	return merge2(lNode, rNode)
-}
+	left := mergeList(lists, l, mid)
+	right := mergeList(lists, mid+1, r)
 
-func merge2(left *ListNode, right *ListNode) *ListNode {
-	dummy := &ListNode{}
-	cur := dummy
-	for left != nil && right != nil {
-		if left.Val <= right.Val {
-			cur.Next = left
-			left = left.Next
-		} else {
-			cur.Next = right
-			right = right.Next
-		}
-		cur = cur.Next
-	}
-
-	if left != nil {
-		cur.Next = left
-	}
-	if right != nil {
-		cur.Next = right
-	}
-	return dummy.Next
+	return merge(left, right)
 }
 
 func Test_mergeKLists() {

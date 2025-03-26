@@ -1,6 +1,8 @@
 package main
 
-import "golang/linkedList"
+import (
+	"golang/linkedList"
+)
 
 func main() {
 	// 347
@@ -193,10 +195,10 @@ func main() {
 	//linkedList.Test_addTwoNumbers()
 
 	//287
-	linkedList.Test_findDuplicate()
+	//linkedList.Test_findDuplicate()
 
 	//146
-	//medium.Test_LRUCache()
+	linkedList.Test_LRUCache()
 
 	//23
 	//hard.Test_mergeKLists()

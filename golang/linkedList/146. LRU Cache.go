@@ -4,75 +4,76 @@ import (
 	"log"
 )
 
-type DoublePtrNode struct {
+type DoublyLinkedListNode struct {
 	Key  int
 	Val  int
-	Next *DoublePtrNode
-	Prev *DoublePtrNode
+	Next *DoublyLinkedListNode
+	Prev *DoublyLinkedListNode
 }
 
 type LRUCache struct {
-	hashMap  map[int]*DoublePtrNode
-	head     *DoublePtrNode
-	tail     *DoublePtrNode
-	capacity int
+	Capacity int
+	Map      map[int]*DoublyLinkedListNode
+	Head     *DoublyLinkedListNode
+	Tail     *DoublyLinkedListNode
 }
 
 func LRUCacheConstructor(capacity int) LRUCache {
-	head := &DoublePtrNode{}
-	tail := &DoublePtrNode{}
+	head := &DoublyLinkedListNode{}
+	tail := &DoublyLinkedListNode{}
 
 	head.Next = tail
 	tail.Prev = head
-
 	return LRUCache{
-		hashMap:  make(map[int]*DoublePtrNode, capacity),
-		head:     head,
-		tail:     tail,
-		capacity: capacity,
+		Capacity: capacity,
+		Map:      make(map[int]*DoublyLinkedListNode, capacity),
+		Head:     head,
+		Tail:     tail,
 	}
 }
 
 func (this *LRUCache) Get(key int) int {
-	node, found := this.hashMap[key]
+	node, found := this.Map[key]
 	if !found {
 		return -1
 	}
 
-	if node.Prev != this.head {
-		node.Prev.Next = node.Next
-		node.Next.Prev = node.Prev
-
-		next := this.head.Next
-		this.head.Next = node
-		node.Prev = this.head
-		node.Next = next
-		next.Prev = node
-	}
+	this.removeNode(node)
+	this.addNode(node)
 	return node.Val
 }
 
 func (this *LRUCache) Put(key int, value int) {
-	if node, found := this.hashMap[key]; found {
+	node, found := this.Map[key]
+	if found {
 		node.Val = value
-		this.Get(key)
-		return
+		this.removeNode(node)
+	} else {
+		node = &DoublyLinkedListNode{Key: key, Val: value}
+		this.Map[key] = node
 	}
+	this.addNode(node)
 
-	if len(this.hashMap) == this.capacity {
-		lruNode := this.tail.Prev
-		delete(this.hashMap, lruNode.Key)
-		this.tail.Prev = lruNode.Prev
-		lruNode.Prev.Next = this.tail
+	if len(this.Map) > this.Capacity {
+		prevNode := this.Tail.Prev
+		this.removeNode(prevNode)
+		delete(this.Map, prevNode.Key)
 	}
+}
 
-	node := &DoublePtrNode{Key: key, Val: value}
-	this.hashMap[key] = node
-	next := this.head.Next
-	this.head.Next = node
-	node.Prev = this.head
-	node.Next = next
-	next.Prev = node
+func (this *LRUCache) addNode(node *DoublyLinkedListNode) {
+	nextNode := this.Head.Next
+	this.Head.Next = node
+	node.Prev = this.Head
+	node.Next = nextNode
+	nextNode.Prev = node
+}
+
+func (this *LRUCache) removeNode(node *DoublyLinkedListNode) {
+	prevNode := node.Prev
+	nextNode := node.Next
+	prevNode.Next = nextNode
+	nextNode.Prev = prevNode
 }
 
 /**

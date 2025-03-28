@@ -1,8 +1,7 @@
 package main
 
 import (
-	"golang/linkedList"
-	"log"
+	"golang/backtracking"
 )
 
 func main() {
@@ -211,9 +210,9 @@ func main() {
 	//log.Println()
 	//hard.Test_reverseKGroup2()
 	//log.Println()
-	linkedList.Test_reverseKGroup3()
-	log.Println()
-	linkedList.Test_reverseKGroup4()
+	//linkedList.Test_reverseKGroup3()
+	//log.Println()
+	//linkedList.Test_reverseKGroup4()
 
 	//226
 	//trees.Test_InvertTree()
@@ -360,4 +359,7 @@ func main() {
 	//backtracking.Test_permute()
 	//log.Println()
 	//backtracking.Test_permute2()
+
+	//47
+	backtracking.Test_permuteUnique()
 }

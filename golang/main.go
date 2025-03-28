@@ -202,13 +202,18 @@ func main() {
 	//linkedList.Test_LRUCache()
 
 	//23
-	linkedList.Test_mergeKLists()
-	log.Println()
-	linkedList.Test_mergeKLists2()
+	//linkedList.Test_mergeKLists()
+	//log.Println()
+	//linkedList.Test_mergeKLists2()
 
 	//25
-	//hard.Test_reverseKGroup()
+	//linkedList.Test_reverseKGroup()
+	//log.Println()
 	//hard.Test_reverseKGroup2()
+	//log.Println()
+	linkedList.Test_reverseKGroup3()
+	log.Println()
+	linkedList.Test_reverseKGroup4()
 
 	//226
 	//trees.Test_InvertTree()

@@ -6,13 +6,14 @@ import (
 )
 
 func combinationSum(candidates []int, target int) [][]int {
+	ret := make([][]int, 0)
+
 	sort.Ints(candidates)
 	current := make([]int, 0)
-	ret := make([][]int, 0)
 	sum := 0
 
-	var backtracking func(candidates []int, target int)
-	backtracking = func(candidates []int, target int) {
+	var backtracking func()
+	backtracking = func() {
 		if sum > target {
 			return
 		}
@@ -30,13 +31,13 @@ func combinationSum(candidates []int, target int) [][]int {
 
 			sum += candidates[i]
 			current = append(current, candidates[i])
-			backtracking(candidates, target)
+			backtracking()
 			current = current[:len(current)-1]
 			sum -= candidates[i]
 		}
 	}
 
-	backtracking(candidates, target)
+	backtracking()
 	return ret
 }
 

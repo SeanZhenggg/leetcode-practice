@@ -361,5 +361,8 @@ func main() {
 	//backtracking.Test_permute2()
 
 	//47
-	backtracking.Test_permuteUnique()
+	//backtracking.Test_permuteUnique()
+
+	//79
+	backtracking.Test_exist()
 }

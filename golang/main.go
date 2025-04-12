@@ -1,8 +1,6 @@
 package main
 
-import (
-	"golang/backtracking"
-)
+import "golang/dynamicprogramming"
 
 func main() {
 	// 347
@@ -364,5 +362,10 @@ func main() {
 	//backtracking.Test_permuteUnique()
 
 	//79
-	backtracking.Test_exist()
+	//backtracking.Test_exist()
+
+	//70
+	dynamicprogramming.Test_climbStairs2()
+	dynamicprogramming.Test_climbStairs3()
+	dynamicprogramming.Test_climbStairs4()
 }

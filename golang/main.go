@@ -365,7 +365,14 @@ func main() {
 	//backtracking.Test_exist()
 
 	//70
-	dynamicprogramming.Test_climbStairs2()
-	dynamicprogramming.Test_climbStairs3()
-	dynamicprogramming.Test_climbStairs4()
+	//dynamicprogramming.Test_climbStairs2()
+	//dynamicprogramming.Test_climbStairs3()
+	//dynamicprogramming.Test_climbStairs4()
+
+	//746
+	//dynamicprogramming.Test_minCostClimbingStairs()
+	//dynamicprogramming.Test_minCostClimbingStairs2()
+	//dynamicprogramming.Test_minCostClimbingStairs3()
+	//dynamicprogramming.Test_minCostClimbingStairs4()
+	dynamicprogramming.Test_minCostClimbingStairs5()
 }

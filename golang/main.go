@@ -385,7 +385,14 @@ func main() {
 	//dynamicprogramming.Test_rob2()
 
 	//213
-	dynamicprogramming.Test_robII()
+	//dynamicprogramming.Test_robII()
+	//log.Println()
+	//dynamicprogramming.Test_robII2()
+
+	//5
+	dynamicprogramming.Test_longestPalindrome()
 	log.Println()
-	dynamicprogramming.Test_robII2()
+	dynamicprogramming.Test_longestPalindrome2()
+	log.Println()
+	dynamicprogramming.Test_longestPalindrome3()
 }

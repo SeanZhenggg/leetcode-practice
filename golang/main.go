@@ -392,6 +392,8 @@ func main() {
 	//5
 	dynamicprogramming.Test_longestPalindrome()
 	log.Println()
+	dynamicprogramming.Test_longestPalindrome1()
+	log.Println()
 	dynamicprogramming.Test_longestPalindrome2()
 	log.Println()
 	dynamicprogramming.Test_longestPalindrome3()

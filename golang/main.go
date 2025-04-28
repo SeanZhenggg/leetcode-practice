@@ -2,7 +2,6 @@ package main
 
 import (
 	"golang/dynamicprogramming"
-	"log"
 )
 
 func main() {
@@ -390,11 +389,14 @@ func main() {
 	//dynamicprogramming.Test_robII2()
 
 	//5
-	dynamicprogramming.Test_longestPalindrome()
-	log.Println()
-	dynamicprogramming.Test_longestPalindrome1()
-	log.Println()
-	dynamicprogramming.Test_longestPalindrome2()
-	log.Println()
-	dynamicprogramming.Test_longestPalindrome3()
+	//dynamicprogramming.Test_longestPalindrome()
+	//log.Println()
+	//dynamicprogramming.Test_longestPalindrome1()
+	//log.Println()
+	//dynamicprogramming.Test_longestPalindrome2()
+	//log.Println()
+	//dynamicprogramming.Test_longestPalindrome3()
+
+	//647
+	dynamicprogramming.Test_countSubstrings()
 }

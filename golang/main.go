@@ -1,8 +1,6 @@
 package main
 
-import (
-	"golang/dynamicprogramming"
-)
+import "golang/dynamicprogramming"
 
 func main() {
 	// 347
@@ -398,5 +396,9 @@ func main() {
 	//dynamicprogramming.Test_longestPalindrome3()
 
 	//647
-	dynamicprogramming.Test_countSubstrings()
+	//dynamicprogramming.Test_countSubstrings()
+
+	//91
+	//dynamicprogramming.Test_numDecodings()
+	dynamicprogramming.Test_numDecodings2()
 }

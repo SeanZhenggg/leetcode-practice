@@ -1,6 +1,9 @@
 package main
 
-import "golang/dynamicprogramming"
+import (
+	"golang/dynamicprogramming"
+	"log"
+)
 
 func main() {
 	// 347
@@ -401,4 +404,6 @@ func main() {
 	//91
 	//dynamicprogramming.Test_numDecodings()
 	dynamicprogramming.Test_numDecodings2()
+	log.Println()
+	dynamicprogramming.Test_numDecodings3()
 }

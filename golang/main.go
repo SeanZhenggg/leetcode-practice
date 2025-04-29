@@ -402,7 +402,7 @@ func main() {
 	//dynamicprogramming.Test_countSubstrings()
 
 	//91
-	//dynamicprogramming.Test_numDecodings()
+	dynamicprogramming.Test_numDecodings()
 	//dynamicprogramming.Test_numDecodings2()
 	//log.Println()
 	//dynamicprogramming.Test_numDecodings3()

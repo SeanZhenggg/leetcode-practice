@@ -403,7 +403,9 @@ func main() {
 
 	//91
 	//dynamicprogramming.Test_numDecodings()
-	dynamicprogramming.Test_numDecodings2()
+	//dynamicprogramming.Test_numDecodings2()
+	//log.Println()
+	//dynamicprogramming.Test_numDecodings3()
 	log.Println()
-	dynamicprogramming.Test_numDecodings3()
+	dynamicprogramming.Test_numDecodings4()
 }

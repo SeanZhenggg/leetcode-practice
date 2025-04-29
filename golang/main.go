@@ -1,9 +1,6 @@
 package main
 
-import (
-	"golang/dynamicprogramming"
-	"log"
-)
+import "golang/dynamicprogramming"
 
 func main() {
 	// 347
@@ -368,8 +365,12 @@ func main() {
 	//backtracking.Test_exist()
 
 	//70
+	//dynamicprogramming.Test_climbStairs()
+	//log.Println()
 	//dynamicprogramming.Test_climbStairs2()
+	//log.Println()
 	//dynamicprogramming.Test_climbStairs3()
+	//log.Println()
 	//dynamicprogramming.Test_climbStairs4()
 
 	//746
@@ -402,10 +403,10 @@ func main() {
 	//dynamicprogramming.Test_countSubstrings()
 
 	//91
-	dynamicprogramming.Test_numDecodings()
+	//dynamicprogramming.Test_numDecodings()
 	//dynamicprogramming.Test_numDecodings2()
 	//log.Println()
 	//dynamicprogramming.Test_numDecodings3()
-	log.Println()
+	//log.Println()
 	dynamicprogramming.Test_numDecodings4()
 }

@@ -414,6 +414,8 @@ func main() {
 	//dynamicprogramming.Test_numDecodings4()
 	//dynamicprogramming.Test_coinChange()
 	//log.Println()
+	dynamicprogramming.Test_coinChange()
+	log.Println()
 	dynamicprogramming.Test_coinChange2()
 	log.Println()
 	dynamicprogramming.Test_coinChange1()

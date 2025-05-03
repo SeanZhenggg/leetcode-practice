@@ -30,17 +30,17 @@ func coinChange(coins []int, amount int) int {
 
 		for i := 0; i < len(coins); i++ {
 			if total+coins[i] <= amount {
-				dfs(count, total)
+				dfs(count+1, total+coins[i])
 			}
 		}
 	}
 
 	dfs(0, 0)
-	if minVal == math.MaxInt {
+	if minVal == -1 {
 		return -1
-	} else {
-		return minVal
 	}
+
+	return minVal
 }
 
 // dp top-down, TC: (c * n), SC: (n)
@@ -151,11 +151,21 @@ func Test_coinChange() {
 	amount1 := 11
 	ans1 := coinChange(coins1, amount1)
 	log.Printf("ans1: %v", ans1)
+
+	coins2 := []int{2}
+	amount2 := 3
+	ans2 := coinChange2(coins2, amount2)
+	log.Printf("ans2: %v", ans2)
+
+	coins3 := []int{1}
+	amount3 := 0
+	ans3 := coinChange2(coins3, amount3)
+	log.Printf("ans3: %v", ans3)
 }
 
 func Test_coinChange1() {
 	coins1 := []int{1, 2, 5}
-	amount1 := 50
+	amount1 := 11
 	ans1 := coinChange1(coins1, amount1)
 	log.Printf("ans1: %v", ans1)
 
@@ -172,7 +182,7 @@ func Test_coinChange1() {
 
 func Test_coinChange2() {
 	coins1 := []int{1, 2, 5}
-	amount1 := 50
+	amount1 := 11
 	ans1 := coinChange2(coins1, amount1)
 	log.Printf("ans1: %v", ans1)
 

@@ -45,9 +45,9 @@ func coinChange(coins []int, amount int) int {
 
 // dp top-down, TC: (c * n), SC: (n)
 func coinChange1(coins []int, amount int) int {
-	memo := make([]int, amount+1)
+	dp := make([]int, amount+1)
 	for i := 0; i <= amount; i++ {
-		memo[i] = -1
+		dp[i] = -1
 	}
 
 	var dfs func(total int) int
@@ -56,8 +56,8 @@ func coinChange1(coins []int, amount int) int {
 			return 0
 		}
 
-		if memo[total] != -1 {
-			return memo[total]
+		if dp[total] != -1 {
+			return dp[total]
 		}
 
 		res := math.MaxInt32 // count of coins
@@ -66,7 +66,7 @@ func coinChange1(coins []int, amount int) int {
 				res = min(res, 1+dfs(total-coins[i]))
 			}
 		}
-		memo[total] = res
+		dp[total] = res
 		return res
 	}
 

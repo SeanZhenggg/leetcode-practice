@@ -414,11 +414,18 @@ func main() {
 	//dynamicprogramming.Test_numDecodings4()
 	//dynamicprogramming.Test_coinChange()
 	//log.Println()
-	dynamicprogramming.Test_coinChange()
-	log.Println()
-	dynamicprogramming.Test_coinChange2()
-	log.Println()
-	dynamicprogramming.Test_coinChange1()
+	//dynamicprogramming.Test_coinChange()
+	//log.Println()
+	//dynamicprogramming.Test_coinChange2()
+	//log.Println()
+	//dynamicprogramming.Test_coinChange1()
 	//log.Println()
 	//dynamicprogramming.Test_coinChange21()
+
+	//152
+	//dynamicprogramming.Test_maxProduct()
+	//log.Println()
+	dynamicprogramming.Test_maxProduct2()
+	log.Println()
+	dynamicprogramming.Test_maxProduct3()
 }

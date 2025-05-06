@@ -25,6 +25,19 @@ func maxProduct(nums []int) int {
 	return maxVal
 }
 
+func maxProduct1(nums []int) int {
+	maxVal := nums[0]
+	for i := 0; i < len(nums); i++ {
+		val := 1
+		for j := i; j < len(nums); j++ {
+			val *= nums[j]
+			maxVal = max(maxVal, val)
+		}
+	}
+
+	return maxVal
+}
+
 // dp solution, TC: O(n), SC: O(n)
 func maxProduct2(nums []int) int {
 	maxF := make([]int, len(nums))
@@ -100,6 +113,32 @@ func Test_maxProduct() {
 
 	case6 := []int{-1, -2, -3, 0}
 	ans6 := maxProduct(case6)
+	log.Printf("ans6: %v", ans6)
+}
+
+func Test_maxProduct1() {
+	case1 := []int{2, 3, -2, 4}
+	ans1 := maxProduct1(case1)
+	log.Printf("ans1: %v", ans1)
+
+	case2 := []int{-2, 0, 1}
+	ans2 := maxProduct1(case2)
+	log.Printf("ans2: %v", ans2)
+
+	case3 := []int{-2}
+	ans3 := maxProduct1(case3)
+	log.Printf("ans3: %v", ans3)
+
+	case4 := []int{-4, -3}
+	ans4 := maxProduct1(case4)
+	log.Printf("ans4: %v", ans4)
+
+	case5 := []int{-3, 0, 1, -2}
+	ans5 := maxProduct1(case5)
+	log.Printf("ans5: %v", ans5)
+
+	case6 := []int{-1, -2, -3, 0}
+	ans6 := maxProduct1(case6)
 	log.Printf("ans6: %v", ans6)
 }
 

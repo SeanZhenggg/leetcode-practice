@@ -425,7 +425,9 @@ func main() {
 	//152
 	//dynamicprogramming.Test_maxProduct()
 	//log.Println()
-	dynamicprogramming.Test_maxProduct2()
-	log.Println()
+	//dynamicprogramming.Test_maxProduct2()
+	//log.Println()
 	dynamicprogramming.Test_maxProduct3()
+	log.Println()
+	dynamicprogramming.Test_maxProduct4()
 }

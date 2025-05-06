@@ -25,7 +25,7 @@ func maxProduct(nums []int) int {
 	return maxVal
 }
 
-// maxf(n) = max(maxf(n-1) * nums[n], minf(n-1) * nums[n], nums[n])
+// dp solution, TC: O(n), SC: O(n)
 func maxProduct2(nums []int) int {
 	maxF := make([]int, len(nums))
 	minF := make([]int, len(nums))
@@ -40,6 +40,7 @@ func maxProduct2(nums []int) int {
 	return slices.Max(maxF)
 }
 
+// dp solution w/ space optimization, TC: O(n), SC: O(1)
 func maxProduct3(nums []int) int {
 	maxF, minF := nums[0], nums[0]
 	res := maxF
@@ -50,6 +51,27 @@ func maxProduct3(nums []int) int {
 		maxF = newMaxF
 		minF = newMinF
 		res = max(res, maxF)
+	}
+
+	return res
+}
+
+// prefix/suffix solution, TC: O(n), SC: O(1)
+func maxProduct4(nums []int) int {
+	prefix, suffix := 1, 1
+	res := nums[0]
+
+	for i := 0; i < len(nums); i++ {
+		if prefix == 0 {
+			prefix = 1
+		}
+		if suffix == 0 {
+			suffix = 1
+		}
+
+		prefix *= nums[i]
+		suffix *= nums[len(nums)-1-i]
+		res = max(res, prefix, suffix)
 	}
 
 	return res
@@ -71,6 +93,14 @@ func Test_maxProduct() {
 	case4 := []int{-4, -3}
 	ans4 := maxProduct(case4)
 	log.Printf("ans4: %v", ans4)
+
+	case5 := []int{-3, 0, 1, -2}
+	ans5 := maxProduct(case5)
+	log.Printf("ans5: %v", ans5)
+
+	case6 := []int{-1, -2, -3, 0}
+	ans6 := maxProduct(case6)
+	log.Printf("ans6: %v", ans6)
 }
 
 func Test_maxProduct2() {
@@ -89,6 +119,14 @@ func Test_maxProduct2() {
 	case4 := []int{-4, -3}
 	ans4 := maxProduct2(case4)
 	log.Printf("ans4: %v", ans4)
+
+	case5 := []int{-3, 0, 1, -2}
+	ans5 := maxProduct2(case5)
+	log.Printf("ans5: %v", ans5)
+
+	case6 := []int{-1, -2, -3, 0}
+	ans6 := maxProduct2(case6)
+	log.Printf("ans6: %v", ans6)
 }
 
 func Test_maxProduct3() {
@@ -107,4 +145,38 @@ func Test_maxProduct3() {
 	case4 := []int{-4, -3}
 	ans4 := maxProduct3(case4)
 	log.Printf("ans4: %v", ans4)
+
+	case5 := []int{-3, 0, 1, -2}
+	ans5 := maxProduct3(case5)
+	log.Printf("ans5: %v", ans5)
+
+	case6 := []int{-1, -2, -3, 0}
+	ans6 := maxProduct3(case6)
+	log.Printf("ans6: %v", ans6)
+}
+
+func Test_maxProduct4() {
+	case1 := []int{2, 3, -2, 4}
+	ans1 := maxProduct4(case1)
+	log.Printf("ans1: %v", ans1)
+
+	case2 := []int{-2, 0, 1}
+	ans2 := maxProduct4(case2)
+	log.Printf("ans2: %v", ans2)
+
+	case3 := []int{-2}
+	ans3 := maxProduct4(case3)
+	log.Printf("ans3: %v", ans3)
+
+	case4 := []int{-4, -3}
+	ans4 := maxProduct4(case4)
+	log.Printf("ans4: %v", ans4)
+
+	case5 := []int{-3, 0, 1, -2}
+	ans5 := maxProduct4(case5)
+	log.Printf("ans5: %v", ans5)
+
+	case6 := []int{-1, -2, -3, 0}
+	ans6 := maxProduct4(case6)
+	log.Printf("ans6: %v", ans6)
 }

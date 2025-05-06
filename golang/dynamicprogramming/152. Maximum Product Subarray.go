@@ -62,10 +62,10 @@ func maxProduct4(nums []int) int {
 	res := nums[0]
 
 	for i := 0; i < len(nums); i++ {
-		if prefix == 0 {
+		if prefix == 0 { // IMPORTANT!!! e.g. nums = [-1, -2, -3, 0] or [-3, 0, 1, -2]
 			prefix = 1
 		}
-		if suffix == 0 {
+		if suffix == 0 { // IMPORTANT!!! e.g. nums = [-1, -2, -3, 0] or [-3, 0, 1, -2]
 			suffix = 1
 		}
 

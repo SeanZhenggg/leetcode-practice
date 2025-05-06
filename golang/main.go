@@ -425,11 +425,22 @@ func main() {
 	//152
 	//dynamicprogramming.Test_maxProduct()
 	//log.Println()
-	dynamicprogramming.Test_maxProduct1()
-	log.Println()
+	//dynamicprogramming.Test_maxProduct1()
+	//log.Println()
 	//dynamicprogramming.Test_maxProduct2()
 	//log.Println()
-	dynamicprogramming.Test_maxProduct3()
+	//dynamicprogramming.Test_maxProduct3()
+	//log.Println()
+	//dynamicprogramming.Test_maxProduct4()
+
+	//139
+	//dynamicprogramming.Test_wordBreak()
+	//log.Println()
+	//dynamicprogramming.Test_wordBreak1()
+	//log.Println()
+	//dynamicprogramming.Test_wordBreak2()
+	//log.Println()
+	dynamicprogramming.Test_wordBreak3()
 	log.Println()
-	dynamicprogramming.Test_maxProduct4()
+	dynamicprogramming.Test_wordBreak4()
 }

@@ -4,6 +4,7 @@ import (
 	"log"
 )
 
+// recursion solution(in length aspects)
 func wordBreak(s string, wordDict []string) bool {
 	var dfs func(st, end int) bool
 
@@ -25,6 +26,7 @@ func wordBreak(s string, wordDict []string) bool {
 	return dfs(0, len(s))
 }
 
+// recursion solution(in wordDict aspects)
 func wordBreak1(s string, wordDict []string) bool {
 	var dfs func(st int) bool
 
@@ -47,6 +49,7 @@ func wordBreak1(s string, wordDict []string) bool {
 	return dfs(0)
 }
 
+// top-down dp solution(to end)
 func wordBreak2(s string, wordDict []string) bool {
 	var dfs func(st int) bool
 	memo := make([]int, len(s)+1)
@@ -81,6 +84,7 @@ func wordBreak2(s string, wordDict []string) bool {
 	return dfs(0)
 }
 
+// bottom-up dp solution(from end)
 func wordBreak3(s string, wordDict []string) bool {
 	dp := make([]bool, len(s)+1)
 	dp[len(s)] = true
@@ -97,6 +101,7 @@ func wordBreak3(s string, wordDict []string) bool {
 	return dp[0]
 }
 
+// BFS solution
 func wordBreak4(s string, wordDict []string) bool {
 	words := make(map[string]bool)
 	queue := make([]int, 0)

@@ -440,7 +440,12 @@ func main() {
 	//log.Println()
 	//dynamicprogramming.Test_wordBreak2()
 	//log.Println()
-	dynamicprogramming.Test_wordBreak3()
+	//dynamicprogramming.Test_wordBreak3()
+	//log.Println()
+	//dynamicprogramming.Test_wordBreak4()
+
+	//300
+	dynamicprogramming.Test_lengthOfLIS()
 	log.Println()
-	dynamicprogramming.Test_wordBreak4()
+	dynamicprogramming.Test_lengthOfLIS2()
 }

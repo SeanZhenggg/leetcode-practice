@@ -71,7 +71,7 @@ func maxProduct3(nums []int) int {
 
 // prefix/suffix solution, TC: O(n), SC: O(1)
 func maxProduct4(nums []int) int {
-	prefix, suffix := 1, 1
+	prefix, suffix := 0, 0
 	res := nums[0]
 
 	for i := 0; i < len(nums); i++ {

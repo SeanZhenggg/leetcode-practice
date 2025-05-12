@@ -2,7 +2,6 @@ package main
 
 import (
 	"golang/dynamicprogramming"
-	"log"
 )
 
 func main() {
@@ -450,9 +449,12 @@ func main() {
 	//dynamicprogramming.Test_lengthOfLIS2()
 
 	//62
-	dynamicprogramming.Test_uniquePaths()
-	log.Println()
-	dynamicprogramming.Test_uniquePaths2()
-	log.Println()
-	dynamicprogramming.Test_uniquePaths3()
+	//dynamicprogramming.Test_uniquePaths()
+	//log.Println()
+	//dynamicprogramming.Test_uniquePaths2()
+	//log.Println()
+	//dynamicprogramming.Test_uniquePaths3()
+
+	//1143
+	dynamicprogramming.Test_longestCommonSubsequence()
 }

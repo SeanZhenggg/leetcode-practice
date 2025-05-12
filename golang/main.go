@@ -445,7 +445,14 @@ func main() {
 	//dynamicprogramming.Test_wordBreak4()
 
 	//300
-	dynamicprogramming.Test_lengthOfLIS()
+	//dynamicprogramming.Test_lengthOfLIS()
+	//log.Println()
+	//dynamicprogramming.Test_lengthOfLIS2()
+
+	//62
+	dynamicprogramming.Test_uniquePaths()
 	log.Println()
-	dynamicprogramming.Test_lengthOfLIS2()
+	dynamicprogramming.Test_uniquePaths2()
+	log.Println()
+	dynamicprogramming.Test_uniquePaths3()
 }

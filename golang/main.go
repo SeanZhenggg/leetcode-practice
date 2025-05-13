@@ -438,8 +438,6 @@ func main() {
 	//log.Println()
 	dynamicprogramming.Test_wordBreak1()
 	log.Println()
-	dynamicprogramming.Test_wordBreak11()
-	log.Println()
 	//dynamicprogramming.Test_wordBreak2()
 	//log.Println()
 	//dynamicprogramming.Test_wordBreak3()

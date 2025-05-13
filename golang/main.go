@@ -1,6 +1,9 @@
 package main
 
-import "golang/dynamicprogramming"
+import (
+	"golang/dynamicprogramming"
+	"log"
+)
 
 func main() {
 	// 347
@@ -433,8 +436,10 @@ func main() {
 	//139
 	//dynamicprogramming.Test_wordBreak()
 	//log.Println()
-	//dynamicprogramming.Test_wordBreak1()
-	//log.Println()
+	dynamicprogramming.Test_wordBreak1()
+	log.Println()
+	dynamicprogramming.Test_wordBreak11()
+	log.Println()
 	//dynamicprogramming.Test_wordBreak2()
 	//log.Println()
 	//dynamicprogramming.Test_wordBreak3()
@@ -456,5 +461,5 @@ func main() {
 	//dynamicprogramming.Test_uniquePaths3()
 
 	//1143
-	dynamicprogramming.Test_longestCommonSubsequence()
+	//dynamicprogramming.Test_longestCommonSubsequence()
 }

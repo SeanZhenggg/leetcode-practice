@@ -4,7 +4,7 @@ import (
 	"log"
 )
 
-// recursion solution(in length aspects)
+// recursion solution(in length aspects), TLE
 func wordBreak(s string, wordDict []string) bool {
 	var dfs func(st, end int) bool
 
@@ -26,7 +26,7 @@ func wordBreak(s string, wordDict []string) bool {
 	return dfs(0, len(s))
 }
 
-// recursion solution(in wordDict aspects)
+// recursion solution(in wordDict aspects), TLE
 func wordBreak1(s string, wordDict []string) bool {
 	var dfs func(st int) bool
 
@@ -49,7 +49,7 @@ func wordBreak1(s string, wordDict []string) bool {
 	return dfs(0)
 }
 
-// top-down dp solution(to end)
+// top-down dp solution(from start to end)
 func wordBreak2(s string, wordDict []string) bool {
 	var dfs func(st int) bool
 	memo := make([]int, len(s)+1)
@@ -84,7 +84,7 @@ func wordBreak2(s string, wordDict []string) bool {
 	return dfs(0)
 }
 
-// bottom-up dp solution(from end)
+// bottom-up dp solution(from start to end)
 func wordBreak3(s string, wordDict []string) bool {
 	dp := make([]bool, len(s)+1)
 	dp[len(s)] = true
@@ -149,6 +149,11 @@ func Test_wordBreak() {
 	wordDict4 := []string{"aaaa", "aaa"}
 	ans4 := wordBreak(s4, wordDict4)
 	log.Printf("ans4: %v", ans4)
+
+	s5 := "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+	wordDict5 := []string{"a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"}
+	ans5 := wordBreak4(s5, wordDict5)
+	log.Printf("ans5: %v", ans5)
 }
 
 func Test_wordBreak1() {
@@ -163,7 +168,7 @@ func Test_wordBreak1() {
 	log.Printf("ans2: %v", ans2)
 
 	s3 := "catsandog"
-	wordDict3 := []string{"cats", "dog", "sand", "og", "and", "cat"}
+	wordDict3 := []string{"cats", "dog", "sand", "and", "cat"}
 	ans3 := wordBreak1(s3, wordDict3)
 	log.Printf("ans3: %v", ans3)
 
@@ -171,6 +176,11 @@ func Test_wordBreak1() {
 	wordDict4 := []string{"aaaa", "aaa"}
 	ans4 := wordBreak1(s4, wordDict4)
 	log.Printf("ans4: %v", ans4)
+
+	s5 := "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+	wordDict5 := []string{"a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"}
+	ans5 := wordBreak4(s5, wordDict5)
+	log.Printf("ans5: %v", ans5)
 }
 
 func Test_wordBreak2() {
@@ -193,6 +203,11 @@ func Test_wordBreak2() {
 	wordDict4 := []string{"aaaa", "aaa"}
 	ans4 := wordBreak2(s4, wordDict4)
 	log.Printf("ans4: %v", ans4)
+
+	s5 := "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+	wordDict5 := []string{"a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"}
+	ans5 := wordBreak4(s5, wordDict5)
+	log.Printf("ans5: %v", ans5)
 }
 
 func Test_wordBreak3() {
@@ -215,28 +230,33 @@ func Test_wordBreak3() {
 	wordDict4 := []string{"aaaa", "aaa"}
 	ans4 := wordBreak3(s4, wordDict4)
 	log.Printf("ans4: %v", ans4)
+
+	s5 := "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+	wordDict5 := []string{"a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"}
+	ans5 := wordBreak4(s5, wordDict5)
+	log.Printf("ans5: %v", ans5)
 }
 
 func Test_wordBreak4() {
-	//s1 := "leetcode"
-	//wordDict1 := []string{"leet", "code"}
-	//ans1 := wordBreak4(s1, wordDict1)
-	//log.Printf("ans1: %v", ans1)
-	//
-	//s2 := "applepenapple"
-	//wordDict2 := []string{"apple", "pen"}
-	//ans2 := wordBreak4(s2, wordDict2)
-	//log.Printf("ans2: %v", ans2)
-	//
-	//s3 := "catsandog"
-	//wordDict3 := []string{"cats", "dog", "sand", "og", "and", "cat"}
-	//ans3 := wordBreak4(s3, wordDict3)
-	//log.Printf("ans3: %v", ans3)
-	//
-	//s4 := "aaaaaaa"
-	//wordDict4 := []string{"aaaa", "aaa"}
-	//ans4 := wordBreak4(s4, wordDict4)
-	//log.Printf("ans4: %v", ans4)
+	s1 := "leetcode"
+	wordDict1 := []string{"leet", "code"}
+	ans1 := wordBreak4(s1, wordDict1)
+	log.Printf("ans1: %v", ans1)
+
+	s2 := "applepenapple"
+	wordDict2 := []string{"apple", "pen"}
+	ans2 := wordBreak4(s2, wordDict2)
+	log.Printf("ans2: %v", ans2)
+
+	s3 := "catsandog"
+	wordDict3 := []string{"cats", "dog", "sand", "og", "and", "cat"}
+	ans3 := wordBreak4(s3, wordDict3)
+	log.Printf("ans3: %v", ans3)
+
+	s4 := "aaaaaaa"
+	wordDict4 := []string{"aaaa", "aaa"}
+	ans4 := wordBreak4(s4, wordDict4)
+	log.Printf("ans4: %v", ans4)
 
 	s5 := "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
 	wordDict5 := []string{"a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"}

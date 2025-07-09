@@ -1,7 +1,7 @@
 package main
 
 import (
-	"golang/dynamicprogramming"
+	"golang/greedy"
 	"log"
 )
 
@@ -436,8 +436,8 @@ func main() {
 	//139
 	//dynamicprogramming.Test_wordBreak()
 	//log.Println()
-	dynamicprogramming.Test_wordBreak1()
-	log.Println()
+	// dynamicprogramming.Test_wordBreak1()
+	// log.Println()
 	//dynamicprogramming.Test_wordBreak2()
 	//log.Println()
 	//dynamicprogramming.Test_wordBreak3()
@@ -460,4 +460,9 @@ func main() {
 
 	//1143
 	//dynamicprogramming.Test_longestCommonSubsequence()
+
+	//53
+	greedy.Test_MaxSubArray()
+	log.Println()
+	greedy.Test_MaxSubArray2()
 }

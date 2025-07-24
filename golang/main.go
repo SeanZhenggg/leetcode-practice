@@ -2,7 +2,6 @@ package main
 
 import (
 	"golang/greedy"
-	"log"
 )
 
 func main() {
@@ -462,11 +461,14 @@ func main() {
 	// dynamicprogramming.Test_longestCommonSubsequence()
 
 	// 53
-	greedy.Test_MaxSubArray()
-	log.Println()
-	greedy.Test_MaxSubArray2()
-	log.Println()
-	greedy.Test_MaxSubArray3()
-	log.Println()
-	greedy.Test_MaxSubArray4()
+	// greedy.Test_MaxSubArray()
+	// log.Println()
+	// greedy.Test_MaxSubArray2()
+	// log.Println()
+	// greedy.Test_MaxSubArray3()
+	// log.Println()
+	// greedy.Test_MaxSubArray4()
+
+	// 55
+	greedy.Test_canJump()
 }

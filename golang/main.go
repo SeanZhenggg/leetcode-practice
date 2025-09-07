@@ -1,9 +1,5 @@
 package main
 
-import (
-	"golang/greedy"
-)
-
 func main() {
 	// 347
 	// medium.Test_TopKFrequent()
@@ -468,7 +464,4 @@ func main() {
 	// greedy.Test_MaxSubArray3()
 	// log.Println()
 	// greedy.Test_MaxSubArray4()
-
-	// 55
-	greedy.Test_canJump()
 }

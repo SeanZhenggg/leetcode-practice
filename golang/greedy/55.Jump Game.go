@@ -1,7 +1,5 @@
 package greedy
 
-import "log"
-
 func canJump(nums []int) bool {
 	pathMap := map[int]bool{}
 
@@ -40,20 +38,46 @@ func canJump(nums []int) bool {
 	return dfs(0)
 }
 
-func Test_canJump() {
-	case1 := []int{2, 3, 1, 1, 4}
-	ans1 := canJump(case1)
-	log.Printf("ans1: %v", ans1)
-	log.Println()
-	case2 := []int{3, 2, 1, 0, 4}
-	ans2 := canJump(case2)
-	log.Printf("ans2: %v", ans2)
-	log.Println()
-	case3 := []int{2, 1, 0, 1, 4}
-	ans3 := canJump(case3)
-	log.Printf("ans3: %v", ans3)
+func canJump2(nums []int) bool {
+	memo := make([]bool, len(nums))
 
-	case4 := []int{3, 2, 4, 0, 5, 0, 2, 1, 0, 3, 10}
-	ans4 := canJump(case4)
-	log.Printf("ans4: %v", ans4)
+	memo[len(nums)-1] = true
+
+	for i := len(nums) - 2; i >= 0; i-- {
+		next := min(i+nums[i], len(nums)-1)
+
+		for j := i + 1; j <= next; j++ {
+			if memo[j] {
+				memo[i] = true
+				break
+			}
+		}
+	}
+	return memo[0] == true
+}
+
+func canJump3(nums []int) bool {
+	leftMost := len(nums) - 1
+	for i := len(nums) - 2; i >= 0; i-- {
+		if nums[i]+i >= leftMost {
+			leftMost = i
+		}
+	}
+
+	return leftMost == 0
+}
+
+func canJump4(nums []int) bool {
+	maxReach := 0                    // 目前能到達的最遠位置
+	for i := 0; i < len(nums); i++ { // 每一個位置都檢查, 包含終點
+		if i > maxReach { // 看看之前記錄的最遠位置是否能夠到達當前位置, 不行的話代表我們根本走不到這裡, 也就意味著走不到終點
+			return false
+		}
+		maxReach = max(maxReach, i+nums[i]) // 更新在當前位置上能夠到達的最遠位置
+		if maxReach >= len(nums)-1 {        // 如果能到達的最遠位置已經是終點或是比終點更遠，代表我們能夠抵達終點
+			return true
+		}
+	}
+
+	return false // 如果迴圈的最後在終點位置 maxReach 沒有辦法到達的話，代表我們走不到終點
 }

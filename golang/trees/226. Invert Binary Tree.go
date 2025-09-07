@@ -110,6 +110,44 @@ func invertTreeReview2(root *TreeNode) *TreeNode {
 	return root
 }
 
+func invertTreeReview3(root *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+
+	tempLeft := root.Left
+	root.Left = invertTree(root.Right)
+	root.Right = invertTree(tempLeft)
+
+	return root
+}
+
+// BFS, level order traversal, tc: O(n), sc: O(n)
+func invertTreeReview4(root *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+
+	st := make([]*TreeNode, 0)
+	st = append(st, root)
+
+	for len(st) > 0 {
+		last := st[0]
+		st = st[1:]
+
+		last.Left, last.Right = last.Right, last.Left
+		if last.Left != nil {
+			st = append(st, last.Left)
+		}
+
+		if last.Right != nil {
+			st = append(st, last.Right)
+		}
+	}
+
+	return root
+}
+
 func printTree(root *TreeNode) {
 	if root == nil {
 		return
@@ -174,80 +212,4 @@ func generateTree(strArr []string) *TreeNode {
 		}
 	}
 	return root
-}
-
-func Test_InvertTree() {
-	root1 := generateTree([]string{"4", "2", "7", "1", "3", "6", "9"})
-	tree := invertTree(root1)
-
-	printTree(tree)
-
-	fmt.Println()
-
-	root2 := generateTree([]string{"2", "1", "3"})
-	tree2 := invertTree(root2)
-
-	printTree(tree2)
-
-	root3 := generateTree([]string{})
-	tree3 := invertTree(root3)
-
-	printTree(tree3)
-}
-
-func Test_InvertTree2() {
-	root1 := generateTree([]string{"4", "2", "7", "1", "3", "6", "9"})
-	tree := invertTree2(root1)
-
-	printTree(tree)
-
-	fmt.Println()
-
-	root2 := generateTree([]string{"2", "1", "3"})
-	tree2 := invertTree2(root2)
-
-	printTree(tree2)
-
-	root3 := generateTree([]string{})
-	tree3 := invertTree2(root3)
-
-	printTree(tree3)
-}
-
-func Test_InvertTreeReview1() {
-	root1 := generateTree([]string{"4", "2", "7", "1", "3", "6", "9"})
-	tree := invertTreeReview1(root1)
-
-	printTree(tree)
-
-	fmt.Println()
-
-	root2 := generateTree([]string{"2", "1", "3"})
-	tree2 := invertTreeReview1(root2)
-
-	printTree(tree2)
-
-	root3 := generateTree([]string{})
-	tree3 := invertTreeReview1(root3)
-
-	printTree(tree3)
-}
-
-func Test_InvertTreeReview2() {
-	root1 := generateTree([]string{"4", "2", "7", "1", "3", "6", "9"})
-	tree := invertTreeReview2(root1)
-
-	printTree(tree)
-
-	fmt.Println()
-
-	root2 := generateTree([]string{"2", "1", "3"})
-	tree2 := invertTreeReview2(root2)
-
-	printTree(tree2)
-
-	root3 := generateTree([]string{})
-	tree3 := invertTreeReview2(root3)
-
-	printTree(tree3)
 }

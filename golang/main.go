@@ -210,11 +210,6 @@ func main() {
 	// log.Println()
 	// linkedList.Test_reverseKGroup4()
 
-	// 226
-	// trees.Test_InvertTree()
-	// fmt.Println()
-	// trees.Test_InvertTreeReview1()
-
 	// 104
 	// trees.Test_MaxDepth()
 	// trees.Test_MaxDepth2()

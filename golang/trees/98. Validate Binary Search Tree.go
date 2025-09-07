@@ -1,7 +1,6 @@
 package trees
 
 import (
-	"log"
 	"math"
 )
 
@@ -78,70 +77,18 @@ func isValid2(root *TreeNode, lower, upper int) bool {
 	return isValid2(root.Left, lower, root.Val) && isValid2(root.Right, root.Val, upper)
 }
 
-func Test_IsValidBST() {
-	root1 := &TreeNode{
-		Val:   2,
-		Left:  &TreeNode{Val: 1},
-		Right: &TreeNode{Val: 3},
-	}
-	ans1 := isValidBST(root1)
-	log.Printf("ans1: %v", ans1)
-
-	root2 := &TreeNode{
-		Val:   5,
-		Left:  &TreeNode{Val: 1},
-		Right: &TreeNode{Val: 4, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 6}},
-	}
-	ans2 := isValidBST(root2)
-	log.Printf("ans2: %v", ans2)
-
-	root3 := &TreeNode{
-		Val:   5,
-		Left:  &TreeNode{Val: 1},
-		Right: &TreeNode{Val: 6, Left: &TreeNode{Val: 3, Right: &TreeNode{Val: 2}}, Right: &TreeNode{Val: 8}},
-	}
-	ans3 := isValidBST(root3)
-	log.Printf("ans3: %v", ans3)
-
-	root4 := &TreeNode{
-		Val:   5,
-		Left:  &TreeNode{Val: 4},
-		Right: &TreeNode{Val: 6, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 7}},
-	}
-	ans4 := isValidBST(root4)
-	log.Printf("ans4: %v", ans4)
+func isValidBST3(root *TreeNode) bool {
+	return valid(root, math.MinInt64, math.MaxInt64)
 }
 
-func Test_IsValidBST2() {
-	root1 := &TreeNode{
-		Val:   2,
-		Left:  &TreeNode{Val: 1},
-		Right: &TreeNode{Val: 3},
+func valid(root *TreeNode, minVal, maxVal int) bool {
+	if root == nil {
+		return true
 	}
-	ans1 := isValidBST2(root1)
-	log.Printf("ans1: %v", ans1)
 
-	root2 := &TreeNode{
-		Val:   5,
-		Left:  &TreeNode{Val: 1},
-		Right: &TreeNode{Val: 4, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 6}},
+	if root.Val < minVal || root.Val > maxVal {
+		return false
 	}
-	ans2 := isValidBST2(root2)
-	log.Printf("ans2: %v", ans2)
 
-	root3 := &TreeNode{
-		Val:   5,
-		Left:  &TreeNode{Val: 1},
-		Right: &TreeNode{Val: 6, Left: &TreeNode{Val: 3, Right: &TreeNode{Val: 2}}, Right: &TreeNode{Val: 8}},
-	}
-	ans3 := isValidBST2(root3)
-	log.Printf("ans3: %v", ans3)
-
-	root4 := &TreeNode{
-		Val:   5,
-		Left:  &TreeNode{Val: 4},
-		Right: &TreeNode{Val: 6, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 7}},
-	}
-	ans4 := isValidBST2(root4)
-	log.Printf("ans4: %v", ans4)
+	return valid(root.Left, minVal, root.Val) && valid(root.Right, root.Val, maxVal)
 }

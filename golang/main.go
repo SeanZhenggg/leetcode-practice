@@ -271,11 +271,6 @@ func main() {
 	// 1448
 	// trees.Test_GoodNodes()
 
-	// 98
-	// trees.Test_IsValidBST()
-	// log.Println()
-	// trees.Test_IsValidBST2()
-
 	// 230
 	// trees.Test_KthSmallest()
 	// log.Println()

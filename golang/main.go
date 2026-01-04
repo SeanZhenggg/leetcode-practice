@@ -11,9 +11,6 @@ func main() {
 	// 1
 	// easy.Test_TwoSum()
 
-	// 49
-	// medium.Test_GroupAnagrams()
-
 	// 238
 	// medium.Test_ProductExceptSelf()
 	// medium.Test_ProductExceptSelf2()

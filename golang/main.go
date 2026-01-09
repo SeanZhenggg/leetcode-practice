@@ -11,13 +11,6 @@ func main() {
 	// 1
 	// easy.Test_TwoSum()
 
-	// 238
-	// medium.Test_ProductExceptSelf()
-	// medium.Test_ProductExceptSelf2()
-	// medium.Test_ProductExceptSelf3()
-	// medium.Test_ProductExceptSelfReview()
-	// medium.Test_ProductExceptSelfReview2()
-
 	// 125
 	// easy.Test_IsPalindrome()
 	// easy.Test_IsPalindrome2()

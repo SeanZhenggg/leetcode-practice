@@ -19,10 +19,6 @@ func main() {
 	// medium.Test_IsValidSudoKu()
 	// medium.Test_IsValidSudoKu3()
 
-	// 128
-	// medium.Test_LongestConsecutive()
-	// medium.Test_LongestConsecutiveReview()
-
 	// 167
 	// medium.Test_TwoSum_II_Input_Array_Is_Sorted()
 	// medium.Test_TwoSum_2_II_Input_Array_Is_Sorted()

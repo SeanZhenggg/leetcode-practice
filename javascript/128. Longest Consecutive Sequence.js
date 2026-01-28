@@ -45,7 +45,7 @@ class UnionFind {
   }
 
   hasSameParents(x, y) {
-    return this.findParent(x) !== this.findParent(y)
+    return this.findParent(x) === this.findParent(y)
   }
 }
 
@@ -72,13 +72,13 @@ var longestConsecutive = function (nums) {
       if (seenNumbers.has(currentNumber - 1)) {
         const to = seenNumbers.get(currentNumber - 1)
 
-        if (unionFind.hasSameParents(from, to)) unionFind.union(from, to)
+        if (!unionFind.hasSameParents(from, to)) unionFind.union(from, to)
       }
 
       if (seenNumbers.has(currentNumber + 1)) {
         const to = seenNumbers.get(currentNumber + 1)
 
-        if (unionFind.hasSameParents(from, to)) unionFind.union(from, to)
+        if (!unionFind.hasSameParents(from, to)) unionFind.union(from, to)
       }
 
       seenNumbers.set(currentNumber, from)

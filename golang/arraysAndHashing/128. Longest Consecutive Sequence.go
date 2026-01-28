@@ -1,6 +1,6 @@
 package arraysAndHashing
 
-import "log"
+import "sort"
 
 // wrong solution
 func longestConsecutiveWrong(nums []int) int {
@@ -32,14 +32,57 @@ func longestConsecutiveWrong(nums []int) int {
 	return maxLength
 }
 
-func max(x, y int) int {
-	if x >= y {
-		return x
+// sort first + record max length for every consecutive subsequence
+func longestConsecutive(nums []int) int {
+	sort.Ints(nums)
+
+	maxLength := 0
+	length := 1
+	for i := 0; i < len(nums); i++ {
+		if i > 0 {
+			if nums[i] == nums[i-1] {
+				continue
+			}
+			if nums[i] == 1+nums[i-1] {
+				length++
+			} else {
+				length = 1
+			}
+		}
+
+		maxLength = max(maxLength, length)
 	}
-	return y
+	return maxLength
 }
 
-func longestConsecutive(nums []int) int {
+// sort first + record max length for every consecutive subsequence
+func longestConsecutive2(nums []int) int {
+	sort.Ints(nums)
+
+	maxLength := 0
+	curr := 0
+	length := 0
+	for i := 0; i < len(nums); i++ {
+		if curr != nums[i] {
+			curr = nums[i]
+			length = 0
+		}
+
+		// skip duplicate next value
+		if i < len(nums)-1 && curr == nums[i+1] {
+			continue
+		}
+
+		curr++
+		length++
+
+		maxLength = max(maxLength, length)
+	}
+	return maxLength
+}
+
+// hashmap + start from the leftmost
+func longestConsecutive3(nums []int) int {
 	m := make(map[int]bool)
 	maxLen := 0
 	for _, num := range nums {
@@ -56,55 +99,36 @@ func longestConsecutive(nums []int) int {
 			}
 			maxLen = max(maxLen, length)
 		}
-
-		//if !m[num+1] {
-		//	for m[num-1] {
-		//		length++
-		//	}
-		//	maxLen = max(maxLen, length)
-		//}
 	}
 
 	return maxLen
 }
 
-func longestConsecutiveReview(nums []int) int {
-	m := make(map[int]bool)
-	maxLength := 0
-	for _, num := range nums {
-		m[num] = true
-	}
+// hashmap + boundary
+func longestConsecutive4(nums []int) int {
+	// 用一個 hashmap 來記錄每一個數字所在的 sequence 的長度
+	// 當前數字的 sequence 長度=左邊+右邊+1(自己)
+	// 左邊代表的是 num 之前結束的 sequence 長度
+	// 右邊代表的是 num 之後開始的 sequence 長度
+	// m[i] = m[i-1]+m[i+1]+1
+	// 更新左邊界跟右邊界的 sequence 長度
+	// m[i-m[i-1]] = m[i]
+	// m[i+m[i+1]] = m[i]
+	// why? 因為已經算過的數字下次遇到就會跳過(有數字的代表已經有被算過), 而且我們算每一個數字在意的只有數字的左邊跟右邊
+	// 更新最大的 sequence 長度到 maxLength
+	m := make(map[int]int)
 
+	maxLen := 0
 	for _, num := range nums {
-		if !m[num-1] {
-			i := 1
-			for m[num+1] {
-				i++
-				num += 1
-			}
-			if i > maxLength {
-				maxLength = i
-			}
+		if _, ok := m[num]; ok {
+			continue
 		}
+
+		m[num] = m[num-1] + m[num+1] + 1 //更新當前數字的 sequence 長度
+		m[num-m[num-1]] = m[num]         //更新左邊界的 sequence 長度
+		m[num+m[num+1]] = m[num]         //更新右邊界的 sequence 長度
+
+		maxLen = max(maxLen, m[num])
 	}
-
-	return maxLength
-}
-
-func Test_LongestConsecutive() {
-	ans1 := longestConsecutive([]int{100, 4, 200, 1, 3, 2})
-	log.Println("ans1: ", ans1)
-	ans2 := longestConsecutive([]int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1})
-	log.Println("ans2: ", ans2)
-	ans3 := longestConsecutive([]int{159, 86, 72, 85, 87, 160, 73, 73, 158, 161})
-	log.Println("ans3: ", ans3)
-}
-
-func Test_LongestConsecutiveReview() {
-	ans1 := longestConsecutiveReview([]int{100, 4, 200, 1, 3, 2})
-	log.Println("ans1: ", ans1)
-	ans2 := longestConsecutiveReview([]int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1})
-	log.Println("ans2: ", ans2)
-	ans3 := longestConsecutiveReview([]int{159, 86, 72, 85, 87, 160, 73, 73, 158, 161})
-	log.Println("ans3: ", ans3)
+	return maxLen
 }

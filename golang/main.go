@@ -11,10 +11,6 @@ func main() {
 	// 1
 	// easy.Test_TwoSum()
 
-	// 125
-	// easy.Test_IsPalindrome()
-	// easy.Test_IsPalindrome2()
-
 	// 36
 	// medium.Test_IsValidSudoKu()
 	// medium.Test_IsValidSudoKu3()

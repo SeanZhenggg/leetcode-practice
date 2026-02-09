@@ -76,17 +76,6 @@ func maxProfitDynamicSlidingWindow(prices []int) int {
 // (Q: 為什麼是 prices[i] + dp[i-1][0] ? A: 因為持有的時候是直接 -prices[i], 賣出抵銷的時候要+回來)
 
 func maxProfitReviewDP(prices []int) int {
-	dp := make([][2]int, 0, len(prices))
-
-	dp = append(dp, [2]int{-prices[0], 0})
-	for i := 1; i < len(prices); i++ {
-		dp = append(dp, [2]int{max(dp[i-1][0], -prices[i]), max(prices[i]+dp[i-1][0], dp[i-1][1])})
-	}
-
-	return dp[len(prices)-1][1]
-}
-
-func maxProfitReviewDP2(prices []int) int {
 	dp := make([][2]int, len(prices))
 
 	dp[0][0] = -prices[0]

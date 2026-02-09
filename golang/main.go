@@ -29,10 +29,6 @@ func main() {
 	// hard.Test_Trap()
 	// hard.Test_TrapReview()
 
-	// 121
-	// easy.Test_MaxProfit()
-	// easy.Test_MaxProfitReview()
-
 	// 3
 	// medium.Test_LengthOfLongestSubstring()
 	// medium.Test_LengthOfLongestSubstringReview()

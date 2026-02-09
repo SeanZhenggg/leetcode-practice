@@ -1,8 +1,6 @@
 package slidingWindow
 
-import "log"
-
-// solution using prefixSum
+// solution using prefix min
 
 // [7,1,5,3,6,4]
 // prefixMin => 7 => 1 => 1 => 1 => 1 => 1
@@ -12,7 +10,7 @@ import "log"
 // prefixMin => 7 => 6 => 4 => 3 => 1
 // maxProfit => 0 => 0 => 0 => 0 => 0
 
-func maxProfit(prices []int) int {
+func maxProfitPrefixMin(prices []int) int {
 	maxProfits := 0
 	prefixMin := prices[0]
 	for i := 0; i < len(prices); i++ {
@@ -53,24 +51,7 @@ func maxProfit(prices []int) int {
 // 				  r -> r
 // 				  l -> l
 
-func maxProfit2(prices []int) int {
-	l := 0
-	maxProfits := 0
-	for r := 0; r < len(prices); r++ {
-		for prices[l] > prices[r] {
-			l++
-		}
-
-		profit := prices[r] - prices[l]
-		if profit > maxProfits {
-			maxProfits = profit
-		}
-	}
-
-	return maxProfits
-}
-
-func maxProfitReview(prices []int) int {
+func maxProfitDynamicSlidingWindow(prices []int) int {
 	l := 0
 	maxP := 0
 	for r := 0; r < len(prices); r++ {
@@ -84,7 +65,17 @@ func maxProfitReview(prices []int) int {
 	return maxP
 }
 
-func maxProfitReview2(prices []int) int {
+//solution using dynamic programming
+
+// f(n) = total 的最大獲利
+// dp[i][0] 表示第 i 天持有股票所得的最多現金
+// dp[i][1] 表示第 i 天不持有股票所得的最多現金
+// 持有 != 買入, 持有可能是前幾天就持有, 今天保持持有的狀態
+// dp[i][0] = max(dp[i-1][0], -prices[i]) (前一天就持有 vs. 當天買入持有)
+// dp[i][1] = max(dp[i-1][1], prices[i] + dp[i-1][0]) (前一天就不持有 vs. 當天賣出股票不持有)
+// (Q: 為什麼是 prices[i] + dp[i-1][0] ? A: 因為持有的時候是直接 -prices[i], 賣出抵銷的時候要+回來)
+
+func maxProfitReviewDP(prices []int) int {
 	dp := make([][2]int, 0, len(prices))
 
 	dp = append(dp, [2]int{-prices[0], 0})
@@ -95,22 +86,16 @@ func maxProfitReview2(prices []int) int {
 	return dp[len(prices)-1][1]
 }
 
-func Test_MaxProfit() {
-	case1 := []int{7, 1, 5, 3, 6, 4}
-	ans1 := maxProfit(case1)
-	log.Printf("ans1: %v", ans1)
+func maxProfitReviewDP2(prices []int) int {
+	dp := make([][2]int, len(prices))
 
-	case2 := []int{7, 6, 4, 3, 1}
-	ans2 := maxProfit(case2)
-	log.Printf("ans2: %v", ans2)
-}
+	dp[0][0] = -prices[0]
+	dp[0][1] = 0
 
-func Test_MaxProfitReview() {
-	case1 := []int{7, 1, 5, 3, 6, 4}
-	ans1 := maxProfitReview2(case1)
-	log.Printf("ans1: %v", ans1)
+	for i := 1; i < len(prices); i++ {
+		dp[i][0] = max(dp[i-1][0], -prices[i])
+		dp[i][1] = max(dp[i-1][1], prices[i]+dp[i-1][0])
+	}
 
-	case2 := []int{7, 6, 4, 3, 1}
-	ans2 := maxProfitReview2(case2)
-	log.Printf("ans2: %v", ans2)
+	return dp[len(prices)-1][1]
 }

@@ -46,3 +46,20 @@ func maxAreaReview(height []int) int {
 
 	return maxVolume
 }
+
+func maxArea2(height []int) int {
+	l, r := 0, len(height)-1
+	maxA := 0
+	for l < r {
+		minH := min(height[l], height[r])
+		width := r - l
+		maxA = max(maxA, minH*width)
+		if height[l] <= minH {
+			l++
+		} else {
+			r--
+		}
+	}
+
+	return maxA
+}

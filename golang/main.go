@@ -25,10 +25,6 @@ func main() {
 	// medium.Test_ThreeSum2()
 	// medium.Test_ThreeSumReview()
 
-	// 11
-	// medium.Test_MaxArea()
-	// medium.Test_MaxAreaReview()
-
 	// 42
 	// hard.Test_Trap()
 	// hard.Test_TrapReview()

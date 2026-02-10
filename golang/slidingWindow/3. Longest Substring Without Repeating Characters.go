@@ -1,7 +1,23 @@
 package slidingWindow
 
-// solution using dynamic sliding window + hash map
-func lengthOfLongestSubstring(s string) int {
+// 2 for loop
+func lengthOfLongestSubstringDoubleForLoop(s string) int {
+	longest := 0
+	for i := 0; i < len(s); i++ {
+		m := map[byte]bool{}
+		for j := i; j < len(s); j++ {
+			if m[s[j]] {
+				longest = max(longest, j-i)
+				break
+			}
+			m[s[j]] = true
+		}
+	}
+
+	return longest
+}
+
+func lengthOfLongestSubstringSlidingWindow(s string) int {
 	if len(s) == 1 {
 		return 1
 	}
@@ -17,38 +33,7 @@ func lengthOfLongestSubstring(s string) int {
 
 		m[s[r]] = true
 
-		if r-l+1 > maxLength {
-			maxLength = r - l + 1
-		}
-	}
-
-	return maxLength
-}
-
-func lengthOfLongestSubstringReview(s string) int {
-	// a map to record character's existence
-	m := make(map[byte]bool)
-	l := 0
-	maxLength := 0
-
-	// loop each character
-	//     loop to check if there was same character in the map
-	//        1. remove character existence from map
-	//        then shift l to the right
-	//
-	//     mark each character as existed
-
-	for r := 0; r < len(s); r++ {
-		for l < r && m[s[r]] {
-			m[s[l]] = false
-			l++
-		}
-		curLength := r - l + 1
-		if curLength > maxLength {
-			maxLength = curLength
-		}
-
-		m[s[r]] = true
+		maxLength = max(maxLength, r-l+1)
 	}
 
 	return maxLength

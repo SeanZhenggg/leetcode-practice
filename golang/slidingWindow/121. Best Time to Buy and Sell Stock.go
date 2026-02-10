@@ -88,3 +88,15 @@ func maxProfitReviewDP(prices []int) int {
 
 	return dp[len(prices)-1][1]
 }
+
+func maxProfitKadane(prices []int) int {
+	maxProfit := 0
+	minBuy := prices[0]
+
+	for i := 1; i < len(prices); i++ {
+		maxProfit = max(maxProfit, prices[i]-minBuy)
+		minBuy = min(minBuy, prices[i])
+	}
+
+	return maxProfit
+}

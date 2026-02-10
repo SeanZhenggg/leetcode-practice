@@ -29,10 +29,6 @@ func main() {
 	// hard.Test_Trap()
 	// hard.Test_TrapReview()
 
-	// 3
-	// medium.Test_LengthOfLongestSubstring()
-	// medium.Test_LengthOfLongestSubstringReview()
-
 	// 424
 	// medium.Test_CharacterReplacement()
 	// medium.Test_CharacterReplacement2()

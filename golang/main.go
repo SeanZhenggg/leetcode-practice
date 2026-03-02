@@ -29,13 +29,6 @@ func main() {
 	// hard.Test_Trap()
 	// hard.Test_TrapReview()
 
-	// 424
-	// medium.Test_CharacterReplacement()
-	// medium.Test_CharacterReplacement2()
-	// medium.Test_CharacterReplacement3()
-	// medium.Test_CharacterReplacementReview2()
-	// medium.Test_CharacterReplacementReview3()
-
 	// 567
 	// slidingWindow.Test_CheckInclusion()
 	// slidingWindow.Test_CheckInclusionReview()

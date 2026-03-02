@@ -64,6 +64,24 @@ func characterReplacement(s string, k int) int {
 	return maxLength
 }
 
+// brute force
+func characterReplacement1(s string, k int) int {
+	maxFreq, m := 0, make(map[byte]int)
+	res := 0
+	for i := 0; i < len(s); i++ {
+		maxFreq, m = 0, make(map[byte]int)
+		for j := i; j < len(s); j++ {
+			m[s[j]] += 1
+			maxFreq = max(maxFreq, m[s[j]])
+			if (j-i+1)-maxFreq <= k {
+				res = max(res, j-i+1)
+			}
+		}
+	}
+
+	return res
+}
+
 func characterReplacement2(s string, k int) int {
 	var maxLength int
 	var l int
@@ -219,6 +237,40 @@ func characterReplacementReview4(s string, k int) int {
 	}
 
 	return maxL
+}
+
+func characterReplacementReview5(s string, k int) int {
+	// 當前長度 - l 位置的字母出現次數 <= k 繼續
+	// 否則移動 l 的位置, 然後接著下一次判斷
+
+	m := make(map[byte]int)
+	l, r := 0, 0
+	maxLength := 0
+	for r < len(s) {
+		m[s[r]]++
+		maxFreq := getMaxFreq(m)
+
+		for l < r && (r-l+1)-maxFreq > k {
+			m[s[l]]--
+			l++
+			//maxFreq = getMaxFreq(m)
+		}
+
+		maxLength = max(maxLength, r-l+1)
+		r++
+	}
+
+	return maxLength
+}
+
+func getMaxFreq(m map[byte]int) int {
+	maxFreq := 0
+	for _, v := range m {
+		if v > maxFreq {
+			maxFreq = v
+		}
+	}
+	return maxFreq
 }
 
 func Test_CharacterReplacement() {

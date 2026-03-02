@@ -1,59 +1,80 @@
 package arraysAndHashing
 
 import (
-	"log"
+	"reflect"
 	"testing"
 )
 
+type productExceptSelfCase struct {
+	nums     []int
+	expected []int
+}
+
+var productExceptSelfCases = []productExceptSelfCase{
+	{nums: []int{1, 2, 3, 4}, expected: []int{24, 12, 8, 6}},
+	{nums: []int{-1, 1, 0, -3, 3}, expected: []int{0, 0, 9, 0, 0}},
+	{nums: []int{8, 2, -1, 3, 5}, expected: []int{-30, -120, 240, -80, -48}},
+}
+
 func TestProductExceptSelf(t *testing.T) {
-	ans1 := productExceptSelf([]int{1, 2, 3, 4})
-	log.Println("ans1: ", ans1)
-	ans2 := productExceptSelf([]int{-1, 1, 0, -3, 3})
-	log.Println("ans2: ", ans2)
+	for _, c := range productExceptSelfCases {
+		ans := productExceptSelf(c.nums)
+		if !reflect.DeepEqual(ans, c.expected) {
+			t.Errorf("answer is %v, want %v", ans, c.expected)
+		}
+	}
 }
 
 func TestProductExceptSelf2(t *testing.T) {
-	ans3 := productExceptSelf2([]int{1, 2, 3, 4})
-	log.Println("ans3: ", ans3)
-	ans4 := productExceptSelf2([]int{-1, 1, 0, -3, 3})
-	log.Println("ans4: ", ans4)
+	for _, c := range productExceptSelfCases {
+		ans := productExceptSelf2(c.nums)
+		if !reflect.DeepEqual(ans, c.expected) {
+			t.Errorf("answer is %v, want %v", ans, c.expected)
+		}
+	}
 }
 
 func TestProductExceptSelf3(t *testing.T) {
-	ans5 := productExceptSelf3([]int{1, 2, 3, 4})
-	log.Println("ans5: ", ans5)
-	ans6 := productExceptSelf3([]int{-1, 1, 0, -3, 3})
-	log.Println("ans6: ", ans6)
+	for _, c := range productExceptSelfCases {
+		ans := productExceptSelf3(c.nums)
+		if !reflect.DeepEqual(ans, c.expected) {
+			t.Errorf("answer is %v, want %v", ans, c.expected)
+		}
+	}
 }
 
 func TestProductExceptSelf4(t *testing.T) {
-	ans5 := productExceptSelf4([]int{1, 2, 3, 4})
-	log.Println("ans5: ", ans5)
-	ans6 := productExceptSelf4([]int{-1, 1, 0, -3, 3})
-	log.Println("ans6: ", ans6)
+	for _, c := range productExceptSelfCases {
+		ans := productExceptSelf4(c.nums)
+		if !reflect.DeepEqual(ans, c.expected) {
+			t.Errorf("answer is %v, want %v", ans, c.expected)
+		}
+	}
 }
 
 func TestProductExceptSelf5(t *testing.T) {
-	ans5 := productExceptSelf5([]int{1, 2, 3, 4})
-	log.Println("ans5: ", ans5)
-	ans6 := productExceptSelf5([]int{-1, 1, 0, -3, 3})
-	log.Println("ans6: ", ans6)
+	for _, c := range productExceptSelfCases {
+		ans := productExceptSelf5(c.nums)
+		if !reflect.DeepEqual(ans, c.expected) {
+			t.Errorf("answer is %v, want %v", ans, c.expected)
+		}
+	}
 }
 
 func TestProductExceptSelfReview(t *testing.T) {
-	ans1 := productExceptSelfReview([]int{1, 2, 3, 4})
-	log.Println("ans1: ", ans1)
-	ans2 := productExceptSelfReview([]int{-1, 1, 0, -3, 3})
-	log.Println("ans2: ", ans2)
-	ans3 := productExceptSelfReview([]int{8, 2, -1, 3, 5})
-	log.Println("ans3: ", ans3)
+	for _, c := range productExceptSelfCases {
+		ans := productExceptSelfReview(c.nums)
+		if !reflect.DeepEqual(ans, c.expected) {
+			t.Errorf("answer is %v, want %v", ans, c.expected)
+		}
+	}
 }
 
 func TestProductExceptSelfReview2(t *testing.T) {
-	ans1 := productExceptSelfReview2([]int{1, 2, 3, 4})
-	log.Println("ans1: ", ans1)
-	ans2 := productExceptSelfReview2([]int{-1, 1, 0, -3, 3})
-	log.Println("ans2: ", ans2)
-	ans3 := productExceptSelfReview2([]int{8, 2, -1, 3, 5})
-	log.Println("ans3: ", ans3)
+	for _, c := range productExceptSelfCases {
+		ans := productExceptSelfReview2(c.nums)
+		if !reflect.DeepEqual(ans, c.expected) {
+			t.Errorf("answer is %v, want %v", ans, c.expected)
+		}
+	}
 }

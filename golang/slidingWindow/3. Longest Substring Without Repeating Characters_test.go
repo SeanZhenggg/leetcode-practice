@@ -1,42 +1,33 @@
 package slidingWindow
 
-import (
-	"log"
-	"testing"
-)
+import "testing"
+
+type longestSubstringCase struct {
+	s        string
+	expected int
+}
+
+var longestSubstringCases = []longestSubstringCase{
+	{s: "abcabcbb", expected: 3},
+	{s: "bbbbb", expected: 1},
+	{s: "pwwkew", expected: 3},
+	{s: "pwagewegklew", expected: 5},
+}
 
 func TestLengthOfLongestSubstringForLoop(t *testing.T) {
-	case1 := "abcabcbb"
-	ans1 := lengthOfLongestSubstringDoubleForLoop(case1)
-	log.Printf("ans1: %v", ans1)
-
-	case2 := "bbbbb"
-	ans2 := lengthOfLongestSubstringDoubleForLoop(case2)
-	log.Printf("ans2: %v", ans2)
-
-	case3 := "pwwkew"
-	ans3 := lengthOfLongestSubstringDoubleForLoop(case3)
-	log.Printf("ans3: %v", ans3)
-
-	case4 := "pwagewegklew"
-	ans4 := lengthOfLongestSubstringDoubleForLoop(case4)
-	log.Printf("ans4: %v", ans4)
+	for _, c := range longestSubstringCases {
+		ans := lengthOfLongestSubstringDoubleForLoop(c.s)
+		if ans != c.expected {
+			t.Errorf("answer is %d, want %d", ans, c.expected)
+		}
+	}
 }
 
 func TestLengthOfLongestSubstringSlidingWindow(t *testing.T) {
-	case1 := "abcabcbb"
-	ans1 := lengthOfLongestSubstringSlidingWindow(case1)
-	log.Printf("ans1: %v", ans1)
-
-	case2 := "bbbbb"
-	ans2 := lengthOfLongestSubstringSlidingWindow(case2)
-	log.Printf("ans2: %v", ans2)
-
-	case3 := "pwwkew"
-	ans3 := lengthOfLongestSubstringSlidingWindow(case3)
-	log.Printf("ans3: %v", ans3)
-
-	case4 := "pwagewegklew"
-	ans4 := lengthOfLongestSubstringSlidingWindow(case4)
-	log.Printf("ans4: %v", ans4)
+	for _, c := range longestSubstringCases {
+		ans := lengthOfLongestSubstringSlidingWindow(c.s)
+		if ans != c.expected {
+			t.Errorf("answer is %d, want %d", ans, c.expected)
+		}
+	}
 }

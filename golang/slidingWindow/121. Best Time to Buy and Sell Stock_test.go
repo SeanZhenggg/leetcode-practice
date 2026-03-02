@@ -1,46 +1,49 @@
 package slidingWindow
 
-import (
-	"log"
-	"testing"
-)
+import "testing"
+
+type maxProfitCase struct {
+	prices   []int
+	expected int
+}
+
+var maxProfitCases = []maxProfitCase{
+	{prices: []int{7, 1, 5, 3, 6, 4}, expected: 5},
+	{prices: []int{7, 6, 4, 3, 1}, expected: 0},
+}
 
 func TestMaxProfit(t *testing.T) {
-	case1 := []int{7, 1, 5, 3, 6, 4}
-	ans1 := maxProfitPrefixMin(case1)
-	log.Printf("ans1: %v", ans1)
-
-	case2 := []int{7, 6, 4, 3, 1}
-	ans2 := maxProfitPrefixMin(case2)
-	log.Printf("ans2: %v", ans2)
+	for _, c := range maxProfitCases {
+		ans := maxProfitPrefixMin(c.prices)
+		if ans != c.expected {
+			t.Errorf("answer is %d, want %d", ans, c.expected)
+		}
+	}
 }
 
 func TestMaxProfitDynamicSlidingWindow(t *testing.T) {
-	case1 := []int{7, 1, 5, 3, 6, 4}
-	ans1 := maxProfitDynamicSlidingWindow(case1)
-	log.Printf("ans1: %v", ans1)
-
-	case2 := []int{7, 6, 4, 3, 1}
-	ans2 := maxProfitDynamicSlidingWindow(case2)
-	log.Printf("ans2: %v", ans2)
+	for _, c := range maxProfitCases {
+		ans := maxProfitDynamicSlidingWindow(c.prices)
+		if ans != c.expected {
+			t.Errorf("answer is %d, want %d", ans, c.expected)
+		}
+	}
 }
 
 func TestMaxProfitReviewDP(t *testing.T) {
-	case1 := []int{7, 1, 5, 3, 6, 4}
-	ans1 := maxProfitReviewDP(case1)
-	log.Printf("ans1: %v", ans1)
-
-	case2 := []int{7, 6, 4, 3, 1}
-	ans2 := maxProfitReviewDP(case2)
-	log.Printf("ans2: %v", ans2)
+	for _, c := range maxProfitCases {
+		ans := maxProfitReviewDP(c.prices)
+		if ans != c.expected {
+			t.Errorf("answer is %d, want %d", ans, c.expected)
+		}
+	}
 }
 
 func TestMaxProfitKadane(t *testing.T) {
-	case1 := []int{7, 1, 5, 3, 6, 4}
-	ans1 := maxProfitKadane(case1)
-	log.Printf("ans1: %v", ans1)
-
-	case2 := []int{7, 6, 4, 3, 1}
-	ans2 := maxProfitKadane(case2)
-	log.Printf("ans2: %v", ans2)
+	for _, c := range maxProfitCases {
+		ans := maxProfitKadane(c.prices)
+		if ans != c.expected {
+			t.Errorf("answer is %d, want %d", ans, c.expected)
+		}
+	}
 }

@@ -1,24 +1,60 @@
 package arraysAndHashing
 
 import (
-	"log"
+	"reflect"
+	"sort"
+	"strings"
 	"testing"
 )
 
+type groupAnagramsCase struct {
+	input    []string
+	expected [][]string
+}
+
+var groupAnagramsCases = []groupAnagramsCase{
+	{
+		input:    []string{"eat", "tea", "tan", "ate", "nat", "bat"},
+		expected: [][]string{{"ate", "eat", "tea"}, {"bat"}, {"nat", "tan"}},
+	},
+	{
+		input:    []string{""},
+		expected: [][]string{{""}},
+	},
+	{
+		input:    []string{"a"},
+		expected: [][]string{{"a"}},
+	},
+}
+
+func normalizeGroups(groups [][]string) [][]string {
+	result := make([][]string, len(groups))
+	for i, g := range groups {
+		sorted := make([]string, len(g))
+		copy(sorted, g)
+		sort.Strings(sorted)
+		result[i] = sorted
+	}
+	sort.Slice(result, func(i, j int) bool {
+		return strings.Join(result[i], ",") < strings.Join(result[j], ",")
+	})
+	return result
+}
+
 func TestGroupAnagrams(t *testing.T) {
-	ans1 := groupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"})
-	log.Println("ans1: ", ans1)
-	ans2 := groupAnagrams([]string{""})
-	log.Println("ans2: ", ans2)
-	ans3 := groupAnagrams([]string{"a"})
-	log.Println("ans3: ", ans3)
+	for _, c := range groupAnagramsCases {
+		ans := normalizeGroups(groupAnagrams(c.input))
+		if !reflect.DeepEqual(ans, c.expected) {
+			t.Errorf("answer is %v, want %v", ans, c.expected)
+		}
+	}
 }
 
 func TestGroupAnagrams2(t *testing.T) {
-	ans1 := groupAnagrams2([]string{"eat", "tea", "tan", "ate", "nat", "bat"})
-	log.Println("ans1: ", ans1)
-	ans2 := groupAnagrams2([]string{""})
-	log.Println("ans2: ", ans2)
-	ans3 := groupAnagrams2([]string{"a"})
-	log.Println("ans3: ", ans3)
+	for _, c := range groupAnagramsCases {
+		ans := normalizeGroups(groupAnagrams2(c.input))
+		if !reflect.DeepEqual(ans, c.expected) {
+			t.Errorf("answer is %v, want %v", ans, c.expected)
+		}
+	}
 }

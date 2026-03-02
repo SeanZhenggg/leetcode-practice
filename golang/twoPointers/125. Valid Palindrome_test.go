@@ -1,15 +1,23 @@
 package twoPointers
 
-import (
-	"log"
-	"testing"
-)
+import "testing"
+
+type isPalindromeCase struct {
+	s        string
+	expected bool
+}
+
+var isPalindromeCases = []isPalindromeCase{
+	{s: "A man, a plan, a canal: Panama", expected: true},
+	{s: "race a car", expected: false},
+	{s: " ", expected: true},
+}
 
 func TestIsPalindrome(t *testing.T) {
-	ans1 := isPalindrome("A man, a plan, a canal: Panama")
-	log.Println("ans1: ", ans1)
-	ans2 := isPalindrome("race a car")
-	log.Println("ans2: ", ans2)
-	ans3 := isPalindrome(" ")
-	log.Println("ans3: ", ans3)
+	for _, c := range isPalindromeCases {
+		ans := isPalindrome(c.s)
+		if ans != c.expected {
+			t.Errorf("answer is %v, want %v", ans, c.expected)
+		}
+	}
 }

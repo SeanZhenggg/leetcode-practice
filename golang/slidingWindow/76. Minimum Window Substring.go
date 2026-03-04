@@ -1,7 +1,6 @@
 package slidingWindow
 
 import (
-	"log"
 	"math"
 )
 
@@ -140,55 +139,103 @@ func minWindowReview(s string, t string) string {
 	return substr
 }
 
-func Test_MinWindow() {
-	case1 := "ADOBECODEBANC"
-	t1 := "ABC"
-	ans1 := minWindow(case1, t1)
-	log.Printf("ans1: %v", ans1)
-	case2 := "a"
-	t2 := "a"
-	ans2 := minWindow(case2, t2)
-	log.Printf("ans2: %v", ans2)
-	case3 := "a"
-	t3 := "aa"
-	ans3 := minWindow(case3, t3)
-	log.Printf("ans3: %v", ans3)
-	case4 := "cabwefgewcwaefgcf"
-	t4 := "cae"
-	ans4 := minWindowReview(case4, t4)
-	log.Printf("ans4: %v", ans4)
+// brute force, TLE error
+func minWindowBruteForce(s string, t string) string {
+	m := make(map[byte]int)
+	for _, i2 := range t {
+		m[byte(i2)]++
+	}
+	res := 100_000
+	res2 := ""
+
+	for i := 0; i < len(s); i++ {
+		mForS := make(map[byte]int)
+		for j := i; j < len(s); j++ {
+			mForS[s[j]]++
+
+			if mapIsEqual(m, mForS) {
+				if res > j-i+1 {
+					res = j - i + 1
+					res2 = s[i : j+1]
+				}
+				break
+			}
+		}
+	}
+
+	return res2
 }
 
-func Test_MinWindow2() {
-	case1 := "ADOBECODEBANC"
-	t1 := "ABC"
-	ans1 := minWindow2(case1, t1)
-	log.Printf("ans1: %v", ans1)
-	case2 := "a"
-	t2 := "a"
-	ans2 := minWindow2(case2, t2)
-	log.Printf("ans2: %v", ans2)
-	case3 := "a"
-	t3 := "aa"
-	ans3 := minWindow2(case3, t3)
-	log.Printf("ans3: %v", ans3)
+// sliding window
+func minWindowSlidingWindow(s string, t string) string {
+	l := 0
+	mForT := make(map[byte]int)
+	for i := 0; i < len(t); i++ {
+		mForT[t[i]] += 1
+	}
+	mForS := make(map[byte]int)
+
+	minLen := 100_000
+	minS := ""
+	for r := 0; r < len(s); r++ {
+		mForS[s[r]]++
+
+		for mapIsEqual(mForT, mForS) {
+			if minLen > r-l+1 {
+				minLen = r - l + 1
+				minS = s[l : r+1]
+			}
+			mForS[s[l]] -= 1
+			l++
+		}
+	}
+	return minS
 }
 
-func Test_MinWindowReview() {
-	case1 := "ADOBECODEBANC"
-	t1 := "ABC"
-	ans1 := minWindowReview(case1, t1)
-	log.Printf("ans1: %v", ans1)
-	case2 := "a"
-	t2 := "a"
-	ans2 := minWindowReview(case2, t2)
-	log.Printf("ans2: %v", ans2)
-	case3 := "a"
-	t3 := "aa"
-	ans3 := minWindowReview(case3, t3)
-	log.Printf("ans3: %v", ans3)
-	case4 := "cabwefgewcwaefgcf"
-	t4 := "cae"
-	ans4 := minWindowReview(case4, t4)
-	log.Printf("ans4: %v", ans4)
+func minWindowSlidingWindowOptimal(s string, t string) string {
+	// edge case
+	if len(t) == 0 {
+		return ""
+	}
+
+	mForT := make(map[byte]int)
+	for i := 0; i < len(t); i++ {
+		mForT[t[i]] += 1
+	}
+
+	mForS := make(map[byte]int)
+	minS := ""
+	have, need := 0, len(mForT)
+	l := 0
+	for r := 0; r < len(s); r++ {
+		mForS[s[r]] += 1
+
+		if mForT[s[r]] > 0 && mForS[s[r]] == mForT[s[r]] {
+			have += 1
+		}
+
+		for have == need {
+			// use minS == "" to omit for another variable recording min length
+			if minS == "" || len(minS) > r-l+1 {
+				minS = s[l : r+1]
+			}
+
+			mForS[s[l]] -= 1
+			if mForT[s[l]] > 0 && mForS[s[l]] < mForT[s[l]] {
+				have -= 1
+			}
+			l++
+		}
+	}
+
+	return minS
+}
+
+func mapIsEqual(m map[byte]int, m2 map[byte]int) bool {
+	for k, v := range m {
+		if m2[k] < v {
+			return false
+		}
+	}
+	return true
 }

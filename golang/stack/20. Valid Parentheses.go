@@ -45,6 +45,28 @@ func isValid2(s string) bool {
 	return len(st) == 0
 }
 
+// 不能用 two pointer 解，因為可以有這種 use case: "()[]{}"
+func isValidTwoPointerFailed(s string) bool {
+	l, r := 0, len(s)-1
+
+	m := map[uint8]uint8{
+		'(': ')',
+		'[': ']',
+		'{': '}',
+	}
+
+	for l < r {
+		if matched, ok := m[s[l]]; !ok || matched != s[r] {
+			return false
+		}
+
+		l++
+		r--
+	}
+
+	return true
+}
+
 func Test_IsValid() {
 	case1 := "()"
 	ans1 := isValid(case1)

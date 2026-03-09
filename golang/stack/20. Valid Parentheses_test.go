@@ -58,3 +58,21 @@ func TestIsValidTwoPointer(t *testing.T) {
 	ans5 := isValidTwoPointerFailed(case5)
 	log.Printf("ans5: %v", ans5)
 }
+
+func TestIsValidStack(t *testing.T) {
+	case1 := "()"
+	ans1 := isValidStack(case1)
+	log.Printf("ans1: %v", ans1)
+	case2 := "()[]{}"
+	ans2 := isValidStack(case2)
+	log.Printf("ans2: %v", ans2)
+	case3 := "(]"
+	ans3 := isValidStack(case3)
+	log.Printf("ans3: %v", ans3)
+	case4 := "([])"
+	ans4 := isValidStack(case4)
+	log.Printf("ans4: %v", ans4)
+	case5 := "([)]"
+	ans5 := isValidStack(case5)
+	log.Printf("ans5: %v", ans5)
+}

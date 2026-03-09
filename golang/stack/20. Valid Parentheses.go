@@ -1,7 +1,5 @@
 package stack
 
-import "log"
-
 func isValid(s string) bool {
 	st := make([]string, 0, len(s))
 	parenthesesMap := map[string]string{
@@ -67,38 +65,54 @@ func isValidTwoPointerFailed(s string) bool {
 	return true
 }
 
-func Test_IsValid() {
-	case1 := "()"
-	ans1 := isValid(case1)
-	log.Printf("ans1: %v", ans1)
-	case2 := "()[]{}"
-	ans2 := isValid(case2)
-	log.Printf("ans2: %v", ans2)
-	case3 := "(]"
-	ans3 := isValid(case3)
-	log.Printf("ans3: %v", ans3)
-	case4 := "([])"
-	ans4 := isValid(case4)
-	log.Printf("ans4: %v", ans4)
-	case5 := "([)]"
-	ans5 := isValid(case5)
-	log.Printf("ans5: %v", ans5)
+type Stack[T any] struct {
+	st []T
 }
 
-func Test_IsValid2() {
-	case1 := "()"
-	ans1 := isValid2(case1)
-	log.Printf("ans1: %v", ans1)
-	case2 := "()[]{}"
-	ans2 := isValid2(case2)
-	log.Printf("ans2: %v", ans2)
-	case3 := "(]"
-	ans3 := isValid2(case3)
-	log.Printf("ans3: %v", ans3)
-	case4 := "([])"
-	ans4 := isValid2(case4)
-	log.Printf("ans4: %v", ans4)
-	case5 := "([)]"
-	ans5 := isValid2(case5)
-	log.Printf("ans5: %v", ans5)
+func (s *Stack[T]) Top() T {
+	var rt T
+	if len(s.st) == 0 {
+		return rt
+	}
+	return s.st[len(s.st)-1]
+}
+
+func (s *Stack[T]) Push(value T) {
+	s.st = append(s.st, value)
+}
+
+func (s *Stack[T]) Pop() T {
+	var rt T
+	if len(s.st) == 0 {
+		return rt
+	}
+	rt = s.st[len(s.st)-1]
+	s.st = s.st[:len(s.st)-1]
+	return rt
+}
+
+func (s *Stack[T]) Len() int {
+	return len(s.st)
+}
+
+func isValidStack(s string) bool {
+	st := new(Stack[uint8])
+	m := map[uint8]uint8{
+		')': '(',
+		']': '[',
+		'}': '{',
+	}
+
+	for i := 0; i < len(s); i++ {
+		if s[i] == '(' || s[i] == '[' || s[i] == '{' {
+			st.Push(s[i])
+		} else {
+			t := st.Pop()
+			if m[s[i]] != t {
+				return false
+			}
+		}
+	}
+
+	return st.Len() == 0
 }

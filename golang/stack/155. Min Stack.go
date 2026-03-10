@@ -1,7 +1,5 @@
 package stack
 
-import "log"
-
 type MinStack struct {
 	st    []int
 	minSt []int
@@ -38,22 +36,37 @@ func (this *MinStack) GetMin() int {
 	return this.minSt[len(this.minSt)-1]
 }
 
-/**
- * Your MinStack object will be instantiated and called as such:
- * obj := Constructor();
- * obj.Push(val);
- * obj.Pop();
- * param_3 := obj.Top();
- * param_4 := obj.GetMin();
- */
+type MinStack2 struct {
+	st    []int
+	minSt []int
+}
 
-func Test_MinStack() {
-	obj := MinStackConstructor()
-	obj.Push(-2)
-	obj.Push(0)
-	obj.Push(-3)
-	log.Println(obj.GetMin())
-	obj.Pop()
-	log.Println(obj.Top())
-	log.Println(obj.GetMin())
+func Constructor() MinStack2 {
+	return MinStack2{
+		st:    make([]int, 0),
+		minSt: make([]int, 0),
+	}
+}
+
+func (this *MinStack2) Push(val int) {
+	this.st = append(this.st, val)
+	if len(this.minSt) != 0 {
+		top := this.minSt[len(this.minSt)-1]
+		this.minSt = append(this.minSt, min(top, val))
+	} else {
+		this.minSt = append(this.minSt, val)
+	}
+}
+
+func (this *MinStack2) Pop() {
+	this.st = this.st[:len(this.st)-1]
+	this.minSt = this.minSt[:len(this.minSt)-1]
+}
+
+func (this *MinStack2) Top() int {
+	return this.st[len(this.st)-1]
+}
+
+func (this *MinStack2) GetMin() int {
+	return this.minSt[len(this.minSt)-1]
 }

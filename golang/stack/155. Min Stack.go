@@ -70,3 +70,49 @@ func (this *MinStack2) Top() int {
 func (this *MinStack2) GetMin() int {
 	return this.minSt[len(this.minSt)-1]
 }
+
+type MinStackFailed struct {
+	st    []int
+	minSt []int
+}
+
+func ConstructorFailed() MinStackFailed {
+	return MinStackFailed{
+		st:    make([]int, 0),
+		minSt: make([]int, 0),
+	}
+}
+
+func (this *MinStackFailed) Push(val int) {
+	this.st = append(this.st, val)
+	if len(this.minSt) != 0 {
+		top := this.minSt[len(this.minSt)-1]
+		if top >= val {
+			this.minSt = append(this.minSt, val)
+		} else {
+			this.minSt = this.minSt[:len(this.minSt)-1]
+			this.minSt = append(this.minSt, val)
+			this.minSt = append(this.minSt, top)
+		}
+	} else {
+		this.minSt = append(this.minSt, val)
+	}
+}
+
+func (this *MinStackFailed) Pop() {
+	top := this.st[len(this.st)-1]
+	this.st = this.st[:len(this.st)-1]
+	if len(this.minSt) != 0 {
+		if top == this.minSt[len(this.minSt)-1] {
+			this.minSt = this.minSt[:len(this.minSt)-1]
+		}
+	}
+}
+
+func (this *MinStackFailed) Top() int {
+	return this.st[len(this.st)-1]
+}
+
+func (this *MinStackFailed) GetMin() int {
+	return this.minSt[len(this.minSt)-1]
+}

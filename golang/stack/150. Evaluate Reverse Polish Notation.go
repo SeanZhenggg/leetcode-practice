@@ -43,6 +43,53 @@ func evalRPN(tokens []string) int {
 	return st[0]
 }
 
+func evalRPNBruteForce(tokens []string) int {
+	operands := map[string]struct{}{
+		"+": {},
+		"-": {},
+		"*": {},
+		"/": {},
+	}
+
+	var idx int
+	for len(tokens) > 1 {
+		idx = -1
+		for i := 0; i < len(tokens); i++ {
+			if _, ok := operands[tokens[i]]; ok {
+				idx = i
+				break
+			}
+		}
+
+		if idx != -1 && idx >= 2 {
+			total := getValue(tokens[idx], tokens[idx-2], tokens[idx-1])
+			newTokens := make([]string, 0, len(tokens))
+			newTokens = append(tokens[:idx-2], strconv.Itoa(total))
+			newTokens = append(newTokens, tokens[idx+1:]...)
+			tokens = newTokens
+		}
+	}
+
+	ret, _ := strconv.Atoi(tokens[0])
+	return ret
+}
+
+func getValue(operand string, a, b string) int {
+	intA, _ := strconv.Atoi(a)
+	intB, _ := strconv.Atoi(b)
+	switch operand {
+	case "+":
+		return intA + intB
+	case "-":
+		return intA - intB
+	case "*":
+		return intA * intB
+	case "/":
+		return intA / intB
+	}
+	return 0
+}
+
 func Test_EvalRPN() {
 	case1 := []string{"2", "1", "+", "3", "*"}
 	ans1 := evalRPN(case1)

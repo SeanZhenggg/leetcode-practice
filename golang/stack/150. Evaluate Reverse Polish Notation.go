@@ -74,6 +74,38 @@ func evalRPNBruteForce(tokens []string) int {
 	return ret
 }
 
+func evalRPNStack(tokens []string) int {
+	operands := map[string]struct{}{
+		"+": {},
+		"-": {},
+		"*": {},
+		"/": {},
+	}
+	st := make([]string, 0, len(tokens))
+
+	for i := 0; i < len(tokens); i++ {
+		if _, ok := operands[tokens[i]]; !ok {
+			st = append(st, tokens[i])
+		} else {
+			j := len(st)
+			if j >= 2 {
+				total := getValue(tokens[i], st[j-2], st[j-1])
+				st = st[:j-2]
+				st = append(st, strconv.Itoa(total))
+			} else {
+				return 0
+			}
+		}
+	}
+
+	if len(st) > 1 {
+		return 0
+	}
+
+	ret, _ := strconv.Atoi(st[0])
+	return ret
+}
+
 func getValue(operand string, a, b string) int {
 	intA, _ := strconv.Atoi(a)
 	intB, _ := strconv.Atoi(b)

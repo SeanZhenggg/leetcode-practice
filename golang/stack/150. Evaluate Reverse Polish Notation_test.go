@@ -32,3 +32,12 @@ func TestEvalRPNBruteForce(t *testing.T) {
 		}
 	}
 }
+
+func TestEvalRPNStack(t *testing.T) {
+	for _, c := range evalRPNCaseCases {
+		ans := evalRPNStack(c.input)
+		if ans != c.expected {
+			t.Errorf("answer is %v, want %v", ans, c.expected)
+		}
+	}
+}

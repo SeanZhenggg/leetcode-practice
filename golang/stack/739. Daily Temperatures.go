@@ -1,7 +1,5 @@
 package stack
 
-import "log"
-
 // monotonic stack solution - TC: O(n), SC: O(n)
 func dailyTemperatures(temperatures []int) []int {
 	// monotonic decreasing stack
@@ -104,67 +102,59 @@ func dailyTemperaturesReview2(temperatures []int) []int {
 	return ret
 }
 
-func Test_DailyTemperatures() {
-	case1 := []int{73, 74, 75, 71, 69, 72, 76, 73}
-	ans1 := dailyTemperatures(case1)
-	log.Printf("ans1: %v", ans1)
-	case2 := []int{30, 40, 50, 60}
-	ans2 := dailyTemperatures(case2)
-	log.Printf("ans2: %v", ans2)
-	case3 := []int{30, 60, 90}
-	ans3 := dailyTemperatures(case3)
-	log.Printf("ans3: %v", ans3)
-
+type item struct {
+	Val int
+	Idx int
 }
 
-func Test_DailyTemperatures2() {
-	case1 := []int{73, 74, 75, 71, 69, 72, 76, 73}
-	ans1 := dailyTemperatures2(case1)
-	log.Printf("ans1: %v", ans1)
-	case2 := []int{30, 40, 50, 60}
-	ans2 := dailyTemperatures2(case2)
-	log.Printf("ans2: %v", ans2)
-	case3 := []int{30, 60, 90}
-	ans3 := dailyTemperatures2(case3)
-	log.Printf("ans3: %v", ans3)
+func dailyTemperaturesMonotonicStack(temperatures []int) []int {
+	monotonicDescSt := make([]item, 0, len(temperatures))
+	ans := make([]int, len(temperatures))
 
+	if len(temperatures) == 0 {
+		return ans
+	}
+
+	for i := 0; i < len(temperatures); i++ {
+		for len(monotonicDescSt) > 0 && temperatures[i] > monotonicDescSt[len(monotonicDescSt)-1].Val {
+			pop := monotonicDescSt[len(monotonicDescSt)-1]
+			ans[pop.Idx] = i - pop.Idx
+			monotonicDescSt = monotonicDescSt[:len(monotonicDescSt)-1]
+		}
+		monotonicDescSt = append(monotonicDescSt, item{Val: temperatures[i], Idx: i})
+	}
+
+	if len(monotonicDescSt) > 0 {
+		for i := 0; i < len(monotonicDescSt); i++ {
+			ans[monotonicDescSt[i].Idx] = 0
+		}
+	}
+
+	return ans
 }
 
-func Test_DailyTemperatures3() {
-	case1 := []int{73, 74, 75, 71, 69, 72, 76, 73}
-	ans1 := dailyTemperatures3(case1)
-	log.Printf("ans1: %v", ans1)
-	case2 := []int{30, 40, 50, 60}
-	ans2 := dailyTemperatures3(case2)
-	log.Printf("ans2: %v", ans2)
-	case3 := []int{30, 60, 90}
-	ans3 := dailyTemperatures3(case3)
-	log.Printf("ans3: %v", ans3)
+func dailyTemperaturesArray(temperatures []int) []int {
+	ans := make([]int, len(temperatures))
+	n := len(temperatures)
+	if n == 0 {
+		return ans
+	}
 
-}
+	for i := n - 2; i >= 0; i-- {
+		j := i + 1
 
-func Test_DailyTemperaturesReview() {
-	case1 := []int{73, 74, 75, 71, 69, 72, 76, 73}
-	ans1 := dailyTemperaturesReview(case1)
-	log.Printf("ans1: %v", ans1)
-	case2 := []int{30, 40, 50, 60}
-	ans2 := dailyTemperaturesReview(case2)
-	log.Printf("ans2: %v", ans2)
-	case3 := []int{30, 60, 90}
-	ans3 := dailyTemperaturesReview(case3)
-	log.Printf("ans3: %v", ans3)
+		for j < n && temperatures[j] <= temperatures[i] {
+			if ans[j] == 0 {
+				j = n
+				break
+			}
+			j += ans[j]
+		}
 
-}
+		if j < n {
+			ans[i] = j - i
+		}
+	}
 
-func Test_DailyTemperaturesReview2() {
-	case1 := []int{73, 74, 75, 71, 69, 72, 76, 73}
-	ans1 := dailyTemperaturesReview(case1)
-	log.Printf("ans1: %v", ans1)
-	case2 := []int{30, 40, 50, 60}
-	ans2 := dailyTemperaturesReview(case2)
-	log.Printf("ans2: %v", ans2)
-	case3 := []int{30, 60, 90}
-	ans3 := dailyTemperaturesReview(case3)
-	log.Printf("ans3: %v", ans3)
-
+	return ans
 }

@@ -1,7 +1,5 @@
 package stack
 
-import "log"
-
 type n struct {
 	Height      int
 	LeftMostIdx int
@@ -88,38 +86,34 @@ func largestRectangleAreaReview(heights []int) int {
 	return maxArea
 }
 
-func Test_largestRectangleArea() {
-	case1 := []int{2, 1, 5, 6, 2, 3}
-	ans1 := largestRectangleArea(case1)
-	log.Printf("ans1: %v", ans1)
-	case2 := []int{2, 4}
-	ans2 := largestRectangleArea(case2)
-	log.Printf("ans2: %v", ans2)
-	case3 := []int{2, 2, 5, 6, 2, 3}
-	ans3 := largestRectangleArea(case3)
-	log.Printf("ans3: %v", ans3)
-}
+func largestRectangleAreaMonoticStack(heights []int) int {
+	// 用 monotonic increasing stack 來處理
+	// why? TODO
+	// 找到下一個更小的 bar 時:
+	// pop stack 頂端的元素
+	// pop 出來的 bar 去計算它延伸的最大寬度, 因為 area = w * h , 而 h 在每個 bar 固定, 因此 area 跟 w 成正比
+	// 計算完了以後, 將當前 bar 的延伸範圍連同它的 val 存進去 stack
+	if len(heights) == 0 {
+		return 0
+	}
 
-func Test_largestRectangleArea2() {
-	case1 := []int{2, 1, 5, 6, 2, 3}
-	ans1 := largestRectangleArea2(case1)
-	log.Printf("ans1: %v", ans1)
-	case2 := []int{2, 4}
-	ans2 := largestRectangleArea2(case2)
-	log.Printf("ans2: %v", ans2)
-	case3 := []int{2, 2, 5, 6, 2, 3}
-	ans3 := largestRectangleArea2(case3)
-	log.Printf("ans3: %v", ans3)
-}
+	st := Stack[[2]int]{}
+	maxArea := heights[0]
+	for i := 0; i < len(heights); i++ {
+		leftMost := i
+		//maxArea = max(maxArea, heights[i]*1)
+		for st.Len() > 0 && st.Top()[0] >= heights[i] {
+			top := st.Pop()
+			maxArea = max(maxArea, top[0]*(i-top[1]))
+			leftMost = top[1]
+		}
+		st.Push([2]int{heights[i], leftMost})
+	}
 
-func Test_largestRectangleAreaReview() {
-	case1 := []int{2, 1, 5, 6, 2, 3}
-	ans1 := largestRectangleAreaReview(case1)
-	log.Printf("ans1: %v", ans1)
-	case2 := []int{2, 4}
-	ans2 := largestRectangleAreaReview(case2)
-	log.Printf("ans2: %v", ans2)
-	case3 := []int{2, 2, 5, 6, 2, 3}
-	ans3 := largestRectangleAreaReview(case3)
-	log.Printf("ans3: %v", ans3)
+	for st.Len() > 0 {
+		top := st.Pop()
+		maxArea = max(maxArea, top[0]*(len(heights)-top[1]))
+	}
+
+	return maxArea
 }
